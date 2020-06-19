@@ -6,7 +6,7 @@
 /*   By: vbaron <vbaron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/18 14:03:48 by vbaron            #+#    #+#             */
-/*   Updated: 2020/06/19 14:57:03 by vbaron           ###   ########.fr       */
+/*   Updated: 2020/06/19 16:52:22 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,10 @@ typedef struct s_list
 
 typedef struct s_list
 {
+    int fd;
+    char *line;
     int **map;
-    t_vector res;
+    t_vector R;
     t_tex NO;
     t_tex SO;
     t_tex WE;
