@@ -6,7 +6,7 @@
 /*   By: vbaron <vbaron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/23 19:02:56 by vbaron            #+#    #+#             */
-/*   Updated: 2020/06/23 21:13:45 by vbaron           ###   ########.fr       */
+/*   Updated: 2020/06/23 21:49:45 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,19 +53,19 @@ void     args_definer(t_input *args)
         while (args->line[args->tracker] && !(args->line[args->tracker] >= '0' && args->line[args->tracker] <= '9') && args->line[args->tracker] != '.')
             args->tracker++;
         if (args->line[args->tracker] == '.' && args->index_i == 2)
-            (args->NO->path = ft_strdup(&(args->line[args->tracker])));
+            (args->NO->path = ft_substr_bis(args->line, args->tracker, ft_strlen(args->line) - args->tracker));
         if (args->line[args->tracker] == '.' && args->index_i == 3)
-            (args->SO->path = ft_strdup(&(args->line[args->tracker])));
+            (args->SO->path = ft_substr_bis(args->line, args->tracker, ft_strlen(args->line) - args->tracker));
         if (args->line[args->tracker] == '.' && args->index_i == 4)
-            (args->WE->path = ft_strdup(&(args->line[args->tracker])));
+            (args->WE->path = ft_substr_bis(args->line, args->tracker, ft_strlen(args->line) - args->tracker));
         if (args->line[args->tracker] == '.' && args->index_i == 5)
-            (args->EA->path = ft_strdup(&(args->line[args->tracker])));
+            (args->EA->path = ft_substr_bis(args->line, args->tracker, ft_strlen(args->line) - args->tracker));
         if (args->line[args->tracker] == '.' && args->index_i == 6)
-            (args->S->path = ft_strdup(&(args->line[args->tracker])));
+            (args->S->path = ft_substr_bis(args->line, args->tracker, ft_strlen(args->line) - args->tracker));
         if (args->line[args->tracker] == '.' && args->index_i == 7)
-            (args->F->path = ft_strdup(&(args->line[args->tracker])));
+            (args->F->path = ft_substr_bis(args->line, args->tracker, ft_strlen(args->line) - args->tracker));
         if (args->line[args->tracker] == '.' && args->index_i == 8)
-            (args->C->path = ft_strdup(&(args->line[args->tracker])));
+            (args->C->path = ft_substr_bis(args->line, args->tracker, ft_strlen(args->line) - args->tracker));
         if (args->line[args->tracker] >= '0' && args->line[args->tracker] <= '9')
             splitter_alloc(args);
 }
@@ -93,7 +93,7 @@ int    map_parsing(t_input *args)
 {
     int res;
 
-    args->index = "1RNSWESFC"; 
+    args->index = "1RNSWESFC";
 
     while ((res = get_next_line(args->fd, &(args->line))) != 0)
     {
@@ -109,6 +109,7 @@ int    map_parsing(t_input *args)
         }
         else if ((args->index_i = check_charset(args->line[args->tracker], args->index)) > 0)
             args_definer(args);
+        ft_free(args->line);
     }
     return (1);
 }
