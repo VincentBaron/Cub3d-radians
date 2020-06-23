@@ -1,31 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   program_main.c                                     :+:      :+:    :+:   */
+/*   ft_realloc.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vbaron <vbaron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/19 12:38:34 by vbaron            #+#    #+#             */
-/*   Updated: 2020/06/22 19:14:54 by vbaron           ###   ########.fr       */
+/*   Created: 2020/06/22 18:37:26 by vbaron            #+#    #+#             */
+/*   Updated: 2020/06/22 19:14:00 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void    error(void)
-{
-    write (1, "Error\n", 6);
-    return (0);
-}
+#include "../includes/cub3d.h"
 
-int main(int argc, char **argv)
+int **ft_realloc(int **tab)
 {
-    int fd;
-    t_input args;
-    
-    if (argc != 2)
-        error();
-    if ((fd = open(argv[1])) == -1)
-        error();
-    map_parsing(fd, &args);
-    
-    return (0);
+    int **new_tab;
+    int size;
+
+    size = 0;
+    while (tab[size])
+        size++;
+    new_tab = (int **)malloc(sizeof(int) * (size + 1));
+    size = 0;
+    while (tab[size])
+    {
+        new_tab[size] = tab[size];
+        size++;
+    }
+    free(tab);
+    return (new_tab);
 }

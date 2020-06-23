@@ -6,14 +6,14 @@
 /*   By: vbaron <vbaron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/19 12:35:31 by vbaron            #+#    #+#             */
-/*   Updated: 2020/06/22 17:45:21 by vbaron           ###   ########.fr       */
+/*   Updated: 2020/06/22 18:58:56 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 #include "../includes/get_next_line.h"
 
-int     args_definer(t_input *args, int x)
+void     args_definer(t_input *args, int x)
 {
         char *splitter;
         int f;
@@ -39,6 +39,25 @@ int     args_definer(t_input *args, int x)
     }
 }
 
+void    map_creator(t_input *args)
+{
+    int i;
+    int f;
+    
+    i = 0;
+    f = 0;
+    while ((args->map)[i])
+        i++;
+    i--;
+    (args->map)[i] = (int *)malloc(sizeof(int) * (ft_strlen(line) - 2))
+    while (line[f] != '\n')
+    {
+        (args->map)[i][f] = ft_atoi(*line);
+        f++;
+        line++;
+    }
+}
+
 int    map_parsing(t_input *args)
 {
     int res;
@@ -52,7 +71,10 @@ int    map_parsing(t_input *args)
         i = -1;
         while (args->line[i++] == ' ')
         if ((x = check_charset(args->line[i], args->index)) == 0)
-            map_creator();
+        {
+            args->map = ft_realloc(args->map);
+            map_creator(args);
+        }
         else if ((x = check_charset(args->line[i], args->index)) > 0)
             args_definer(args, x);
     }
