@@ -6,7 +6,7 @@
 /*   By: vbaron <vbaron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/23 19:02:56 by vbaron            #+#    #+#             */
-/*   Updated: 2020/06/23 19:49:13 by vbaron           ###   ########.fr       */
+/*   Updated: 2020/06/23 20:51:45 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,19 +53,19 @@ void     args_definer(t_input *args)
         while (args->line[args->tracker] && !(args->line[args->tracker] >= '0' && args->line[args->tracker] <= '9') && args->line[args->tracker] != '.')
             args->tracker++;
         if (args->line[args->tracker] == '.' && args->index_i == 2)
-            (args->NO->path = ft_substr(args->line, args->tracker, ft_strlen(args->line)));
+            (args->NO->path = ft_substr(args->line, args->tracker, ft_strlen(args->line) - args->tracker));
         if (args->line[args->tracker] == '.' && args->index_i == 3)
-            (args->SO->path = ft_substr(args->line, args->tracker, ft_strlen(args->line)));
+            (args->SO->path = ft_substr(args->line, args->tracker, ft_strlen(args->line) - args->tracker));
         if (args->line[args->tracker] == '.' && args->index_i == 4)
-            (args->WE->path = ft_substr(args->line, args->tracker, ft_strlen(args->line)));
+            (args->WE->path = ft_substr(args->line, args->tracker, ft_strlen(args->line) - args->tracker));
         if (args->line[args->tracker] == '.' && args->index_i == 5)
-            (args->EA->path = ft_substr(args->line, args->tracker, ft_strlen(args->line)));
+            (args->EA->path = ft_substr(args->line, args->tracker, ft_strlen(args->line) - args->tracker));
         if (args->line[args->tracker] == '.' && args->index_i == 6)
-            (args->S->path = ft_substr(args->line, args->tracker, ft_strlen(args->line)));
+            (args->S->path = ft_substr(args->line, args->tracker, ft_strlen(args->line) - args->tracker));
         if (args->line[args->tracker] == '.' && args->index_i == 7)
-            (args->F->path = ft_substr(args->line, args->tracker, ft_strlen(args->line)));
+            (args->F->path = ft_substr(args->line, args->tracker, ft_strlen(args->line) - args->tracker));
         if (args->line[args->tracker] == '.' && args->index_i == 8)
-            (args->C->path = ft_substr(args->line, args->tracker, ft_strlen(args->line)));
+            (args->C->path = ft_substr(args->line, args->tracker, ft_strlen(args->line) - args->tracker));
         if (args->line[args->tracker] >= '0' && args->line[args->tracker] <= '9')
             splitter_alloc(args);
 }
@@ -79,7 +79,7 @@ void    map_creator(t_input *args)
     while ((args->map)[i])
         i++;
     i--;
-    (args->map)[i] = (int *)malloc(sizeof(int) * (ft_strlen(args->line) - 2));
+    (args->map)[i] = (int *)malloc(sizeof(int) * (ft_strlen(args->line) - args->tracker - 2));
     f = 0;
     while (args->line[f] != '\n')
     {
