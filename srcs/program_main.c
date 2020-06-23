@@ -6,7 +6,7 @@
 /*   By: vbaron <vbaron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/19 12:38:34 by vbaron            #+#    #+#             */
-/*   Updated: 2020/06/23 16:08:13 by vbaron           ###   ########.fr       */
+/*   Updated: 2020/06/23 19:25:22 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ int main(int argc, char **argv)
 {
     t_input args;
     
-    if (argc != 2)
-        error();
-    if ((args.fd = open(argv[1], O_RDONLY)) == -1)
+    //if (argc != 2)
+      //  error();
+    if ((args.fd = open("map.txt", O_RDONLY)) == -1)
         error();
     map_parsing(&args);
     

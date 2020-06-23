@@ -6,7 +6,7 @@
 /*   By: vbaron <vbaron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/03 00:40:53 by vbaron            #+#    #+#             */
-/*   Updated: 2020/06/23 15:55:57 by vbaron           ###   ########.fr       */
+/*   Updated: 2020/06/23 19:09:33 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,15 +52,15 @@ int		get_next_line(int fd, char **line)
 	{
 		*line = ft_substr_bis(leftover, 0, check_line(leftover));
 		temp = ft_substr_bis(leftover, check_line(leftover) + 1,
-		ft_strlen(leftover));
+		ft_strlen_bis(leftover));
 		ft_free(leftover);
-		leftover = ft_substr_bis(temp, 0, ft_strlen(temp));
+		leftover = ft_substr_bis(temp, 0, ft_strlen_bis(temp));
 		ft_free(temp);
 		return (1);
 	}
 	else
 	{
-		*line = ft_substr_bis(leftover, 0, ft_strlen(leftover));
+		*line = ft_substr_bis(leftover, 0, ft_strlen_bis(leftover));
 		ft_free(leftover);
 	}
 	return (0);

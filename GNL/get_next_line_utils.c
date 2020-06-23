@@ -6,13 +6,13 @@
 /*   By: vbaron <vbaron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/11 11:51:19 by vbaron            #+#    #+#             */
-/*   Updated: 2020/06/23 15:55:20 by vbaron           ###   ########.fr       */
+/*   Updated: 2020/06/23 19:09:10 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/get_next_line.h"
 
-size_t	ft_strlen(const char *s)
+size_t	ft_strlen_bis(const char *s)
 {
 	size_t	i;
 
@@ -39,7 +39,7 @@ char	*ft_strjoin_bis(char *s1, char *s2)
 
 	if (!s1)
 		s1 = ft_substr_bis("", 0, 0);
-	size = ft_strlen(s1) + ft_strlen(s2);
+	size = ft_strlen_bis(s1) + ft_strlen_bis(s2);
 	if (!(join = malloc(sizeof(char) * (size + 1))))
 	{
 		ft_free(s1);
@@ -64,7 +64,7 @@ char	*ft_substr_bis(char *s, unsigned int start, size_t len)
 
 	if (!s)
 		s = "";
-	if (start > ft_strlen(s))
+	if (start > ft_strlen_bis(s))
 		len = 0;
 	if (!(sub = malloc(sizeof(char) * (len + 1))))
 		return (NULL);

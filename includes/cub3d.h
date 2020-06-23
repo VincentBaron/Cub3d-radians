@@ -6,7 +6,7 @@
 /*   By: vbaron <vbaron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/18 14:03:48 by vbaron            #+#    #+#             */
-/*   Updated: 2020/06/23 18:28:17 by vbaron           ###   ########.fr       */
+/*   Updated: 2020/06/23 19:59:50 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ typedef struct s1_list
 
 typedef struct s2_list
 {
-    int *RGB[3];
+    int RGB[3];
     char *path;
 } t_text;
 
@@ -39,7 +39,7 @@ typedef struct s3_list
     int         fd;
     char        *line;
     int         **map;
-    int         *R[2];
+    int         R[2];
     t_text      *NO;
     t_text      *SO;
     t_text      *WE;
