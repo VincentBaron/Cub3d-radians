@@ -6,7 +6,7 @@
 /*   By: vbaron <vbaron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/18 14:03:48 by vbaron            #+#    #+#             */
-/*   Updated: 2020/06/23 16:05:39 by vbaron           ###   ########.fr       */
+/*   Updated: 2020/06/23 17:14:42 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,28 +40,15 @@ typedef struct s3_list
     char        *line;
     int         **map;
     int         *R;
-    t_text      NO;
-    t_text      SO;
-    t_text      WE;
-    t_text      EA;
-    t_text      S;
-    t_text      F;
-    t_text      C;
+    t_text      *NO;
+    t_text      *SO;
+    t_text      *WE;
+    t_text      *EA;
+    t_text      *S;
+    t_text      *F;
+    t_text      *C;
     char        *index;
 } t_input;
-
-typedef enum e1_list
-{
-    map,
-    R,
-    NO,
-    SO,
-    WE,
-    EA,
-    S,
-    F,
-    C,
-} e_input;
 
 void    error(void);
 int     main(int argc, char **argv);

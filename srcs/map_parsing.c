@@ -6,7 +6,7 @@
 /*   By: vbaron <vbaron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/19 12:35:31 by vbaron            #+#    #+#             */
-/*   Updated: 2020/06/23 16:17:11 by vbaron           ###   ########.fr       */
+/*   Updated: 2020/06/23 18:14:16 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,21 +16,27 @@ void     args_definer(t_input *args, int x)
 {
         char **splitter;
         int f;
-        e_input input;
-
+        
         while (args->line[f])
         {
-            if (args->line[f] == '.' && x > 0)
-                (input[x].path = ft_substr(args->line, f, ft_strlen(args->line));
+            if (args->line[f] == '.' && x == 2)
+                (args->NO->path = ft_substr(args->line, f, ft_strlen(args->line));
+            if (args->line[f] == '.' && x == 3)
+                (args->S0->path = ft_substr(args->line, f, ft_strlen(args->line));
+            if (args->line[f] == '.' && x == 4)
+                (args->WE->path = ft_substr(args->line, f, ft_strlen(args->line));
+            if (args->line[f] == '.' && x == 5)
+                (args->EA->path = ft_substr(args->line, f, ft_strlen(args->line));
+            if (args->line[f] == '.' && x == 6)
+                (args->S->path = ft_substr(args->line, f, ft_strlen(args->line));
+            if (args->line[f] == '.' && x == 7)
+                (args->F->path = ft_substr(args->line, f, ft_strlen(args->line));
+            if (args->line[f] == '.' && x == 8)
+                (args->C->path = ft_substr(args->line, f, ft_strlen(args->line));
+            
             else if (args->line[f] >= '0' && args->line[f] <= '9')
             {
-                splitter = ft_split(args->line, ", ");
-                while (*splitter)
-                {
-                    (x == 0 ? input[x].RGB : *(input[x])) = ft_atoi(*splitter);
-                    input[x])++;
-                    splitter++;
-                }
+                splitter_alloc();
         }
     }
 }
