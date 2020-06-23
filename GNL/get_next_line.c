@@ -6,11 +6,11 @@
 /*   By: vbaron <vbaron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/03 00:40:53 by vbaron            #+#    #+#             */
-/*   Updated: 2020/05/11 11:52:58 by vbaron           ###   ########.fr       */
+/*   Updated: 2020/06/23 15:55:57 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "../includes/get_next_line.h"
 
 int		check_line(char *s)
 {
@@ -34,7 +34,7 @@ void	ft_parse(char **leftover, char *buf, int fd, int *ret)
 	&& (*ret = read(fd, buf, BUFFER_SIZE)) > 0)
 	{
 		buf[*ret] = '\0';
-		*leftover = ft_strjoin(*leftover, buf);
+		*leftover = ft_strjoin_bis(*leftover, buf);
 	}
 }
 
@@ -50,17 +50,17 @@ int		get_next_line(int fd, char **line)
 	ft_parse(&leftover, buf, fd, &ret);
 	if (check_line(leftover) > -1)
 	{
-		*line = ft_substr(leftover, 0, check_line(leftover));
-		temp = ft_substr(leftover, check_line(leftover) + 1,
+		*line = ft_substr_bis(leftover, 0, check_line(leftover));
+		temp = ft_substr_bis(leftover, check_line(leftover) + 1,
 		ft_strlen(leftover));
 		ft_free(leftover);
-		leftover = ft_substr(temp, 0, ft_strlen(temp));
+		leftover = ft_substr_bis(temp, 0, ft_strlen(temp));
 		ft_free(temp);
 		return (1);
 	}
 	else
 	{
-		*line = ft_substr(leftover, 0, ft_strlen(leftover));
+		*line = ft_substr_bis(leftover, 0, ft_strlen(leftover));
 		ft_free(leftover);
 	}
 	return (0);

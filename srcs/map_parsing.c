@@ -6,33 +6,29 @@
 /*   By: vbaron <vbaron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/19 12:35:31 by vbaron            #+#    #+#             */
-/*   Updated: 2020/06/22 18:58:56 by vbaron           ###   ########.fr       */
+/*   Updated: 2020/06/23 16:17:11 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
-#include "../includes/get_next_line.h"
 
 void     args_definer(t_input *args, int x)
 {
-        char *splitter;
+        char **splitter;
         int f;
-
-        args_tab = initialize_tab(args);
+        e_input input;
 
         while (args->line[f])
         {
             if (args->line[f] == '.' && x > 0)
-                (args_tab[x])->path = ft_substr(args->line, f, ft_strlen(args->line))
-                return (1);
-            }
+                (input[x].path = ft_substr(args->line, f, ft_strlen(args->line));
             else if (args->line[f] >= '0' && args->line[f] <= '9')
             {
-                splitter = ft_split(args_line, ", ");
+                splitter = ft_split(args->line, ", ");
                 while (*splitter)
                 {
-                    *(args->RGB) = ft_atoi(*splitter);
-                    args->RGB++;
+                    (x == 0 ? input[x].RGB : *(input[x])) = ft_atoi(*splitter);
+                    input[x])++;
                     splitter++;
                 }
         }
@@ -49,22 +45,24 @@ void    map_creator(t_input *args)
     while ((args->map)[i])
         i++;
     i--;
-    (args->map)[i] = (int *)malloc(sizeof(int) * (ft_strlen(line) - 2))
-    while (line[f] != '\n')
+    (args->map)[i] = (int *)malloc(sizeof(int) * (ft_strlen(args->line) - 2));
+    while (args->line[f] != '\n')
     {
-        (args->map)[i][f] = ft_atoi(*line);
+        (args->map)[i][f] = *(args->line) - 48;
         f++;
-        line++;
+        args->line++;
     }
 }
 
 int    map_parsing(t_input *args)
 {
     int res;
+    int i;
+    int x;
 
-    args->index = "1RNSWESFC" 
+    args->index = "1RNSWESFC"; 
 
-    while ((res = get_next_line(args->fd, &(args->line)) != 0)
+    while ((res = get_next_line(args->fd, &(args->line))) != 0)
     {
         if (res == -1)
             return (-1);

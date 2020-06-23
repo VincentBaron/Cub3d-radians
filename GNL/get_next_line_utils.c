@@ -6,11 +6,11 @@
 /*   By: vbaron <vbaron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/11 11:51:19 by vbaron            #+#    #+#             */
-/*   Updated: 2020/05/11 12:04:43 by vbaron           ###   ########.fr       */
+/*   Updated: 2020/06/23 15:55:20 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "../includes/get_next_line.h"
 
 size_t	ft_strlen(const char *s)
 {
@@ -30,7 +30,7 @@ void	ft_free(char *s)
 	s = NULL;
 }
 
-char	*ft_strjoin(char *s1, char *s2)
+char	*ft_strjoin_bis(char *s1, char *s2)
 {
 	char			*join;
 	unsigned int	size;
@@ -38,7 +38,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	unsigned int	f;
 
 	if (!s1)
-		s1 = ft_substr("", 0, 0);
+		s1 = ft_substr_bis("", 0, 0);
 	size = ft_strlen(s1) + ft_strlen(s2);
 	if (!(join = malloc(sizeof(char) * (size + 1))))
 	{
@@ -57,7 +57,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	return (join);
 }
 
-char	*ft_substr(char *s, unsigned int start, size_t len)
+char	*ft_substr_bis(char *s, unsigned int start, size_t len)
 {
 	char			*sub;
 	unsigned int	i;
