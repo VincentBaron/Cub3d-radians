@@ -1,0 +1,69 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   starting_info.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vbaron <vbaron@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/06/24 14:51:16 by vbaron            #+#    #+#             */
+/*   Updated: 2020/06/24 16:47:10 by vbaron           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../includes/cub3d.h"
+
+void    find_direction(t_general *mother)
+{
+    if (mother->args.matrix[mother->gps.pos.x][mother->gps.pos.y] == 'N')
+    {
+        mother->gps.dir.x = -1;
+        mother->gps.dir.y = 0;
+    }
+    if (mother->args.matrix[mother->gps.pos.x][mother->gps.pos.y] == 'S')
+    {
+        mother->gps.dir.x = 1;
+        mother->gps.dir.y = 0;
+    }
+    if (mother->args.matrix[mother->gps.pos.x][mother->gps.pos.y] == 'E')
+    {
+        mother->gps.dir.x = 0;
+        mother->gps.dir.y = 1;
+    }
+    if (mother->args.matrix[mother->gps.pos.x][mother->gps.pos.y] == 'W')
+    {
+        mother->gps.dir.x = 0;
+        mother->gps.dir.y = -1;
+    }
+    
+}
+
+void    position_info(t_general *mother)
+{
+    int i;
+    int f;
+    t_gps gps;
+    
+    mother->gps.pos.x = -1;
+    mother->gps.pos.y = -1;
+    i = 0;
+    while (mother->args.matrix[i])
+    {
+        f = 0;
+        while (mother->args.matrix[i][f])
+        {
+            if (mother->args.matrix[i][f] == 'N' || mother->args.matrix[i][f] == 'S' || mother->args.matrix[i][f] == 'E' || mother->args.matrix[i][f] == 'W')
+            {
+                mother->gps.pos.x = i;
+                mother->gps.pos.y = f;
+                break;
+            }
+            f++;
+        }
+        i++;
+    }
+    find_direction(mother);
+    mother->gps.plane.x = 0;
+    mother->gps.plane.y = 0.66;
+    mother->gps.time.x = 0;
+    mother->gps.time.y = 0;
+}

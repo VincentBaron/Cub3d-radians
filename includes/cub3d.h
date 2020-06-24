@@ -6,7 +6,7 @@
 /*   By: vbaron <vbaron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/18 14:03:48 by vbaron            #+#    #+#             */
-/*   Updated: 2020/06/24 15:32:31 by vbaron           ###   ########.fr       */
+/*   Updated: 2020/06/24 16:36:20 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,18 @@ typedef struct s4_list
     int y;
 } t_coor;
 
+typedef struct s7_list
+{
+    float x;
+    float y;
+} t_coor_float;
+
 typedef struct s1_list
 {
     t_coor pos;
     t_coor dir;
-    t_coor plane;
+    t_coor_float plane;
+    t_coor_float time;
 }   t_gps;
 
 typedef struct s2_list
@@ -76,6 +83,11 @@ void    map_creator(t_input *args);
 //general_functions_1.c
 
 char	*ft_strdup_map(char *s);
+
+//starting_info.c
+
+void    position_info(t_general *mother);
+void    find_direction(t_general *mother);
 
 
 #endif
