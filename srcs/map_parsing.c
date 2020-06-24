@@ -6,7 +6,7 @@
 /*   By: vbaron <vbaron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/23 19:02:56 by vbaron            #+#    #+#             */
-/*   Updated: 2020/06/24 12:10:48 by vbaron           ###   ########.fr       */
+/*   Updated: 2020/06/24 12:11:53 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,20 +69,6 @@ void     args_definer(t_input *args)
         if (args->line[args->tracker] >= '0' && args->line[args->tracker] <= '9')
             splitter_alloc(args);
 }
-
-/*void    map_creator(t_input *args)
-{
-  int res;
-  char *temp1;
-  char *temp2; 
-
-  args->map = ft_strdup_map(args->line);
-  while ((args->index_i = check_charset(args->line[args->tracker], args->index)) == 0 && (res = get_next_line(args->fd, &(args->line))) != 0)
-  {      
-        args->line = ft_strdup_map(args->line);
-        args->map = ft_strjoin_bis(args->map, arg);
-  }
-}*/
 
 int    map_parsing(t_input *args)
 {
