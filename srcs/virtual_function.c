@@ -1,32 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   program_main.c                                     :+:      :+:    :+:   */
+/*   virtual_function.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vbaron <vbaron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/19 12:38:34 by vbaron            #+#    #+#             */
-/*   Updated: 2020/06/24 16:49:04 by vbaron           ###   ########.fr       */
+/*   Created: 2020/06/24 16:49:29 by vbaron            #+#    #+#             */
+/*   Updated: 2020/06/24 16:51:53 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-void    error(void)
+void    game_start(t_general *mother)
 {
-    write (1, "Error\n", 6);
-}
-
-int main(int argc, char **argv)
-{
-    t_general mother;
-    
-    //if (argc != 2)
-      //  error();
-    if ((mother.args.fd = open("test.txt", O_RDONLY)) == -1)
-        error();
-    map_parsing(&(mother.args));
-    position_info(&mother);
-    virtual_world(&mother);
-    return (0);
+     screen(mother->args.R[1], mother->args.R[0], 0, "Raycaster");
 }

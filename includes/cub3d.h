@@ -6,7 +6,7 @@
 /*   By: vbaron <vbaron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/18 14:03:48 by vbaron            #+#    #+#             */
-/*   Updated: 2020/06/24 16:36:20 by vbaron           ###   ########.fr       */
+/*   Updated: 2020/06/24 17:12:39 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ typedef struct s4_list
 
 typedef struct s7_list
 {
-    float x;
-    float y;
+    double x;
+    double y;
 } t_coor_float;
 
 typedef struct s1_list
