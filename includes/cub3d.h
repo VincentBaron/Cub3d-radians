@@ -6,7 +6,7 @@
 /*   By: vbaron <vbaron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/18 14:03:48 by vbaron            #+#    #+#             */
-/*   Updated: 2020/06/23 22:04:55 by vbaron           ###   ########.fr       */
+/*   Updated: 2020/06/24 12:07:40 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ typedef struct s3_list
 {
     int         fd;
     char        *line;
-    int         **map;
+    char        *map;
+    char        **matrix;
     int         R[2];
     t_text      NO;
     t_text      SO;
@@ -52,6 +53,8 @@ typedef struct s3_list
     int         tracker;
 } t_input;
 
+//map_parsing.c
+
 void    error(void);
 int     main(int argc, char **argv);
 int     map_parsing(t_input *args);
@@ -59,5 +62,11 @@ int     check_charset(char c, char const *set);
 void    args_definer(t_input *args);
 int     **ft_realloc(int **tab);
 void    splitter_alloc(t_input *args);
+void    map_creator(t_input *args);
+
+//general_functions_1.c
+
+char	*ft_strdup_map(char *s);
+
 
 #endif

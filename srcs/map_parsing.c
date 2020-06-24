@@ -6,7 +6,7 @@
 /*   By: vbaron <vbaron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/23 19:02:56 by vbaron            #+#    #+#             */
-/*   Updated: 2020/06/23 22:01:01 by vbaron           ###   ########.fr       */
+/*   Updated: 2020/06/24 12:10:48 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,30 +70,25 @@ void     args_definer(t_input *args)
             splitter_alloc(args);
 }
 
-void    map_creator(t_input *args)
+/*void    map_creator(t_input *args)
 {
-    int i;
-    int f;
-    
-    i = 0;
-    while ((args->map)[i])
-        i++;
-    i--;
-    (args->map)[i] = (int *)malloc(sizeof(int) * (ft_strlen(args->line) - args->tracker - 2));
-    f = 0;
-    while (args->line[f] != '\n')
-    {
-        (args->map)[i][f] = *(args->line) - 48;
-        f++;
-        args->line++;
-    }
-}
+  int res;
+  char *temp1;
+  char *temp2; 
+
+  args->map = ft_strdup_map(args->line);
+  while ((args->index_i = check_charset(args->line[args->tracker], args->index)) == 0 && (res = get_next_line(args->fd, &(args->line))) != 0)
+  {      
+        args->line = ft_strdup_map(args->line);
+        args->map = ft_strjoin_bis(args->map, arg);
+  }
+}*/
 
 int    map_parsing(t_input *args)
 {
     int res;
 
-    args->index = "1RNSWESFC";
+    args->index = "1RNSWEXFC";
 
     while ((res = get_next_line(args->fd, &(args->line))) != 0)
     {
@@ -104,12 +99,18 @@ int    map_parsing(t_input *args)
             args->tracker++;
         if ((args->index_i = check_charset(args->line[args->tracker], args->index)) == 0)
         {
-            args->map = ft_realloc(args->map);
-            map_creator(args);
+            args->line = ft_strdup_map(args->line);
+            args->map = ft_strjoin_bis(args->map, args->line);
         }
         else if ((args->index_i = check_charset(args->line[args->tracker], args->index)) > 0)
+        {
+            if (args->index_i == 3 && args->line[args->tracker + 1] == ' ')
+                args->index_i = 6;
             args_definer(args);
+        }
         ft_free(args->line);
     }
+    args->matrix = ft_split(args->map, "x");
+    ft_free(args->map);
     return (1);
 }
