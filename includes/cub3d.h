@@ -6,7 +6,7 @@
 /*   By: vbaron <vbaron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/18 14:03:48 by vbaron            #+#    #+#             */
-/*   Updated: 2020/06/24 12:07:40 by vbaron           ###   ########.fr       */
+/*   Updated: 2020/06/24 15:32:31 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,18 @@
 # include "../includes/get_next_line.h"
 # include "../Libft/libft.h"
 
+typedef struct s4_list
+{
+    int x;
+    int y;
+} t_coor;
+
 typedef struct s1_list
 {
-    int posX;
-    int posY;
-    int dirX;
-    int dirY;
-    int planeX;
-    int planeY;
-}   gps_list;
+    t_coor pos;
+    t_coor dir;
+    t_coor plane;
+}   t_gps;
 
 typedef struct s2_list
 {
@@ -52,6 +55,12 @@ typedef struct s3_list
     int         index_i;
     int         tracker;
 } t_input;
+
+typedef struct s5_list
+{
+    t_input args;
+    t_gps   gps;
+}   t_general;
 
 //map_parsing.c
 
