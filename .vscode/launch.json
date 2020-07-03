@@ -8,7 +8,7 @@
             "name": "(lldb) Launch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "/Users/vbaron/Desktop/Cub3d/a.out",
+            "program": "/Users/vincentbaron/Documents/GitHub/Cub3d/mlx_tests/cub3d",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",

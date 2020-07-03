@@ -6,13 +6,13 @@
 #    By: vincentbaron <vincentbaron@student.42.f    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/07/02 22:35:50 by vincentbaro       #+#    #+#              #
-#    Updated: 2020/07/03 14:54:31 by vincentbaro      ###   ########.fr        #
+#    Updated: 2020/07/03 21:45:29 by vincentbaro      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = cub3D
 CC = clang
-#CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror
 MLX = mlxopengl
 LXFLAGS = -lmlx -framework OpenGL -framework AppKit
 SRC = main
