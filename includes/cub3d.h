@@ -17,7 +17,7 @@
 # include <unistd.h>
 # include "get_next_line.h"
 # include "../Libft/libft.h"
-# include "mlx.h"
+# include "../mlx_tests/mlxopengl/mlx.h"
 
 
 typedef struct s4_list
@@ -65,9 +65,15 @@ typedef struct s3_list
     int         tracker;
 } t_input;
 
+typedef struct s12_list
+{
+    void *ptr;
+} t_mlx;
+
 typedef struct s5_list
 {
     t_input args;
+    t_mlx   mlx;
     t_gps   gps;
 }   t_general;
 
@@ -91,5 +97,8 @@ char	*ft_strdup_map(char *s);
 void    position_info(t_general *mother);
 void    find_direction(t_general *mother);
 
+//virtual_function.c
+
+void    game_start(t_general *mother);
 
 #endif

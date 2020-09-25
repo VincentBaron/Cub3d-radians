@@ -14,5 +14,6 @@
 
 void    game_start(t_general *mother)
 {
-     screen(mother->args.R[1], mother->args.R[0], 0, "Raycaster");
+     mother->mlx.ptr = mlx_init();
+     printf("%p", mother->mlx.ptr);
 }
