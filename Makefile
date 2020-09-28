@@ -6,7 +6,7 @@
 #    By: vincentbaron <vincentbaron@student.42.f    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/24 17:36:15 by vbaron            #+#    #+#              #
-#    Updated: 2020/09/28 10:27:56 by vincentbaro      ###   ########.fr        #
+#    Updated: 2020/09/28 10:41:03 by vincentbaro      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,11 +50,7 @@
 
 #.PHONY: clean all fclean re
 
-DIR_S = srcs
-
-DIR_O = objs
-
-SOURCES =	general_functions_1.c \
+SRCS =	general_functions_1.c \
 			map_parsing.c \
 			program_main.c \
 			starting_info.c \
@@ -62,53 +58,32 @@ SOURCES =	general_functions_1.c \
 			get_next_line.c \
 			get_next_line_utils.c \
 
-SRCS = $(addprefix $(DIR_S)/,$(SOURCES))
+OBJS			= $(SRCS:.c=.o)
 
-OBJS = $(addprefix $(DIR_O)/,$(SOURCES:.c=.o))
+CC				= gcc
+RM				= rm -f
+CFLAGS			= -O3 -Wall -Wextra -Werror -I.
+LIBS			= -Lmlx -lmlx -framework OpenGL -framework AppKit -lm
+MLX				= libmlx.dylib
 
-HEADERS = includes
+NAME			= cub3D
 
-LIBFT_DIR = Libft
+all:			$(NAME)
 
-MLX_DIR = Mlx
-
-NAME = Cub3d
-
-CC = gcc
-
-CFLAGS = -Wall -Wextra -Werror  
-
-LIBS = -L -lmlx -lx11 -lxext -lm
-
-MLX = $(addprefix $(MLX_DIR)/,libmlx.a)
-
-LIBFT = $(addprefix $(LIBFT_DIR)/,libft.a)
-
-all: $(LIBFT) $(MLX) $(NAME)
-
-$(DIR_O)/%.o: $(DIR_S)/%.c
-	mkdir -p $(DIR_O)
-	$(CC) $(CFLAGS) -o $@ -c $<
-
-$(NAME): $(OBJS) $(LIBFT) $(MLX)
-	$(CC) $(CFLAGS) $(LIBS) $^ -o $@
-
-$(LIBFT):
-	make -C $(LIBFT_DIR)
+$(NAME):		$(MLX) $(OBJS)
+				gcc ${CFLAGS} -o ${NAME} ${OBJS} ${LIBS}
 
 $(MLX):
-	make -C $(MLX_DIR)
+				@$(MAKE) -C mlx
+				@mv mlx/$(MLX) .
 
 clean:
-	rm -f $(OBJS)
-	rm -rf $(DIR_O)
-	make clean -C $(LIBFT_DIR)
-	make clean -C $(MLX_DIR)
+				@$(MAKE) -C mlx clean
+				$(RM) $(OBJS) $(BONUS_OBJS)
 
-fclean: clean
-	rm -rf $(NAME)
-	make fclean -C $(LIBFT_DIR)
+fclean:			clean
+				$(RM) $(NAME) $(MLX)
 
-re: fclean all
+re:				fclean $(NAME)
 
-.PHONY: re fclean all clean
+.PHONY:			all clean fclean re
