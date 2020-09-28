@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   starting_info.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vbaron <vbaron@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vincentbaron <vincentbaron@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/24 14:51:16 by vbaron            #+#    #+#             */
-/*   Updated: 2020/06/24 16:47:10 by vbaron           ###   ########.fr       */
+/*   Updated: 2020/09/28 10:25:48 by vincentbaro      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ void    position_info(t_general *mother)
 {
     int i;
     int f;
-    t_gps gps;
     
     mother->gps.pos.x = -1;
     mother->gps.pos.y = -1;
