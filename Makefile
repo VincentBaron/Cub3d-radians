@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: vbaron <vbaron@student.42.fr>              +#+  +:+       +#+         #
+#    By: vincentbaron <vincentbaron@student.42.f    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/24 17:36:15 by vbaron            #+#    #+#              #
-#    Updated: 2020/06/24 17:44:20 by vbaron           ###   ########.fr        #
+#    Updated: 2020/09/28 10:27:56 by vincentbaro      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -78,7 +78,7 @@ CC = gcc
 
 CFLAGS = -Wall -Wextra -Werror  
 
-LIBS = -L -lmlx -lx11 -lxext -lm -framework OpenGL -framework Appkit
+LIBS = -L -lmlx -lx11 -lxext -lm
 
 MLX = $(addprefix $(MLX_DIR)/,libmlx.a)
 
