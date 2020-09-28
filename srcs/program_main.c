@@ -6,7 +6,7 @@
 /*   By: vincentbaron <vincentbaron@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/19 12:38:34 by vbaron            #+#    #+#             */
-/*   Updated: 2020/09/28 10:22:32 by vincentbaro      ###   ########.fr       */
+/*   Updated: 2020/09/28 10:24:59 by vincentbaro      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,6 @@ int main(int argc, char **argv)
         error();
     map_parsing(&(mother.args));
     position_info(&mother);
-    virtual_world(&mother);
+    game_start(&mother);
     return (0);
 }
