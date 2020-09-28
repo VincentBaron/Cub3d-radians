@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   virtual_function.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vbaron <vbaron@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vincentbaron <vincentbaron@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/24 16:49:29 by vbaron            #+#    #+#             */
-/*   Updated: 2020/06/24 16:51:53 by vbaron           ###   ########.fr       */
+/*   Updated: 2020/09/28 10:17:43 by vincentbaro      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void    game_start(t_general *mother)
 {
-     mother->mlx.ptr = mlx_init();
+     if (!(mother->mlx.ptr = mlx_init()))
+          ft_putstr_fd("Error initialising mlx", 1);
      printf("%p", mother->mlx.ptr);
 }
