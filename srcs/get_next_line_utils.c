@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vbaron <vbaron@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vincentbaron <vincentbaron@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/11 11:51:19 by vbaron            #+#    #+#             */
-/*   Updated: 2020/06/23 19:09:10 by vbaron           ###   ########.fr       */
+/*   Updated: 2020/09/28 18:18:35 by vincentbaro      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,8 @@ char	*ft_strjoin_bis(char *s1, char *s2)
 	while (s2[i])
 		join[f++] = s2[i++];
 	join[f] = '\0';
-	ft_free(s1);
+	if (s1)
+		ft_free(s1);
 	return (join);
 }
 

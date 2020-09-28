@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: vbaron <vbaron@student.42.fr>              +#+  +:+       +#+         #
+#    By: vincentbaron <vincentbaron@student.42.f    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/04/27 13:17:26 by vbaron            #+#    #+#              #
-#    Updated: 2020/05/04 00:05:02 by vbaron           ###   ########.fr        #
+#    Updated: 2020/09/28 17:00:24 by vincentbaro      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,6 +51,7 @@ SRC			=	ft_atoi.c    			\
 				ft_tolower.c 			\
 				ft_toupper.c 			\
 				ft_strnstr.c 			\
+				check_charset.c			\
 
 SRC_BONUS	=	ft_lstnew.c		\
 				ft_lstsize.c		\

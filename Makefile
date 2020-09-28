@@ -6,51 +6,15 @@
 #    By: vincentbaron <vincentbaron@student.42.f    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/24 17:36:15 by vbaron            #+#    #+#              #
-#    Updated: 2020/09/28 10:41:03 by vincentbaro      ###   ########.fr        #
+#    Updated: 2020/09/28 19:45:15 by vincentbaro      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-#SRC = 		srcs/general_functions_1.c \
-			srcs/map_parsing.c \
-			srcs/program_main.c \
-			srcs/starting_info.c \
-			srcs/virtual_function.c \
-			srcs/get_next_line.c \
-			srcs/get_next_line_utils.c \
+DIR_S = srcs
 
-#OBJS = 		${SRC:.c=.o}
+DIR_O = objs
 
-#INCLUDES = 	includes
-
-#NAME = 		Cub3D.a
-
-#CC = 		gcc
-
-#FLAGS =  	-Wall -Werror -Wextra -lmlx -lXext -lX11
-
-#all:		${NAME}
-
-#-c.o:
-#			${CC} ${FLAGS} -c $< -o ${<:.c=.o} -I${INCLUDES}
-
-#${NAME}: 	${OBJS}
-#			make -C Libft
-#			cp Libft/libft.a ./$(NAME)
-#			ar -rcs ${NAME} ${OBJS}
-
-#clean:
-#			rm -f ${OBJS}
-#			make clean -C Libft
-
-#fclean: 	clean
-#			rm -f ${NAME}
-#			make fclean -C Libft
-
-#re: 		fclean all
-
-#.PHONY: clean all fclean re
-
-SRCS =	general_functions_1.c \
+SOURCES =   general_functions_1.c \
 			map_parsing.c \
 			program_main.c \
 			starting_info.c \
@@ -58,32 +22,54 @@ SRCS =	general_functions_1.c \
 			get_next_line.c \
 			get_next_line_utils.c \
 
-OBJS			= $(SRCS:.c=.o)
+SRCS = $(addprefix $(DIR_S)/,$(SOURCES))
 
-CC				= gcc
-RM				= rm -f
-CFLAGS			= -O3 -Wall -Wextra -Werror -I.
-LIBS			= -Lmlx -lmlx -framework OpenGL -framework AppKit -lm
-MLX				= libmlx.dylib
+OBJS = $(addprefix $(DIR_O)/,$(SOURCES:.c=.o))
 
-NAME			= cub3D
+HEADERS = headers
 
-all:			$(NAME)
+LIBFT_DIR = Libft
 
-$(NAME):		$(MLX) $(OBJS)
-				gcc ${CFLAGS} -o ${NAME} ${OBJS} ${LIBS}
+MLX_DIR = Mlx
+
+NAME = Cub3d
+
+CC = gcc
+
+CFLAGS = -Wall -Wextra -Werror -g
+
+LIBS = -framework OpenGL -framework Appkit
+
+MLX = $(addprefix $(MLX_DIR)/,libmlx.a)
+
+LIBFT = $(addprefix $(LIBFT_DIR)/,libft.a)
+
+all: $(LIBFT) $(MLX) $(NAME)
+
+$(DIR_O)/%.o: $(DIR_S)/%.c
+	mkdir -p $(DIR_O)
+	$(CC) $(CFLAGS) -o $@ -c $<
+
+$(NAME): $(OBJS) $(LIBFT) $(MLX)
+	$(CC) $(CFLAGS) $(LIBS) $^ -o $@
+
+$(LIBFT):
+	make -C $(LIBFT_DIR)
 
 $(MLX):
-				@$(MAKE) -C mlx
-				@mv mlx/$(MLX) .
+	make -C $(MLX_DIR)
 
 clean:
-				@$(MAKE) -C mlx clean
-				$(RM) $(OBJS) $(BONUS_OBJS)
+	rm -f $(OBJS)
+	rm -f $(OBJS)/*.o
+	rm -rf $(DIR_O)
+	make clean -C $(LIBFT_DIR)
+	make clean -C $(MLX_DIR)
 
-fclean:			clean
-				$(RM) $(NAME) $(MLX)
+fclean: clean
+	rm -rf $(NAME)
+	make fclean -C $(LIBFT_DIR)
 
-re:				fclean $(NAME)
+re: fclean all
 
-.PHONY:			all clean fclean re
+.PHONY: re fclean all clean 

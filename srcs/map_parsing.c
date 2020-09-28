@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parsing.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vbaron <vbaron@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vincentbaron <vincentbaron@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/23 19:02:56 by vbaron            #+#    #+#             */
-/*   Updated: 2020/06/24 15:40:00 by vbaron           ###   ########.fr       */
+/*   Updated: 2020/09/28 18:49:27 by vincentbaro      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ int    map_parsing(t_input *args)
         if ((args->index_i = check_charset(args->line[args->tracker], args->index)) == 0)
         {
             args->line = ft_strdup_map(args->line);
-            args->map = ft_strjoin_bis(args->map, args->line);
+            args->map = ft_strjoin(args->map, args->line);
         }
         else if ((args->index_i = check_charset(args->line[args->tracker], args->index)) > 0)
         {

@@ -6,7 +6,7 @@
 /*   By: vincentbaron <vincentbaron@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/19 12:38:34 by vbaron            #+#    #+#             */
-/*   Updated: 2020/09/28 10:24:59 by vincentbaro      ###   ########.fr       */
+/*   Updated: 2020/09/28 20:11:14 by vincentbaro      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,12 @@ void    error(void)
 int main(int argc, char **argv)
 {
     t_general mother;
-    
-    //if (argc != 2)
-      //  error();
-    (void)argc;
-    (void)argv;
-    if ((mother.args.fd = open("test.txt", O_RDONLY)) == -1)
+    if (argc != 2)
+      error();
+    if ((mother.args.fd = open(argv[1], O_RDONLY)) == -1)
         error();
     map_parsing(&(mother.args));
     position_info(&mother);
-    game_start(&mother);
+    //game_start(&mother);
     return (0);
 }

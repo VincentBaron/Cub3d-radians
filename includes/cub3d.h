@@ -6,7 +6,7 @@
 /*   By: vincentbaron <vincentbaron@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/18 14:03:48 by vbaron            #+#    #+#             */
-/*   Updated: 2020/09/28 10:24:28 by vincentbaro      ###   ########.fr       */
+/*   Updated: 2020/09/28 17:13:01 by vincentbaro      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <unistd.h>
 # include "get_next_line.h"
 # include "../Libft/libft.h"
-# include "../mlx_tests/mlxopengl/mlx.h"
+# include "mlx.h"
 
 
 typedef struct s4_list
@@ -68,6 +68,7 @@ typedef struct s3_list
 typedef struct s12_list
 {
     void *ptr;
+    void *win;
 } t_mlx;
 
 typedef struct s5_list
