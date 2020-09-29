@@ -6,7 +6,7 @@
 /*   By: vincentbaron <vincentbaron@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/23 19:02:56 by vbaron            #+#    #+#             */
-/*   Updated: 2020/09/28 18:49:27 by vincentbaro      ###   ########.fr       */
+/*   Updated: 2020/09/29 15:58:01 by vincentbaro      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ int    map_parsing(t_input *args)
     int res;
 
     args->index = "1RNSWEXFC";
+    (args->map) = ft_strdup("");
 
     while ((res = get_next_line(args->fd, &(args->line))) != 0)
     {
@@ -84,10 +85,7 @@ int    map_parsing(t_input *args)
         while (args->line[args->tracker] == ' ')
             args->tracker++;
         if ((args->index_i = check_charset(args->line[args->tracker], args->index)) == 0)
-        {
-            args->line = ft_strdup_map(args->line);
-            args->map = ft_strjoin(args->map, args->line);
-        }
+            create_map(args);
         else if ((args->index_i = check_charset(args->line[args->tracker], args->index)) > 0)
         {
             if (args->index_i == 3 && args->line[args->tracker + 1] == ' ')

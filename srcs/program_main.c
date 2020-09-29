@@ -6,7 +6,7 @@
 /*   By: vincentbaron <vincentbaron@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/19 12:38:34 by vbaron            #+#    #+#             */
-/*   Updated: 2020/09/28 20:11:14 by vincentbaro      ###   ########.fr       */
+/*   Updated: 2020/09/29 12:11:52 by vincentbaro      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,22 @@ void    error(void)
 int main(int argc, char **argv)
 {
     t_general mother;
+
     if (argc != 2)
       error();
     if ((mother.args.fd = open(argv[1], O_RDONLY)) == -1)
+    {
         error();
+        return (0);
+    }
     map_parsing(&(mother.args));
+    int i;
+    i = 0;
+    while ((mother.args.matrix)[i])
+    {    
+        printf("%s\n", (mother.args.matrix)[i]);
+        i++;
+    }
     position_info(&mother);
     //game_start(&mother);
     return (0);

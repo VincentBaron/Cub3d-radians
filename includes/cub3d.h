@@ -6,7 +6,7 @@
 /*   By: vincentbaron <vincentbaron@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/18 14:03:48 by vbaron            #+#    #+#             */
-/*   Updated: 2020/09/28 17:13:01 by vincentbaro      ###   ########.fr       */
+/*   Updated: 2020/09/29 15:37:43 by vincentbaro      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ void    map_creator(t_input *args);
 
 //general_functions_1.c
 
-char	*ft_strdup_map(char *s);
+void	create_map(t_input *args);
 
 //starting_info.c
 
