@@ -6,7 +6,7 @@
 /*   By: vincentbaron <vincentbaron@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/19 12:38:34 by vbaron            #+#    #+#             */
-/*   Updated: 2020/09/29 12:11:52 by vincentbaro      ###   ########.fr       */
+/*   Updated: 2020/09/29 16:27:24 by vincentbaro      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,6 @@ int main(int argc, char **argv)
         i++;
     }
     position_info(&mother);
-    //game_start(&mother);
+    game_start(&mother);
     return (0);
 }
