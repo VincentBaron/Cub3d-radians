@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vincentbaron <vincentbaron@student.42.f    +#+  +:+       +#+        */
+/*   By: vbaron <vbaron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/18 14:03:48 by vbaron            #+#    #+#             */
-/*   Updated: 2020/09/29 15:37:43 by vincentbaro      ###   ########.fr       */
+/*   Updated: 2020/10/01 15:48:09 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include "get_next_line.h"
 # include "../Libft/libft.h"
 # include "mlx.h"
+# include "mlx_int.h"
 
 
 typedef struct s4_list
@@ -69,6 +70,9 @@ typedef struct s12_list
 {
     void *ptr;
     void *win;
+    t_img *img;
+    void *fill;
+    void *data;
 } t_mlx;
 
 typedef struct s5_list

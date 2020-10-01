@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   virtual_function.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vincentbaron <vincentbaron@student.42.f    +#+  +:+       +#+        */
+/*   By: vbaron <vbaron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/24 16:49:29 by vbaron            #+#    #+#             */
-/*   Updated: 2020/09/29 17:40:37 by vincentbaro      ###   ########.fr       */
+/*   Updated: 2020/10/01 15:44:19 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,10 @@ void draw_square(t_general *mother)
 {
      float size_x;
      float size_y;
+     int x;
+     int y;
      size_t width;
      size_t height;
-     int color_wall;
 
      width = 0;
      height = 0;
@@ -34,10 +35,17 @@ void draw_square(t_general *mother)
      printf("height = %d\n", (int)height);
      size_x = mother->args.R[0] / width;
      size_y = mother->args.R[1] / height;
+     if (!((char *)mother->mlx.fill = (char *)(sizeof(char) * 4 * (width + height)))
      printf("size_x = %d\n", (int)size_x);
      printf("size_y = %d\n", (int)size_y);
 
-     color_wall = mlx_get_color_value(mother->mlx.ptr, 191192192);
+     mother->mlx.img = mlx_new_image(mother->mlx.win, mother->args.R[0], mother->args.R[1]);
+     mother->mlx.data = mlx_get_data_addr(mother->img, int *bits_per_pixel, int *size_line, int *endian);
+
+     x = 0;
+     while(mother->mlx.fill)
+
+     mother->mlx.color = 
      printf("color_wall code: %d", color_wall);
 }
 
