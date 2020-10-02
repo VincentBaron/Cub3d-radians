@@ -6,7 +6,7 @@
 #    By: vincentbaron <vincentbaron@student.42.f    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/24 17:36:15 by vbaron            #+#    #+#              #
-#    Updated: 2020/09/28 19:45:15 by vincentbaro      ###   ########.fr        #
+#    Updated: 2020/10/02 15:01:12 by vincentbaro      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ HEADERS = headers
 
 LIBFT_DIR = Libft
 
-MLX_DIR = Mlx
+MLX_DIR = Mlx-linux
 
 NAME = Cub3d
 
