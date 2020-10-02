@@ -6,7 +6,7 @@
 #    By: vincentbaron <vincentbaron@student.42.f    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/24 17:36:15 by vbaron            #+#    #+#              #
-#    Updated: 2020/10/02 15:35:30 by vincentbaro      ###   ########.fr        #
+#    Updated: 2020/10/02 15:36:18 by vincentbaro      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,7 +43,7 @@ all : $(NAME)
 $(NAME) :	$(OBJS)
 	@make -C $(MINILIBX) all
 	@make -C $(LIBFT) all
-	@$(CC) $(FLAGS) $(SGFLAGS) $(INCLUDES) $(OBJS) mlx-linux/*.a -L -lmlx -lX11 -lXext -lm libft/libft.a -o $(NAME)
+	@$(CC) $(FLAGS) $(SGFLAGS) $(INCLUDES) $(OBJS) mlx-linux/*.a -L -lmlx -lX11 -lXext -lm Libft/libft.a -o $(NAME)
 
 %.o: %.c
 	$(CC) $(FLAGS) -c $< $(INCLUDES) -o $@
