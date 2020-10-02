@@ -6,7 +6,7 @@
 #    By: vincentbaron <vincentbaron@student.42.f    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/24 17:36:15 by vbaron            #+#    #+#              #
-#    Updated: 2020/10/02 15:32:39 by vincentbaro      ###   ########.fr        #
+#    Updated: 2020/10/02 15:34:18 by vincentbaro      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ PATH_SRCS = srcs
 
 MINILIBX = mlx-linux
 
-LIBFT = libft
+LIBFT = Libft
 
 SOURCES =   general_functions_1.c \
 			map_parsing.c \
