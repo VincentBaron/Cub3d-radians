@@ -6,13 +6,21 @@
 #    By: vincentbaron <vincentbaron@student.42.f    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/24 17:36:15 by vbaron            #+#    #+#              #
-#    Updated: 2020/10/02 15:01:12 by vincentbaro      ###   ########.fr        #
+#    Updated: 2020/10/02 15:22:33 by vincentbaro      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-DIR_S = srcs
+NAME = Cub3d
 
-DIR_O = objs
+CC = gcc
+
+FLAGS = -Wall -Wextra -Werror
+
+PATH_SRCS = srcs
+
+MINILIBX = Mlx-linux
+
+LIBFT = libft
 
 SOURCES =   general_functions_1.c \
 			map_parsing.c \
@@ -22,54 +30,33 @@ SOURCES =   general_functions_1.c \
 			get_next_line.c \
 			get_next_line_utils.c \
 
-SRCS = $(addprefix $(DIR_S)/,$(SOURCES))
+SRCS = $(addprefix ${PATH_SRCS}/, ${SRCS_LIST})
 
-OBJS = $(addprefix $(DIR_O)/,$(SOURCES:.c=.o))
+OBJS = $(SRCS:.c=.o)
 
-HEADERS = headers
+INCLUDES = -I./includes
 
-LIBFT_DIR = Libft
+SGFLAGS = -g -fsanitize=address
 
-MLX_DIR = Mlx-linux
+all : $(NAME)
 
-NAME = Cub3d
+$(NAME) :	$(OBJS)
+	@make -C $(MINILIBX) all
+	@make -C $(LIBFT) all
+	@$(CC) $(FLAGS) $(SGFLAGS) $(INCLUDES) $(OBJS) minilibx/*.a -L -lmlx -lX11 -lXext -lm libft/libft.a -o $(NAME)
 
-CC = gcc
-
-CFLAGS = -Wall -Wextra -Werror -g
-
-LIBS = -framework OpenGL -framework Appkit
-
-MLX = $(addprefix $(MLX_DIR)/,libmlx.a)
-
-LIBFT = $(addprefix $(LIBFT_DIR)/,libft.a)
-
-all: $(LIBFT) $(MLX) $(NAME)
-
-$(DIR_O)/%.o: $(DIR_S)/%.c
-	mkdir -p $(DIR_O)
-	$(CC) $(CFLAGS) -o $@ -c $<
-
-$(NAME): $(OBJS) $(LIBFT) $(MLX)
-	$(CC) $(CFLAGS) $(LIBS) $^ -o $@
-
-$(LIBFT):
-	make -C $(LIBFT_DIR)
-
-$(MLX):
-	make -C $(MLX_DIR)
+%.o: %.c
+	$(CC) $(FLAGS) -c $< $(INCLUDES) -o $@
 
 clean:
-	rm -f $(OBJS)
-	rm -f $(OBJS)/*.o
-	rm -rf $(DIR_O)
-	make clean -C $(LIBFT_DIR)
-	make clean -C $(MLX_DIR)
+	@rm -f $(OBJS)
+	@make clean -s -C $(MINILIBX)
+	@make clean -s -C $(LIBFT)
 
 fclean: clean
-	rm -rf $(NAME)
-	make fclean -C $(LIBFT_DIR)
+	@rm -f $(NAME)
+	@make fclean -s -C $(LIBFT)
 
 re: fclean all
 
-.PHONY: re fclean all clean 
+.PHONY: all clean fclean re bonus 
