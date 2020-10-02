@@ -6,7 +6,7 @@
 #    By: vincentbaron <vincentbaron@student.42.f    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/24 17:36:15 by vbaron            #+#    #+#              #
-#    Updated: 2020/10/02 15:22:33 by vincentbaro      ###   ########.fr        #
+#    Updated: 2020/10/02 15:32:39 by vincentbaro      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ FLAGS = -Wall -Wextra -Werror
 
 PATH_SRCS = srcs
 
-MINILIBX = Mlx-linux
+MINILIBX = mlx-linux
 
 LIBFT = libft
 
