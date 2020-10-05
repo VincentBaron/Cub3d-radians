@@ -6,57 +6,64 @@
 #    By: vincentbaron <vincentbaron@student.42.f    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/24 17:36:15 by vbaron            #+#    #+#              #
-#    Updated: 2020/10/05 15:15:23 by vincentbaro      ###   ########.fr        #
+#    Updated: 2020/10/05 15:45:35 by vincentbaro      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = Cub3d
+NAME = Cub3D
 
-CC = gcc
+CC = gcc 
 
-FLAGS = -Wall -Wextra -Werror -nostartfiles -g
+SRC_DIR = srcs
 
-PATH_SRCS = srcs
+SRC =  srcs/general_functions_1.c \
+	   srcs/map_parsing.c \
+	   srcs/program_main.c \
+	   srcs/starting_info.c \
+	   srcs/virtual_function.c \
+	   srcs/get_next_line.c \
+	   srcs/get_next_line_utils.c \
 
-MINILIBX = mlx-linux
+OBJ = $(SRC:%.c=%.o)
 
-LIBFT = Libft
+IFLAGS = ./includes/
 
-SOURCES =   general_functions_1.c \
-			map_parsing.c \
-			program_main.c \
-			starting_info.c \
-			virtual_function.c \
-			get_next_line.c \
-			get_next_line_utils.c \
+CFLAGS = -Wall -Wextra -Werror -lm -lbsd -lX11 -lXext -g
 
-SRCS = $(addprefix ${PATH_SRCS}/, ${SRCS_LIST})
+DIRMLX = ./mlx-linux/
 
-OBJS = $(SRCS:.c=.o)
+DIRLIB = ./libft/
 
-INCLUDES = -I./includes
+NAMELIB = libft.a
 
-SGFLAGS = -g -fsanitize=address
+NAMEMLX = libmlx.a
 
-all : $(NAME)
-
-$(NAME) :	$(OBJS)
-	@make -C $(MINILIBX) all
-	@make -C $(LIBFT) all
-	@$(CC) $(FLAGS) $(SGFLAGS) $(INCLUDES) $(OBJS) mlx-linux/*.a -L -lmlx -lX11 -lXext -lm Libft/libft.a -o $(NAME)
+all: $(NAME)
 
 %.o: %.c
-	$(CC) $(FLAGS) -c $< $(INCLUDES) -o $@
+	gcc $(CFLAGS) -c -I$(IFLAGS) -I$(DIRMLX) -I$(DIRLIB) $< -o $(<:.c=.o) 
+
+$(NAME): $(OBJ)
+	cd ./libft/ && make
+	cd $(DIRMLX)/ && make
+	gcc -o $(NAME) -I$(IFLAGS) -I$(DIRMLX) $(OBJ) $(DIRMLX)$(NAMEMLX) $(DIRLIB)$(NAMELIB) $(DIRMLX)/libmlx_Linux.a $(CFLAGS)
 
 clean:
-	@rm -f $(OBJS)
-	@make clean -s -C $(MINILIBX)
-	@make clean -s -C $(LIBFT)
+	make clean -C libft
+	make clean -C $(DIRMLX)
+	rm -f $(SRC_DIR)/*.o
 
 fclean: clean
-	@rm -f $(NAME)
-	@make fclean -s -C $(LIBFT)
+	make fclean -C libft
+	make clean -C $(DIRMLX)
+	rm -f $(NAME)
+
+show:
+	@echo "CFLAGS :\n  $(CFLAGS)"
+	@echo "IFLAGS :\n  $(IFLAGS)"
 
 re: fclean all
 
-.PHONY: all clean fclean re bonus 
+
+
+.PHONY: all clean fclean re
