@@ -6,7 +6,7 @@
 #    By: vincentbaron <vincentbaron@student.42.f    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/24 17:36:15 by vbaron            #+#    #+#              #
-#    Updated: 2020/10/05 15:51:22 by vincentbaro      ###   ########.fr        #
+#    Updated: 2020/10/05 15:55:26 by vincentbaro      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,9 +30,9 @@ IFLAGS = ./includes/
 
 CFLAGS = -Wall -Wextra -Werror -lm -lbsd -lX11 -lXext -g
 
-DIRMLX = ./mlx/
+DIRMLX = ./mlx-linux/
 
-DIRLIB = ./libft/
+DIRLIB = ./Libft/
 
 NAMELIB = libft.a
 
@@ -44,17 +44,17 @@ all: $(NAME)
 	gcc $(CFLAGS) -c -I$(IFLAGS) -I$(DIRMLX) -I$(DIRLIB) $< -o $(<:.c=.o) 
 
 $(NAME): $(OBJ)
-	cd ./libft/ && make
+	cd ./Libft/ && make
 	cd $(DIRMLX)/ && make
 	gcc -o $(NAME) -I$(IFLAGS) -I$(DIRMLX) $(OBJ) $(DIRMLX)$(NAMEMLX) $(DIRLIB)$(NAMELIB) $(DIRMLX)/libmlx_Linux.a $(CFLAGS)
 
 clean:
-	make clean -C libft
+	make clean -C Libft
 	make clean -C $(DIRMLX)
 	rm -f $(SRC_DIR)/*.o
 
 fclean: clean
-	make fclean -C libft
+	make fclean -C Libft
 	make clean -C $(DIRMLX)
 	rm -f $(NAME)
 
