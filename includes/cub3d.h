@@ -6,7 +6,7 @@
 /*   By: vbaron <vbaron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/18 14:03:48 by vbaron            #+#    #+#             */
-/*   Updated: 2020/10/12 11:16:53 by vbaron           ###   ########.fr       */
+/*   Updated: 2020/10/12 12:04:32 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,13 +65,20 @@ typedef struct s3_list
     int         tracker;
 } t_input;
 
+typedef struct s_img
+{
+    void *image;
+    char *addr;
+    int bpp;
+    int endian;
+    int size_line;
+} t_img;
+
 typedef struct s12_list
 {
     void *ptr;
     void *win;
-    t_img *img;
-    void *fill;
-    void *data;
+    t_img img;
 } t_mlx;
 
 typedef struct s5_list

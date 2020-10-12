@@ -6,7 +6,7 @@
 /*   By: vbaron <vbaron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/24 16:49:29 by vbaron            #+#    #+#             */
-/*   Updated: 2020/10/01 15:44:19 by vbaron           ###   ########.fr       */
+/*   Updated: 2020/10/12 12:17:00 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ void draw_square(t_general *mother)
 {
      float size_x;
      float size_y;
-     int x;
-     int y;
+     //int x;
+     //int y;
      size_t width;
      size_t height;
 
@@ -35,18 +35,13 @@ void draw_square(t_general *mother)
      printf("height = %d\n", (int)height);
      size_x = mother->args.R[0] / width;
      size_y = mother->args.R[1] / height;
-     if (!((char *)mother->mlx.fill = (char *)(sizeof(char) * 4 * (width + height)))
+     if (!(mother->mlx.img.addr = (char *)(sizeof(char) * 4 * (width + height))))
      printf("size_x = %d\n", (int)size_x);
      printf("size_y = %d\n", (int)size_y);
 
-     mother->mlx.img = mlx_new_image(mother->mlx.win, mother->args.R[0], mother->args.R[1]);
-     mother->mlx.data = mlx_get_data_addr(mother->img, int *bits_per_pixel, int *size_line, int *endian);
+     mother->mlx.img.image = mlx_new_image(mother->mlx.win, mother->args.R[0], mother->args.R[1]);
+     mother->mlx.img.addr = mlx_get_data_addr(mother->mlx.img.image, &mother->mlx.img.bpp, &mother->mlx.img.size_line, &mother->mlx.img.endian);
 
-     x = 0;
-     while(mother->mlx.fill)
-
-     mother->mlx.color = 
-     printf("color_wall code: %d", color_wall);
 }
 
 void draw_map(t_general *mother)
