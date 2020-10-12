@@ -6,7 +6,7 @@
 /*   By: vbaron <vbaron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/18 14:03:48 by vbaron            #+#    #+#             */
-/*   Updated: 2020/10/01 15:48:09 by vbaron           ###   ########.fr       */
+/*   Updated: 2020/10/12 11:16:53 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 # include "get_next_line.h"
 # include "../Libft/libft.h"
 # include "mlx.h"
-# include "mlx_int.h"
 
 
 typedef struct s4_list

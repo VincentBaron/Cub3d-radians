@@ -3,67 +3,64 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: vincentbaron <vincentbaron@student.42.f    +#+  +:+       +#+         #
+#    By: vbaron <vbaron@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/24 17:36:15 by vbaron            #+#    #+#              #
-#    Updated: 2020/10/05 15:55:26 by vincentbaro      ###   ########.fr        #
+#    Updated: 2020/10/12 11:11:13 by vbaron           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = Cub3D
+DIR_S = srcs
+DIR_O = objs
 
-CC = gcc 
+SOURCES = general_functions_1.c \
+		map_parsing.c \
+		program_main.c \
+		starting_info.c \
+		virtual_function.c \
+		get_next_line.c \
+		get_next_line_utils.c \
 
-SRC_DIR = srcs
+SRCS = $(addprefix $(DIR_S)/,$(SOURCES))
+OBJS = $(addprefix $(DIR_O)/,$(SOURCES:.c=.o))
+HEADERS = headers
+LIBFT_DIR = Libft
+MLX_DIR = mlx-macos
+NAME = Cub3d
 
-SRC =   srcs/general_functions_1.c \
-		srcs/map_parsing.c \
-		srcs/program_main.c \
-		srcs/starting_info.c \
-		srcs/virtual_function.c \
-		srcs/get_next_line.c \
-		srcs/get_next_line_utils.c \
+CC = gcc
 
-OBJ = $(SRC:%.c=%.o)
+CFLAGS = -Wall -Wextra -Werror -g
 
-IFLAGS = ./includes/
+LIBS = -framework OpenGL -framework Appkit
 
-CFLAGS = -Wall -Wextra -Werror -lm -lbsd -lX11 -lXext -g
+MLX = $(addprefix $(MLX_DIR)/,libmlx.a)
 
-DIRMLX = ./mlx-linux/
+LIBFT = $(addprefix $(LIBFT_DIR)/,libft.a)
 
-DIRLIB = ./Libft/
+all: $(LIBFT) $(MLX) $(NAME)
 
-NAMELIB = libft.a
+$(DIR_O)/%.o: $(DIR_S)/%.c
+	mkdir -p $(DIR_O)	
+	$(CC) $(CFLAGS) -o $@ -c $<
 
-NAMEMLX = libmlx.a
+$(NAME): $(OBJS) $(LIBFT) $(MLX)
+		$(CC) $(CFLAGS) $(LIBS) $^ -o $@
 
-all: $(NAME)
-
-%.o: %.c
-	gcc $(CFLAGS) -c -I$(IFLAGS) -I$(DIRMLX) -I$(DIRLIB) $< -o $(<:.c=.o) 
-
-$(NAME): $(OBJ)
-	cd ./Libft/ && make
-	cd $(DIRMLX)/ && make
-	gcc -o $(NAME) -I$(IFLAGS) -I$(DIRMLX) $(OBJ) $(DIRMLX)$(NAMEMLX) $(DIRLIB)$(NAMELIB) $(DIRMLX)/libmlx_Linux.a $(CFLAGS)
+$(LIBFT):
+		 make -C $(LIBFT_DIR)
 
 clean:
-	make clean -C Libft
-	make clean -C $(DIRMLX)
-	rm -f $(SRC_DIR)/*.o
+		rm -f $(OBJS)		
+	rm -f $(OBJS)/*.o
+	rm -rf $(DIR_O)	
+	make clean -C $(LIBFT_DIR)	
+	make clean -C $(MLX_DIR)
 
 fclean: clean
-	make fclean -C Libft
-	make clean -C $(DIRMLX)
-	rm -f $(NAME)
-
-show:
-	@echo "CFLAGS :\n  $(CFLAGS)"
-	@echo "IFLAGS :\n  $(IFLAGS)"
+	rm -rf $(NAME)
+	make fclean -C $(LIBFT_DIR)
 
 re: fclean all
 
-
-
-.PHONY: all clean fclean re
+.PHONY: re fclean all clean
