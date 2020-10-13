@@ -6,7 +6,7 @@
 /*   By: vincentbaron <vincentbaron@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/24 16:49:29 by vbaron            #+#    #+#             */
-/*   Updated: 2020/10/13 15:14:36 by vincentbaro      ###   ########.fr       */
+/*   Updated: 2020/10/13 15:58:57 by vincentbaro      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void draw_square(t_general *mother, char *type)
           x = 0;
           while (x < mother->map.size_x)
           {
-                    mother->mlx.img.addr[x + y + mother->map.track_x * mother->map.size_x + mother->map.track_y * mother->map.size_y] = (int)((R << 16) + (G << 8) + B);
+                    mother->mlx.img.addr[(int)(x + y + mother->map.track_x * mother->map.size_x + mother->map.track_y * mother->map.size_y)] = (int)((R << 16) + (G << 8) + B);
                     x++;
           }
           y++;
@@ -53,22 +53,22 @@ void draw_square(t_general *mother, char *type)
 
 void draw_map(t_general *mother)
 {
-     size_t width;
-     size_t height;
+     int width;
+     int height;
 
      width = 0;
      height = 0;
      while (mother->args.matrix[height])
      {
-          if (ft_strlen(mother->args.matrix[height]) > width)
-               width = ft_strlen(mother->args.matrix[height]);
+          if ((int)ft_strlen(mother->args.matrix[height]) > width)
+               width = (int)ft_strlen(mother->args.matrix[height]);
           height++;
      }
      if (!(mother->mlx.img.addr = (int *)(sizeof(int) * (mother->args.R[0] * mother->args.R[1]))))
           return ;
      mother->mlx.img.image = mlx_new_image(mother->mlx.win, mother->args.R[0], mother->args.R[1]);
      mother->mlx.img.addr = (int *)mlx_get_data_addr(mother->mlx.img.image, &mother->mlx.img.bpp, &mother->mlx.img.size_line, &mother->mlx.img.endian);
-     
+
      mother->args.R[0] = (((mother->args.R[0] % width) == 0) ? mother->args.R[0] : mother->args.R[0] - 1);
      mother->args.R[1] = (((mother->args.R[1] % height) == 0) ? mother->args.R[1] : mother->args.R[1] - 1);
      
@@ -77,7 +77,7 @@ void draw_map(t_general *mother)
      while(mother->args.matrix[mother->map.track_x])
      {
           mother->map.track_y = 0;
-          mother->map.size_x = mother->args.R[0] / width;
+          mother->map.size_x = mother->args.R[0] / height;
           while (mother->args.matrix[mother->map.track_x][mother->map.track_y])
           {
                if (mother->args.matrix[mother->map.track_x][mother->map.track_y] == ' ')
@@ -109,5 +109,5 @@ void    game_start(t_general *mother)
           ft_putstr_fd("Error creating window", 1);
      draw_map(mother);
      //mlx_clear_window(mother->mlx.ptr, mother->mlx.win);
-     //mlx_loop(mother->mlx.win);
+     mlx_loop(mother->mlx.win);
 }
