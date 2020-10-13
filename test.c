@@ -16,4 +16,15 @@ int main()
 	r = src[0];
     printf ("r: %u\n", r);
 	return (0);
+
+	char s = '2'
+	char *s = "127"
+	unsigned char x = 230
+
+	unsigned char s[16];
+
+	s[0] =  '4';
+	w[1] = '9';
+
+	s[0] + w[1] = 
 }

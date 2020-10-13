@@ -6,7 +6,7 @@
 /*   By: vbaron <vbaron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/18 14:03:48 by vbaron            #+#    #+#             */
-/*   Updated: 2020/10/12 14:06:39 by vbaron           ###   ########.fr       */
+/*   Updated: 2020/10/13 13:32:38 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ typedef struct s3_list
 typedef struct s_img
 {
     void *image;
-    char *addr;
+    int *addr;
     int bpp;
     int endian;
     int size_line;
@@ -85,6 +85,8 @@ typedef struct s_map
 {
     int size_x;
     int size_y;
+    int track_x;
+    int track_y;
 } t_map;
 
 typedef struct s5_list

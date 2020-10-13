@@ -6,27 +6,53 @@
 /*   By: vbaron <vbaron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/24 16:49:29 by vbaron            #+#    #+#             */
-/*   Updated: 2020/10/12 15:41:09 by vbaron           ###   ########.fr       */
+/*   Updated: 2020/10/13 13:35:18 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-fill
-
-void draw_square(t_general *mother; char *type)
+void draw_square(t_general *mother, char *type)
 {
      int x;
      int y;
+     int R;
+     int G;
+     int B;
 
-     x = 0;
-     while( x < mother->)
+     if (ft_strncmp(type, "floor", ft_strlen(type)) == 0)
+     {
+          R = 255;
+          G = 255;
+          B = 255;
+     }
+     if (ft_strncmp(type, "wall", ft_strlen(type)) == 0)
+     {
+          R = 211;
+          G = 211;
+          B = 211;
+     }
+     if (ft_strncmp(type, "out", ft_strlen(type)) == 0)
+     {
+          R = 0;
+          G = 0;
+          B = 0;
+     }
+     y = 0;
+     while( y < (mother->map.size_y) / (mother->map.track_y + 1))
+     {
+          x = 0;
+          while (x < (mother->map.size_y) / (mother->map.track_x + 1))
+          {
+                    *mother->mlx.img.addr = (char)((R << 16) + (G << 8) + B);
+                    mother->mlx.img.addr++;
+          }
+          y++;
+     }
 }
 
 void draw_map(t_general *mother)
 {
-     float size_x;
-     float size_y;
      int x;
      int y;
      size_t width;
@@ -40,22 +66,18 @@ void draw_map(t_general *mother)
                width = ft_strlen(mother->args.matrix[height]);
           height++;
      }
-     printf("width = %d\n", (int)width);
-     printf("height = %d\n", (int)height);
-     mother->map.size_x = mother->args.R[0] / width;
-     mother->map.size_y = mother->args.R[1] / height;
-     if (!(mother->mlx.img.addr = (char *)(sizeof(char) * 4 * (width + height))))
-     printf("size_x = %d\n", (int)size_x);
-     printf("size_y = %d\n", (int)size_y);
-
+     if (!(mother->mlx.img.addr = (int *)(sizeof(int) * (width * height))))
+          return ;
      mother->mlx.img.image = mlx_new_image(mother->mlx.win, mother->args.R[0], mother->args.R[1]);
-     mother->mlx.img.addr = mlx_get_data_addr(mother->mlx.img.image, &mother->mlx.img.bpp, &mother->mlx.img.size_line, &mother->mlx.img.endian);
+     mother->mlx.img.addr = (int *)mlx_get_data_addr(mother->mlx.img.image, &mother->mlx.img.bpp, &mother->mlx.img.size_line, &mother->mlx.img.endian);
      
-     x = 0;
-     while(x < width)
+     mother->map.track_x = 0;
+     mother->map.size_x = mother->args.R[0] / width;
+     while(mother->args.matrix[x])
      {
-          y = 0;
-          while (y < height)
+          mother->map.track_y = 0;
+          mother->map.size_x = mother->args.R[0] / width;
+          while (mother->args.matrix[x][y])
           {
                if (mother->args.matrix[x][y] == ' ')
                     draw_square(mother, "out");
@@ -65,9 +87,11 @@ void draw_map(t_general *mother)
                     draw_square(mother, "floor");
                if (mother->args.matrix[x][y] == 'N' || mother->args.matrix[x][y] == 'S' || mother->args.matrix[x][y] == 'E' ||mother->args.matrix[x][y] == 'W')
                     draw_square(mother, "player");
-               y++;
+               mother->map.track_y++;
+               mother->map.size_y += mother->map.size_y;
           }
-          x++;
+          mother->map.track_x++;
+          mother->map.size_x += mother->map.size_x;
      }
 
 }
