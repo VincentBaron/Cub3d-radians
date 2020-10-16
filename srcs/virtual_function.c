@@ -3,27 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   virtual_function.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vbaron <vbaron@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vincentbaron <vincentbaron@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/24 16:49:29 by vbaron            #+#    #+#             */
-/*   Updated: 2020/10/14 16:32:09 by vbaron           ###   ########.fr       */
+/*   Updated: 2020/10/16 16:51:53 by vincentbaro      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-void draw_pixel(t_general *mother, int x, int y, int R, int G, int B)
+void draw_pixel(t_general *mother, int x, int y)
 {
-     *(mother->mlx.img.addr +  x * (mother->mlx.img.bpp / 8) + y * mother->mlx.img.size_line) = (R << 16) + (G << 8) + B;
+     char *dest;
+     
+     dest = (mother->mlx.img.addr +  x * (mother->mlx.img.bpp / 8) + y * mother->mlx.img.size_line);
+     *(unsigned int *)dest = mother->mlx.img.color;
 }
 
-void draw_square(t_general *mother, char *type)
+void   pixel_color(t_general *mother, char *type)
 {
-     int x;
-     int y;
-     int R;
-     int G;
-     int B;
+     unsigned int R;
+     unsigned int G;
+     unsigned int B;
 
      if (ft_strncmp(type, "floor", ft_strlen(type)) == 0)
      {
@@ -43,27 +44,36 @@ void draw_square(t_general *mother, char *type)
           G = 0;
           B = 0;
      }
+     mother->mlx.img.color = (R << 16) + (G << 8) + B;
+}
+
+void draw_square(t_general *mother, char *type)
+{
+     int x;
+     int y;
+
+     pixel_color(mother, type);
      y = 0;
      while( y < mother->map.size_y)
      {
           x = 0;
           while (x < mother->map.size_x)
           {
-                    draw_pixel(mother, x, y, R, G, B);
+                    draw_pixel(mother, x, y);
                     x++;
           }
           y++;
      }
 }
 
-void draw_map(t_general *mother, int width, int height)
+void draw_map(t_general *mother)
 {
      mother->map.track_x = 0;
-     mother->map.size_x = mother->args.R[0] / width;
+     mother->map.size_x = 10;
      while(mother->args.matrix[mother->map.track_x])
      {
           mother->map.track_y = 0;
-          mother->map.size_x = mother->args.R[0] / height;
+          mother->map.size_y = 10;
           while (mother->args.matrix[mother->map.track_x][mother->map.track_y])
           {
                if (mother->args.matrix[mother->map.track_x][mother->map.track_y] == ' ')
@@ -75,41 +85,36 @@ void draw_map(t_general *mother, int width, int height)
                if (mother->args.matrix[mother->map.track_x][mother->map.track_y] == 'N' || mother->args.matrix[mother->map.track_x][mother->map.track_y] == 'S' || mother->args.matrix[mother->map.track_x][mother->map.track_y] == 'E' ||mother->args.matrix[mother->map.track_x][mother->map.track_y] == 'W')
                     draw_square(mother, "player");
                mother->map.track_y++;
-               mother->map.size_y += mother->map.size_y;
           }
           mother->map.track_x++;
-          mother->map.size_x += mother->map.size_x;
      }
 }
 
 void    game_start(t_general *mother)
-{
-     int width;
-     int height;
-     
+{    
      if (!(mother->mlx.ptr = mlx_init()))
           ft_putstr_fd("Error initialising mlx", 1);
      if (!(mother->mlx.win = mlx_new_window(mother->mlx.ptr, mother->args.R[0], mother->args.R[1], "J' aime les Moules Brite")))
           ft_putstr_fd("Error creating window", 1);
-     width = 0;
+     /*width = 0;
      height = 0;
      while (mother->args.matrix[height])
      {
           if ((int)ft_strlen(mother->args.matrix[height]) > width)
                width = (int)ft_strlen(mother->args.matrix[height]);
           height++;
-     }
+     }*/
+     //mother->args.R[0] = (((mother->args.R[0] % width) == 0) ? mother->args.R[0] : mother->args.R[0] - 1);
+     //mother->args.R[1] = (((mother->args.R[1] % height) == 0) ? mother->args.R[1] : mother->args.R[1] - 1);
      mother->mlx.img.image = mlx_new_image(mother->mlx.win, mother->args.R[0], mother->args.R[1]);
-     mother->mlx.img.addr = (int *)mlx_get_data_addr(mother->mlx.img.image, &mother->mlx.img.bpp, &mother->mlx.img.size_line, &mother->mlx.img.endian);
+     mother->mlx.img.addr = mlx_get_data_addr(mother->mlx.img.image, &mother->mlx.img.bpp, &mother->mlx.img.size_line, &mother->mlx.img.endian);
      
      int i;
      i = 0;
      while (mother->mlx.img.addr[i])
           i++;
      printf("addr_size: %d", i);
-     mother->args.R[0] = (((mother->args.R[0] % width) == 0) ? mother->args.R[0] : mother->args.R[0] - 1);
-     mother->args.R[1] = (((mother->args.R[1] % height) == 0) ? mother->args.R[1] : mother->args.R[1] - 1);
-     draw_map(mother, width, height);
-     mlx_put_image_to_window(mother->mlx.ptr, mother->mlx.win, mother->mlx.img.addr, mother->args.R[0], mother->args.R[1]);
+     draw_map(mother);
+     mlx_put_image_to_window(mother->mlx.ptr, mother->mlx.win, mother->mlx.img.addr, 0, 0);
      mlx_loop(mother->mlx.win);
 }

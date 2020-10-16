@@ -6,7 +6,7 @@
 /*   By: vincentbaron <vincentbaron@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/18 14:03:48 by vbaron            #+#    #+#             */
-/*   Updated: 2020/10/13 14:39:37 by vincentbaro      ###   ########.fr       */
+/*   Updated: 2020/10/16 15:57:24 by vincentbaro      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,10 +68,11 @@ typedef struct s3_list
 typedef struct s_img
 {
     void *image;
-    int *addr;
+    char *addr;
     int bpp;
     int endian;
     int size_line;
+    unsigned int color;
 } t_img;
 
 typedef struct s12_list

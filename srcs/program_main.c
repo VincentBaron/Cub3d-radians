@@ -6,7 +6,7 @@
 /*   By: vincentbaron <vincentbaron@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/19 12:38:34 by vbaron            #+#    #+#             */
-/*   Updated: 2020/09/29 16:27:24 by vincentbaro      ###   ########.fr       */
+/*   Updated: 2020/10/16 16:59:45 by vincentbaro      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int main(int argc, char **argv)
     i = 0;
     while ((mother.args.matrix)[i])
     {    
-        printf("%s\n", (mother.args.matrix)[i]);
+        printf("%s$\n", (mother.args.matrix)[i]);
         i++;
     }
     position_info(&mother);

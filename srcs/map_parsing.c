@@ -6,7 +6,7 @@
 /*   By: vincentbaron <vincentbaron@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/23 19:02:56 by vbaron            #+#    #+#             */
-/*   Updated: 2020/09/29 15:58:01 by vincentbaro      ###   ########.fr       */
+/*   Updated: 2020/10/16 17:29:16 by vincentbaro      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,7 @@ int    map_parsing(t_input *args)
         }
         ft_free(args->line);
     }
+    create_map(args);
     args->matrix = ft_split(args->map, "x");
     ft_free(args->map);
     return (1);
