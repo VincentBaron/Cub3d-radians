@@ -6,7 +6,7 @@
 /*   By: vincentbaron <vincentbaron@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/18 14:03:48 by vbaron            #+#    #+#             */
-/*   Updated: 2020/10/16 15:57:24 by vincentbaro      ###   ########.fr       */
+/*   Updated: 2020/10/17 22:09:07 by vincentbaro      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,8 @@ typedef struct s12_list
 {
     void *ptr;
     void *win;
-    t_img img;
+    t_img img_map;
+    t_img img_perso;
 } t_mlx;
 
 typedef struct s_map
