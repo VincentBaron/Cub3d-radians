@@ -6,7 +6,7 @@
 /*   By: vincentbaron <vincentbaron@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/24 16:49:29 by vbaron            #+#    #+#             */
-/*   Updated: 2020/10/16 16:51:53 by vincentbaro      ###   ########.fr       */
+/*   Updated: 2020/10/17 12:29:46 by vincentbaro      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,11 +69,11 @@ void draw_square(t_general *mother, char *type)
 void draw_map(t_general *mother)
 {
      mother->map.track_x = 0;
-     mother->map.size_x = 10;
+     mother->map.size_x = 200;
      while(mother->args.matrix[mother->map.track_x])
      {
           mother->map.track_y = 0;
-          mother->map.size_y = 10;
+          mother->map.size_y = 200;
           while (mother->args.matrix[mother->map.track_x][mother->map.track_y])
           {
                if (mother->args.matrix[mother->map.track_x][mother->map.track_y] == ' ')
@@ -92,6 +92,7 @@ void draw_map(t_general *mother)
 
 void    game_start(t_general *mother)
 {    
+     printf("yolo");
      if (!(mother->mlx.ptr = mlx_init()))
           ft_putstr_fd("Error initialising mlx", 1);
      if (!(mother->mlx.win = mlx_new_window(mother->mlx.ptr, mother->args.R[0], mother->args.R[1], "J' aime les Moules Brite")))
@@ -114,7 +115,8 @@ void    game_start(t_general *mother)
      while (mother->mlx.img.addr[i])
           i++;
      printf("addr_size: %d", i);
+     printf("yolo");
      draw_map(mother);
-     mlx_put_image_to_window(mother->mlx.ptr, mother->mlx.win, mother->mlx.img.addr, 0, 0);
-     mlx_loop(mother->mlx.win);
+     mlx_put_image_to_window(mother->mlx.ptr, mother->mlx.win, mother->mlx.img.image, 0, 0);
+     mlx_loop(mother->mlx.ptr);
 }
