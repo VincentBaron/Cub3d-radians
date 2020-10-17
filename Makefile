@@ -6,7 +6,7 @@
 #    By: vbaron <vbaron@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/24 17:36:15 by vbaron            #+#    #+#              #
-#    Updated: 2020/10/12 11:11:13 by vbaron           ###   ########.fr        #
+#    Updated: 2020/10/17 14:22:49 by vbaron           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,14 +25,30 @@ SRCS = $(addprefix $(DIR_S)/,$(SOURCES))
 OBJS = $(addprefix $(DIR_O)/,$(SOURCES:.c=.o))
 HEADERS = headers
 LIBFT_DIR = Libft
-MLX_DIR = mlx-macos
+
+######################################################
+##DIR_MacOS
+
+##MLX_DIR = mlx-macos
+######################################################
+##DIR_Linux
+
+MLX_DIR = mlx-linux
+#######################################################
+
 NAME = Cub3d
 
 CC = gcc
 
 CFLAGS = -Wall -Wextra -Werror -g
 
-LIBS = -framework OpenGL -framework Appkit
+##MacOS
+
+##LIBS = -framework OpenGL -framework Appkit
+
+##Linux
+
+LIBS = -lXext -lX11 -lm
 
 MLX = $(addprefix $(MLX_DIR)/,libmlx.a)
 
