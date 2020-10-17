@@ -6,7 +6,7 @@
 /*   By: vincentbaron <vincentbaron@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/24 16:49:29 by vbaron            #+#    #+#             */
-/*   Updated: 2020/10/18 01:18:27 by vincentbaro      ###   ########.fr       */
+/*   Updated: 2020/10/18 01:21:09 by vincentbaro      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void draw_map(t_general *mother)
                if (mother->args.matrix[mother->map.track_x][mother->map.track_y] == '0')
                     draw_square(mother, "floor");
                if (mother->args.matrix[mother->map.track_x][mother->map.track_y] == 'N' || mother->args.matrix[mother->map.track_x][mother->map.track_y] == 'S' || mother->args.matrix[mother->map.track_x][mother->map.track_y] == 'E' ||mother->args.matrix[mother->map.track_x][mother->map.track_y] == 'W')
-                    draw_square(mother, "floor");
+                    draw_square(mother, "player");
                mother->map.track_y++;
           }
           mother->map.track_x++;
@@ -98,22 +98,22 @@ void draw_map(t_general *mother)
 
 int  new_map(int keycode, t_general *mother)
 {
-     if (keycode == 7)
+     if (keycode == 13)
      {
           mother->args.matrix[mother->gps.pos.x - 1][mother->gps.pos.y] = mother->args.matrix[mother->gps.pos.x][mother->gps.pos.y];
           mother->args.matrix[mother->gps.pos.x][mother->gps.pos.y] = '0';          
      }
-     if (keycode == 8)
+     if (keycode == 1)
      {
           mother->args.matrix[mother->gps.pos.x + 1][mother->gps.pos.y] = mother->args.matrix[mother->gps.pos.x][mother->gps.pos.y];
           mother->args.matrix[mother->gps.pos.x][mother->gps.pos.y] = '0';          
      }
-     if (keycode == 9)
+     if (keycode == 0)
      {
           mother->args.matrix[mother->gps.pos.x][mother->gps.pos.y - 1] = mother->args.matrix[mother->gps.pos.x][mother->gps.pos.y];
           mother->args.matrix[mother->gps.pos.x][mother->gps.pos.y] = '0';          
      }
-     if (keycode == 10)
+     if (keycode == 2)
      {
           mother->args.matrix[mother->gps.pos.x][mother->gps.pos.y + 1] = mother->args.matrix[mother->gps.pos.x][mother->gps.pos.y];
           mother->args.matrix[mother->gps.pos.x][mother->gps.pos.y] = '0';          
