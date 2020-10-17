@@ -6,7 +6,7 @@
 /*   By: vincentbaron <vincentbaron@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/24 16:49:29 by vbaron            #+#    #+#             */
-/*   Updated: 2020/10/17 22:11:02 by vincentbaro      ###   ########.fr       */
+/*   Updated: 2020/10/17 22:16:05 by vincentbaro      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,11 +75,11 @@ void draw_square(t_general *mother, char *type)
 void draw_map(t_general *mother)
 {
      mother->map.track_x = 0;
-     mother->map.size_x = 10;
+     mother->map.size_x = 40;
      while(mother->args.matrix[mother->map.track_x])
      {
           mother->map.track_y = 0;
-          mother->map.size_y = 10;
+          mother->map.size_y = 40;
           while (mother->args.matrix[mother->map.track_x][mother->map.track_y])
           {
                if (mother->args.matrix[mother->map.track_x][mother->map.track_y] == ' ')
@@ -114,6 +114,7 @@ void    game_start(t_general *mother)
      //mother->args.R[1] = (((mother->args.R[1] % height) == 0) ? mother->args.R[1] : mother->args.R[1] - 1);
 
      mother->mlx.img_map.image = mlx_new_image(mother->mlx.ptr, mother->args.R[0], mother->args.R[1]);
+     mother->mlx.img_perso.image = mlx_new_image(mother->mlx.ptr, mother->args.R[0], mother->args.R[1]);
      mother->mlx.img_map.addr = mlx_get_data_addr(mother->mlx.img_map.image, &(mother->mlx.img_map.bpp), &(mother->mlx.img_map.size_line), &(mother->mlx.img_map.endian));
      draw_map(mother);
      mlx_put_image_to_window(mother->mlx.ptr, mother->mlx.win, mother->mlx.img_map.image, 0, 0);
