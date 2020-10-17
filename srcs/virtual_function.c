@@ -6,7 +6,7 @@
 /*   By: vincentbaron <vincentbaron@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/24 16:49:29 by vbaron            #+#    #+#             */
-/*   Updated: 2020/10/17 12:29:46 by vincentbaro      ###   ########.fr       */
+/*   Updated: 2020/10/17 22:02:40 by vincentbaro      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void draw_map(t_general *mother)
                if (mother->args.matrix[mother->map.track_x][mother->map.track_y] == '0')
                     draw_square(mother, "floor");
                if (mother->args.matrix[mother->map.track_x][mother->map.track_y] == 'N' || mother->args.matrix[mother->map.track_x][mother->map.track_y] == 'S' || mother->args.matrix[mother->map.track_x][mother->map.track_y] == 'E' ||mother->args.matrix[mother->map.track_x][mother->map.track_y] == 'W')
-                    draw_square(mother, "player");
+                    draw_square(mother, "floor");
                mother->map.track_y++;
           }
           mother->map.track_x++;
