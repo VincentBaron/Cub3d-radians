@@ -75,11 +75,11 @@ void draw_square(t_general *mother, char *type)
 void draw_map(t_general *mother)
 {
      mother->map.track_x = 0;
-     mother->map.size_x = 200;
+     mother->map.size_x = 10;
      while(mother->args.matrix[mother->map.track_x])
      {
           mother->map.track_y = 0;
-          mother->map.size_y = 200;
+          mother->map.size_y = 10;
           while (mother->args.matrix[mother->map.track_x][mother->map.track_y])
           {
                if (mother->args.matrix[mother->map.track_x][mother->map.track_y] == ' ')
@@ -117,5 +117,6 @@ void    game_start(t_general *mother)
      mother->mlx.img.addr = mlx_get_data_addr(mother->mlx.img.image, &(mother->mlx.img.bpp), &(mother->mlx.img.size_line), &(mother->mlx.img.endian));
      draw_map(mother);
      mlx_put_image_to_window(mother->mlx.ptr, mother->mlx.win, mother->mlx.img.image, 0, 0);
+     mlx_destroy_image(mother->mlx.ptr, mother->mlx.img.image);
      mlx_loop(mother->mlx.ptr);
 }
