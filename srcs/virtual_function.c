@@ -44,6 +44,12 @@ void   pixel_color(t_general *mother, char *type)
           G = 0;
           B = 0;
      }
+     if (ft_strncmp(type, "player", ft_strlen(type)) == 0)
+     {
+          R = 70;
+          G = 70;
+          B = 70;
+     }
      mother->mlx.img.color = (R << 16) + (G << 8) + B;
 }
 
@@ -59,7 +65,7 @@ void draw_square(t_general *mother, char *type)
           x = 0;
           while (x < mother->map.size_x)
           {
-                    draw_pixel(mother, x, y);
+                    draw_pixel(mother, y + mother->map.size_y * mother->map.track_y, x + mother->map.size_x * mother->map.track_x);
                     x++;
           }
           y++;
