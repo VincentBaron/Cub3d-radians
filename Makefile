@@ -38,7 +38,11 @@ MLX_DIR = mlx-linux
 
 NAME = Cub3d
 
-CC = gcc
+
+##MacOs
+##CC = gcc
+
+CC = clang
 
 CFLAGS = -Wall -Wextra -Werror -g
 
