@@ -6,7 +6,7 @@
 /*   By: vincentbaron <vincentbaron@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/24 16:49:29 by vbaron            #+#    #+#             */
-/*   Updated: 2020/10/18 01:16:37 by vincentbaro      ###   ########.fr       */
+/*   Updated: 2020/10/18 01:18:27 by vincentbaro      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,7 @@ int  new_map(int keycode, t_general *mother)
           mother->args.matrix[mother->gps.pos.x][mother->gps.pos.y + 1] = mother->args.matrix[mother->gps.pos.x][mother->gps.pos.y];
           mother->args.matrix[mother->gps.pos.x][mother->gps.pos.y] = '0';          
      }
-
+     return (0);
 }
 
 void    game_start(t_general *mother)
