@@ -92,7 +92,6 @@ void draw_map(t_general *mother)
 
 void    game_start(t_general *mother)
 {    
-     write(1, "yolo", ft_strlen("yolo"));
      if (!(mother->mlx.ptr = mlx_init()))
           ft_putstr_fd("Error initialising mlx", 1);
      if (!(mother->mlx.win = mlx_new_window(mother->mlx.ptr, mother->args.R[0], mother->args.R[1], "J' aime les Moules Brite")))
@@ -108,16 +107,8 @@ void    game_start(t_general *mother)
      //mother->args.R[0] = (((mother->args.R[0] % width) == 0) ? mother->args.R[0] : mother->args.R[0] - 1);
      //mother->args.R[1] = (((mother->args.R[1] % height) == 0) ? mother->args.R[1] : mother->args.R[1] - 1);
 
-     mother->mlx.img.image = mlx_new_image(mother->mlx.win, mother->args.R[0], mother->args.R[1]);
+     mother->mlx.img.image = mlx_new_image(mother->mlx.ptr, mother->args.R[0], mother->args.R[1]);
      mother->mlx.img.addr = mlx_get_data_addr(&(mother->mlx.img.image), &(mother->mlx.img.bpp), &(mother->mlx.img.size_line), &(mother->mlx.img.endian));
-     
-     int i;
-     i = 0;
-     while (mother->mlx.img.addr[i])
-          i++;
-     printf("addr_size: %d", i);
-     printf("yolo");
-     draw_map(mother);
      mlx_put_image_to_window(mother->mlx.ptr, mother->mlx.win, mother->mlx.img.image, 0, 0);
      mlx_loop(mother->mlx.ptr);
 }
