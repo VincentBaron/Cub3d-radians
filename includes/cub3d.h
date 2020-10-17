@@ -84,8 +84,8 @@ typedef struct s12_list
 
 typedef struct s_map
 {
-    float size_x;
-    float size_y;
+    int size_x;
+    int size_y;
     int track_x;
     int track_y;
 } t_map;
