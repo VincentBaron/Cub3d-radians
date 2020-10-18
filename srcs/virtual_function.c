@@ -6,7 +6,7 @@
 /*   By: vincentbaron <vincentbaron@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/24 16:49:29 by vbaron            #+#    #+#             */
-/*   Updated: 2020/10/18 01:21:09 by vincentbaro      ###   ########.fr       */
+/*   Updated: 2020/10/18 02:08:51 by vincentbaro      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,10 @@ int  new_map(int keycode, t_general *mother)
           mother->args.matrix[mother->gps.pos.x][mother->gps.pos.y + 1] = mother->args.matrix[mother->gps.pos.x][mother->gps.pos.y];
           mother->args.matrix[mother->gps.pos.x][mother->gps.pos.y] = '0';          
      }
+     mlx_destroy_image(mother->mlx.ptr, mother->mlx.img_map.image);
+     mother->mlx.img_map.image = mlx_new_image(mother->mlx.ptr, mother->args.R[0], mother->args.R[1]);
+     draw_map(mother);
+     mlx_put_image_to_window(mother->mlx.ptr, mother->mlx.win, mother->mlx.img_map.image, 0, 0)
      return (0);
 }
 
@@ -137,12 +141,11 @@ void    game_start(t_general *mother)
      }*/
      //mother->args.R[0] = (((mother->args.R[0] % width) == 0) ? mother->args.R[0] : mother->args.R[0] - 1);
      //mother->args.R[1] = (((mother->args.R[1] % height) == 0) ? mother->args.R[1] : mother->args.R[1] - 1);
-     mlx_key_hook(mother->mlx.win, &new_map, mother);
      mother->mlx.img_map.image = mlx_new_image(mother->mlx.ptr, mother->args.R[0], mother->args.R[1]);
-     mother->mlx.img_perso.image = mlx_new_image(mother->mlx.ptr, mother->args.R[0], mother->args.R[1]);
+     //mother->mlx.img_perso.image = mlx_new_image(mother->mlx.ptr, mother->args.R[0], mother->args.R[1]);
      mother->mlx.img_map.addr = mlx_get_data_addr(mother->mlx.img_map.image, &(mother->mlx.img_map.bpp), &(mother->mlx.img_map.size_line), &(mother->mlx.img_map.endian));
      draw_map(mother);
      mlx_put_image_to_window(mother->mlx.ptr, mother->mlx.win, mother->mlx.img_map.image, 0, 0);
-     mlx_destroy_image(mother->mlx.ptr, mother->mlx.img_map.image);
+     mlx_key_hook(mother->mlx.win, &new_map, mother);
      mlx_loop(mother->mlx.ptr);
 }
