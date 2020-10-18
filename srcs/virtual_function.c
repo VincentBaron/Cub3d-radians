@@ -6,7 +6,7 @@
 /*   By: vincentbaron <vincentbaron@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/24 16:49:29 by vbaron            #+#    #+#             */
-/*   Updated: 2020/10/18 02:09:34 by vincentbaro      ###   ########.fr       */
+/*   Updated: 2020/10/18 02:12:35 by vincentbaro      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,8 +144,8 @@ void    game_start(t_general *mother)
      mother->mlx.img_map.image = mlx_new_image(mother->mlx.ptr, mother->args.R[0], mother->args.R[1]);
      //mother->mlx.img_perso.image = mlx_new_image(mother->mlx.ptr, mother->args.R[0], mother->args.R[1]);
      mother->mlx.img_map.addr = mlx_get_data_addr(mother->mlx.img_map.image, &(mother->mlx.img_map.bpp), &(mother->mlx.img_map.size_line), &(mother->mlx.img_map.endian));
-     draw_map(mother);
-     mlx_put_image_to_window(mother->mlx.ptr, mother->mlx.win, mother->mlx.img_map.image, 0, 0);
+     //draw_map(mother);
+     //mlx_put_image_to_window(mother->mlx.ptr, mother->mlx.win, mother->mlx.img_map.image, 0, 0);
      mlx_key_hook(mother->mlx.win, &new_map, mother);
      mlx_loop(mother->mlx.ptr);
 }
