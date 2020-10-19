@@ -6,7 +6,7 @@
 /*   By: vbaron <vbaron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/24 16:49:29 by vbaron            #+#    #+#             */
-/*   Updated: 2020/10/19 10:12:48 by vbaron           ###   ########.fr       */
+/*   Updated: 2020/10/19 10:17:54 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,8 +175,12 @@ void    game_start(t_general *mother)
           ft_putstr_fd("Error creating window", 1);
      //mother->args.R[0] = (((mother->args.R[0] % width) == 0) ? mother->args.R[0] : mother->args.R[0] - 1);
      //mother->args.R[1] = (((mother->args.R[1] % height) == 0) ? mother->args.R[1] : mother->args.R[1] - 1);
+     ft_putstr_fd("seg1", 1);
      mlx_hook(mother->mlx.win, KEY_PRESS, 1L<<0, &key_press, mother);
+          ft_putstr_fd("seg2", 1);
      mlx_hook(mother->mlx.win, KEY_RELEASE, 1L<<1, &key_release, mother);
+          ft_putstr_fd("seg3", 1);
      mlx_loop_hook(mother->mlx.ptr, &events_list, mother);
+          ft_putstr_fd("seg4", 1);
      mlx_loop(mother->mlx.ptr);
 }
