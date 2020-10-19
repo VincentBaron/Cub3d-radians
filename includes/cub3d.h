@@ -51,7 +51,6 @@ typedef struct s1_list
     t_coor_float plane;
     t_coor_float time;
     t_coor move;
-    int event;
 }   t_gps;
 
 typedef struct s2_list
