@@ -6,7 +6,7 @@
 /*   By: vbaron <vbaron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/24 16:49:29 by vbaron            #+#    #+#             */
-/*   Updated: 2020/10/19 10:12:17 by vbaron           ###   ########.fr       */
+/*   Updated: 2020/10/19 10:12:48 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,14 +129,14 @@ void redefine_map(int keycode, t_general *mother)
 int  new_map(int keycode, t_general *mother)
 {
      
-     ft_putstr_fd("YEs1");
+     ft_putstr_fd("YEs1", 1);
      mother->mlx.img_map.image = mlx_new_image(mother->mlx.ptr, mother->args.R[0], mother->args.R[1]);
      mother->mlx.img_map.addr = mlx_get_data_addr(mother->mlx.img_map.image, &(mother->mlx.img_map.bpp), &(mother->mlx.img_map.size_line), &(mother->mlx.img_map.endian));
      redefine_map(keycode, mother);
      draw_map(mother);
      mlx_put_image_to_window(mother->mlx.ptr, mother->mlx.win, mother->mlx.img_map.image, 0, 0);
      //mlx_destroy_image(mother->mlx.ptr, mother->mlx.img_map.image);
-     ft_putstr_fd("Yes2");
+     ft_putstr_fd("Yes2", 1);
      return (0);
 }
 
