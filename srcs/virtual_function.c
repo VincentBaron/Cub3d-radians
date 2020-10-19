@@ -131,10 +131,7 @@ int  new_map(t_general *mother)
 {
      
      ft_putstr_fd("NewMap1", 1);
-     mother->mlx.img_map.addr = mlx_get_data_addr(mother->mlx.img_map.image, &(mother->mlx.img_map.bpp), &(mother->mlx.img_map.size_line), &(mother->mlx.img_map.endian));
      redefine_map(mother);
-     draw_map(mother);
-     mlx_put_image_to_window(mother->mlx.ptr, mother->mlx.win, mother->mlx.img_map.image, 0, 0);
      //mlx_destroy_image(mother->mlx.ptr, mother->mlx.img_map.image);
      ft_putstr_fd("NewMap2", 1);
      return (0);
@@ -188,12 +185,15 @@ void    game_start(t_general *mother)
      //mother->args.R[1] = (((mother->args.R[1] % height) == 0) ? mother->args.R[1] : mother->args.R[1] - 1);
      ft_putstr_fd("seg1", 1);
      mother->mlx.img_map.image = mlx_new_image(mother->mlx.ptr, mother->args.R[0], mother->args.R[1]);
+     mother->mlx.img_map.addr = mlx_get_data_addr(mother->mlx.img_map.image, &(mother->mlx.img_map.bpp), &(mother->mlx.img_map.size_line), &(mother->mlx.img_map.endian));
      mlx_hook(mother->mlx.win, KEY_PRESS, 1L<<0, &key_press, mother);
           ft_putstr_fd("seg2", 1);
      mlx_hook(mother->mlx.win, KEY_RELEASE, 1L<<1, &key_release, mother);
           ft_putstr_fd("seg3", 1);
      mlx_loop_hook(mother->mlx.ptr, &events_list, mother);
           ft_putstr_fd("seg4", 1);
+     draw_map(mother);
+     mlx_put_image_to_window(mother->mlx.ptr, mother->mlx.win, mother->mlx.img_map.image, 0, 0);
      mlx_destroy_image(mother->mlx.ptr, mother->mlx.img_map.image);
      mlx_loop(mother->mlx.ptr);
           ft_putstr_fd("seg5", 1);
