@@ -150,6 +150,7 @@ int key_press(int keycode, t_general *mother)
           mother->gps.move.y = -1;
      if (keycode == RIGHT && mother->gps.move.y == 0)
           mother->gps.move.y = 1;
+     mother->gps.event = 1;
      printf("keycode: %d\n", keycode);
      return (0);
 }
@@ -164,6 +165,7 @@ int key_release(int keycode, t_general *mother)
           mother->gps.move.y = 0;
      if (keycode == RIGHT && mother->gps.move.y == 1)
           mother->gps.move.y = 0;
+     mother->gps.event = 0;
      return (0);
 }
 
