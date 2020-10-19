@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vincentbaron <vincentbaron@student.42.f    +#+  +:+       +#+        */
+/*   By: vbaron <vbaron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/18 14:03:48 by vbaron            #+#    #+#             */
-/*   Updated: 2020/10/17 22:12:14 by vincentbaro      ###   ########.fr       */
+/*   Updated: 2020/10/19 09:59:21 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@
 # define LEFT_ARROW 65361
 # define UP_ARROW 65362
 # define DOWN_ARROW 65364
-# define W 119
-# define A 97
-# define S 115
-# define D 100
+# define UP 119
+# define LEFT 97
+# define DOWN 115
+# define RIGHT 100
 # define ESC 65307
 
 

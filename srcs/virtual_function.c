@@ -6,7 +6,7 @@
 /*   By: vbaron <vbaron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/24 16:49:29 by vbaron            #+#    #+#             */
-/*   Updated: 2020/10/19 09:56:43 by vbaron           ###   ########.fr       */
+/*   Updated: 2020/10/19 09:59:45 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,25 +100,25 @@ void redefine_map(int keycode, t_general *mother)
 {
      char *temp;
 
-     if (keycode == A)
+     if (keycode == UP)
      {
           temp = mother->args.matrix[mother->gps.pos.x][mother->gps.pos.y];
           mother->args.matrix[mother->gps.pos.x--][mother->gps.pos.y] = temp;
           mother->args.matrix[mother->gps.pos.x + 1][mother->gps.pos.y] = '0';          
      }
-     if (keycode == D)
+     if (keycode == RIGHT)
      {
           temp = mother->args.matrix[mother->gps.pos.x][mother->gps.pos.y];
           mother->args.matrix[mother->gps.pos.x++][mother->gps.pos.y] = temp;
           mother->args.matrix[mother->gps.pos.x - 1][mother->gps.pos.y] = '0';          
      }
-     if (keycode == S)
+     if (keycode == DOWN)
      {
           temp = mother->args.matrix[mother->gps.pos.x][mother->gps.pos.y];
           mother->args.matrix[mother->gps.pos.x][mother->gps.pos.y--] = temp;
           mother->args.matrix[mother->gps.pos.x][mother->gps.pos.y + 1] = '0';          
      }
-     if (keycode == W)
+     if (keycode == LEFT)
      {
           temp = mother->args.matrix[mother->gps.pos.x][mother->gps.pos.y];
           mother->args.matrix[mother->gps.pos.x][mother->gps.pos.y++] = temp;
