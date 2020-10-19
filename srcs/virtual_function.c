@@ -6,7 +6,7 @@
 /*   By: vbaron <vbaron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/24 16:49:29 by vbaron            #+#    #+#             */
-/*   Updated: 2020/10/19 09:59:45 by vbaron           ###   ########.fr       */
+/*   Updated: 2020/10/19 10:00:45 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ void draw_map(t_general *mother)
 
 void redefine_map(int keycode, t_general *mother)
 {
-     char *temp;
+     char temp;
 
      if (keycode == UP)
      {
