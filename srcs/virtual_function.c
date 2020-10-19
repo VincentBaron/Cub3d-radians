@@ -96,7 +96,7 @@ void draw_map(t_general *mother)
      }
 }
 
-void redefine_map(int keycode, t_general *mother)
+void redefine_map(t_general *mother)
 {
      char temp;
      ft_putstr_fd("Redefine1", 1);
@@ -127,12 +127,12 @@ void redefine_map(int keycode, t_general *mother)
           ft_putstr_fd("Redefine2", 1);
 }
 
-int  new_map(int keycode, t_general *mother)
+int  new_map(t_general *mother)
 {
      
      ft_putstr_fd("NewMap1", 1);
      mother->mlx.img_map.addr = mlx_get_data_addr(mother->mlx.img_map.image, &(mother->mlx.img_map.bpp), &(mother->mlx.img_map.size_line), &(mother->mlx.img_map.endian));
-     redefine_map(keycode, mother);
+     redefine_map(mother);
      draw_map(mother);
      mlx_put_image_to_window(mother->mlx.ptr, mother->mlx.win, mother->mlx.img_map.image, 0, 0);
      //mlx_destroy_image(mother->mlx.ptr, mother->mlx.img_map.image);
@@ -142,13 +142,13 @@ int  new_map(int keycode, t_general *mother)
 
 int key_press(int keycode, t_general *mother)
 {
-     if (keycode = UP && mother->gps.move.x == 0)
+     if (keycode == UP && mother->gps.move.x == 0)
           mother->gps.move.x = 1;
-     if (keycode = DOWN && mother->gps.move.x == 0)
+     if (keycode == DOWN && mother->gps.move.x == 0)
           mother->gps.move.x = -1;
-     if (keycode = LEFT && mother->gps.move.y == 0)
+     if (keycode == LEFT && mother->gps.move.y == 0)
           mother->gps.move.y = -1;
-     if (keycode = RIGHT && mother->gps.move.y == 0)
+     if (keycode == RIGHT && mother->gps.move.y == 0)
           mother->gps.move.y = 1;
      printf("keycode: %d\n", keycode);
      return (0);
@@ -156,20 +156,20 @@ int key_press(int keycode, t_general *mother)
 
 int key_release(int keycode, t_general *mother)
 {
-    if (keycode = UP && mother->gps.move.x == 1)
+    if (keycode == UP && mother->gps.move.x == 1)
           mother->gps.move.x = 0;
-     if (keycode = DOWN && mother->gps.move.x == -1)
+     if (keycode == DOWN && mother->gps.move.x == -1)
           mother->gps.move.x = 0;
-     if (keycode = LEFT && mother->gps.move.y == -1)
+     if (keycode == LEFT && mother->gps.move.y == -1)
           mother->gps.move.y = 0;
-     if (keycode = RIGHT && mother->gps.move.y == 1)
+     if (keycode == RIGHT && mother->gps.move.y == 1)
           mother->gps.move.y = 0;
      return (0);
 }
 
-int events_list(int keycode, t_general *mother)
+int events_list(t_general *mother)
 {
-     new_map(keycode, mother);
+     new_map(mother);
      return (0);
 }
 
@@ -192,7 +192,7 @@ void    game_start(t_general *mother)
           ft_putstr_fd("seg3", 1);
      mlx_loop_hook(mother->mlx.ptr, &events_list, mother);
           ft_putstr_fd("seg4", 1);
-     mlx_destroy_image(mother->mlx.ptr);
+     mlx_destroy_image(mother->mlx.ptr, mother->mlx.img_map.image);
      mlx_loop(mother->mlx.ptr);
           ft_putstr_fd("seg5", 1);
 }
