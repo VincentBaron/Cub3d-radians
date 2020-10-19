@@ -6,7 +6,7 @@
 /*   By: vbaron <vbaron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/24 16:49:29 by vbaron            #+#    #+#             */
-/*   Updated: 2020/10/19 10:24:07 by vbaron           ###   ########.fr       */
+/*   Updated: 2020/10/19 10:26:34 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ void draw_map(t_general *mother)
 void redefine_map(int keycode, t_general *mother)
 {
      char temp;
-
+     ft_putstr_fd("Redefine1", 1);
      if (keycode == UP)
      {
           temp = mother->args.matrix[mother->gps.pos.x][mother->gps.pos.y];
@@ -124,19 +124,20 @@ void redefine_map(int keycode, t_general *mother)
           mother->args.matrix[mother->gps.pos.x][mother->gps.pos.y++] = temp;
           mother->args.matrix[mother->gps.pos.x][mother->gps.pos.y - 1] = '0';          
      }
+          ft_putstr_fd("Redefine2", 1);
 }
 
 int  new_map(int keycode, t_general *mother)
 {
      
-     ft_putstr_fd("YEs1", 1);
+     ft_putstr_fd("NewMap1", 1);
      mother->mlx.img_map.image = mlx_new_image(mother->mlx.ptr, mother->args.R[0], mother->args.R[1]);
      mother->mlx.img_map.addr = mlx_get_data_addr(mother->mlx.img_map.image, &(mother->mlx.img_map.bpp), &(mother->mlx.img_map.size_line), &(mother->mlx.img_map.endian));
      redefine_map(keycode, mother);
      draw_map(mother);
      mlx_put_image_to_window(mother->mlx.ptr, mother->mlx.win, mother->mlx.img_map.image, 0, 0);
      //mlx_destroy_image(mother->mlx.ptr, mother->mlx.img_map.image);
-     ft_putstr_fd("Yes2", 1);
+     ft_putstr_fd("NewMap2", 1);
      return (0);
 }
 
@@ -156,10 +157,7 @@ int key_release(int keycode, t_general *mother)
 
 int events_list(int keycode, t_general *mother)
 {
-     //if (mother->gps.event == 1)
-     //{
-          new_map(keycode, mother);
-     //}
+     new_map(keycode, mother);
      return (0);
 }
 
