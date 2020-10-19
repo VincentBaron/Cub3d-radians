@@ -6,7 +6,7 @@
 /*   By: vbaron <vbaron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/24 16:49:29 by vbaron            #+#    #+#             */
-/*   Updated: 2020/10/19 10:00:45 by vbaron           ###   ########.fr       */
+/*   Updated: 2020/10/19 10:01:51 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,7 +154,7 @@ int key_release(int keycode, t_general *mother)
      return (0);
 }
 
-int events_list(t_general *mother)
+int events_list(int keycode, t_general *mother)
 {
      new_map(int keycode, t_general *mother);
      (void)mother;
