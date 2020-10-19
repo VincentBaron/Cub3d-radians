@@ -19,6 +19,18 @@
 # include "../Libft/libft.h"
 # include "mlx.h"
 
+# define KEY_PRESS 2
+# define KEY_RELEASE 3
+# define RIGHT_ARROW 65363
+# define LEFT_ARROW 65361
+# define UP_ARROW 65362
+# define DOWN_ARROW 65364
+# define W 119
+# define A 97
+# define S 115
+# define D 100
+# define ESC 65307
+
 
 typedef struct s4_list
 {
@@ -38,6 +50,8 @@ typedef struct s1_list
     t_coor dir;
     t_coor_float plane;
     t_coor_float time;
+    t_coor move;
+    int event;
 }   t_gps;
 
 typedef struct s2_list
