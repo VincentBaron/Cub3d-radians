@@ -6,7 +6,7 @@
 /*   By: vbaron <vbaron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/24 16:49:29 by vbaron            #+#    #+#             */
-/*   Updated: 2020/10/19 10:21:47 by vbaron           ###   ########.fr       */
+/*   Updated: 2020/10/19 10:24:07 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,10 +156,10 @@ int key_release(int keycode, t_general *mother)
 
 int events_list(int keycode, t_general *mother)
 {
-     if (mother->gps.event == 1)
-     {
+     //if (mother->gps.event == 1)
+     //{
           new_map(keycode, mother);
-     }
+     //}
      return (0);
 }
 
