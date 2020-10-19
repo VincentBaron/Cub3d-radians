@@ -6,7 +6,7 @@
 /*   By: vbaron <vbaron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/24 16:49:29 by vbaron            #+#    #+#             */
-/*   Updated: 2020/10/19 10:03:03 by vbaron           ###   ########.fr       */
+/*   Updated: 2020/10/19 10:08:36 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,15 +128,12 @@ void redefine_map(int keycode, t_general *mother)
 
 int  new_map(int keycode, t_general *mother)
 {
-     if (mother->gps.event == 1)
-     {
-          mother->mlx.img_map.image = mlx_new_image(mother->mlx.ptr, mother->args.R[0], mother->args.R[1]);
-          mother->mlx.img_map.addr = mlx_get_data_addr(mother->mlx.img_map.image, &(mother->mlx.img_map.bpp), &(mother->mlx.img_map.size_line), &(mother->mlx.img_map.endian));
-          redefine_map(keycode, mother);
-          draw_map(mother);
-          mlx_put_image_to_window(mother->mlx.ptr, mother->mlx.win, mother->mlx.img_map.image, 0, 0);
-          mlx_destroy_image(mother->mlx.ptr, mother->mlx.img_map.image);
-     }
+     mother->mlx.img_map.image = mlx_new_image(mother->mlx.ptr, mother->args.R[0], mother->args.R[1]);
+     mother->mlx.img_map.addr = mlx_get_data_addr(mother->mlx.img_map.image, &(mother->mlx.img_map.bpp), &(mother->mlx.img_map.size_line), &(mother->mlx.img_map.endian));
+     redefine_map(keycode, mother);
+     draw_map(mother);
+     mlx_put_image_to_window(mother->mlx.ptr, mother->mlx.win, mother->mlx.img_map.image, 0, 0);
+     //mlx_destroy_image(mother->mlx.ptr, mother->mlx.img_map.image);
      return (0);
 }
 
@@ -156,7 +153,10 @@ int key_release(int keycode, t_general *mother)
 
 int events_list(int keycode, t_general *mother)
 {
-     new_map(keycode, mother);
+     if (mother->gps.event == 1)
+     {
+          new_map(keycode, mother);
+     }
      return (0);
 }
 
@@ -172,7 +172,7 @@ void    game_start(t_general *mother)
           ft_putstr_fd("Error creating window", 1);
      //mother->args.R[0] = (((mother->args.R[0] % width) == 0) ? mother->args.R[0] : mother->args.R[0] - 1);
      //mother->args.R[1] = (((mother->args.R[1] % height) == 0) ? mother->args.R[1] : mother->args.R[1] - 1);
-     mlx_hook(mother->mlx.win, KEY_PRESS, 1L, &key_press, mother);
+     mlx_hook(mother->mlx.win, KEY_PRESS, 1L<<0, &key_press, mother);
      mlx_hook(mother->mlx.win, KEY_RELEASE, 1L<<1, &key_release, mother);
      mlx_loop_hook(mother->mlx.ptr, &events_list, mother);
      mlx_loop(mother->mlx.ptr);
