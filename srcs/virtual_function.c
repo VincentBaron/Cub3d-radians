@@ -6,7 +6,7 @@
 /*   By: vbaron <vbaron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/24 16:49:29 by vbaron            #+#    #+#             */
-/*   Updated: 2020/10/19 10:17:54 by vbaron           ###   ########.fr       */
+/*   Updated: 2020/10/19 10:20:14 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -183,4 +183,5 @@ void    game_start(t_general *mother)
      mlx_loop_hook(mother->mlx.ptr, &events_list, mother);
           ft_putstr_fd("seg4", 1);
      mlx_loop(mother->mlx.ptr);
+          ft_putstr_fd("seg5", 1);
 }
