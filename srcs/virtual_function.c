@@ -78,6 +78,25 @@ void draw_square(t_general *mother, char *type)
      }
 }
 
+void draw_player(t_general *mother, char *type)
+{
+     int x;
+     int y;
+
+     pixel_color(mother, type);
+     y = mother->map.size_y / 4;
+     while( y < (3 * mother->map.size_y / 4))
+     {
+          x = mother->map.size_x / 4;;
+          while (x < (3 * mother->map.size_x / 4))
+          {
+                    draw_pixel(mother, y + mother->map.size_y * mother->map.track_y, x + mother->map.size_x * mother->map.track_x);
+                    x++;
+          }
+          y++;
+     }
+}
+
 void draw_map(t_general *mother)
 {
      mother->map.track_x = 0;
@@ -95,7 +114,10 @@ void draw_map(t_general *mother)
                if (mother->args.matrix[mother->map.track_x][mother->map.track_y] == '0')
                     draw_square(mother, "floor");
                if (mother->args.matrix[mother->map.track_x][mother->map.track_y] == 'N' || mother->args.matrix[mother->map.track_x][mother->map.track_y] == 'S' || mother->args.matrix[mother->map.track_x][mother->map.track_y] == 'E' ||mother->args.matrix[mother->map.track_x][mother->map.track_y] == 'W')
-                    draw_square(mother, "player");
+               {
+                    draw_square(mother, "floor");
+                    draw_player(mother, "player");
+               }
                if (mother->args.matrix[mother->map.track_x][mother->map.track_y] == '2')
                     draw_square(mother, "sprite");    
                mother->map.track_y++;
