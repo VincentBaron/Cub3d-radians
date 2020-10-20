@@ -34,15 +34,15 @@ void   pixel_color(t_general *mother, char *type)
      }
      if (ft_strncmp(type, "wall", ft_strlen(type)) == 0)
      {
-          R = 211;
-          G = 211;
-          B = 211;
-     }
-     if (ft_strncmp(type, "out", ft_strlen(type)) == 0)
-     {
           R = 0;
           G = 0;
           B = 0;
+     }
+     if (ft_strncmp(type, "out", ft_strlen(type)) == 0)
+     {
+          R = 172;
+          G = 93;
+          B = 93;
      }
      if (ft_strncmp(type, "player", ft_strlen(type)) == 0)
      {
@@ -64,15 +64,16 @@ void draw_square(t_general *mother, char *type)
      int x;
      int y;
 
-     pixel_color(mother, type);
      y = 0;
-     while( y < mother->map.size_y)
+     while( y <= mother->map.size_y)
      {
           x = 0;
-          while (x < mother->map.size_x)
+          while (x <= mother->map.size_x)
           {
-                    draw_pixel(mother, y + mother->map.size_y * mother->map.track_y, x + mother->map.size_x * mother->map.track_x);
-                    x++;
+                    
+               (x < 1 || x > (mother->map.size_x - 1)) || (y < 1 || y > (mother->map.size_y - 1)) ? pixel_color(mother, "out") : pixel_color(mother, type);
+               draw_pixel(mother, y + mother->map.size_y * mother->map.track_y, x + mother->map.size_x * mother->map.track_x);
+               x++;
           }
           y++;
      }
@@ -90,7 +91,10 @@ void draw_player(t_general *mother, char *type)
           x = mother->map.size_x / 4;;
           while (x < (3 * mother->map.size_x / 4))
           {
-                    draw_pixel(mother, y + mother->map.size_y * mother->map.track_y, x + mother->map.size_x * mother->map.track_x);
+                    pixel_color(mother, type);
+                    if ((x < 1 || x > (mother->map.size_x - 1)) && (y < 1 || y > (mother->map.size_y - 1)))
+                         pixel_color(mother, "out");
+                    draw_pixel(mother, y + 1 + mother->map.size_y * mother->map.track_y, x + 1 + mother->map.size_x * mother->map.track_x);
                     x++;
           }
           y++;
