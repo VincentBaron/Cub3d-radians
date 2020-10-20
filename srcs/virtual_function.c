@@ -50,6 +50,12 @@ void   pixel_color(t_general *mother, char *type)
           G = 70;
           B = 70;
      }
+     if (ft_strncmp(type, "sprite", ft_strlen(type)) == 0)
+     {
+          R = 32;
+          G = 178;
+          B = 170;
+     }
      mother->mlx.img_map.color = (R << 16) + (G << 8) + B;
 }
 
@@ -75,11 +81,11 @@ void draw_square(t_general *mother, char *type)
 void draw_map(t_general *mother)
 {
      mother->map.track_x = 0;
-     mother->map.size_x = 40;
+     mother->map.size_x = 20;
      while(mother->args.matrix[mother->map.track_x])
      {
           mother->map.track_y = 0;
-          mother->map.size_y = 40;
+          mother->map.size_y = 20;
           while (mother->args.matrix[mother->map.track_x][mother->map.track_y])
           {
                if (mother->args.matrix[mother->map.track_x][mother->map.track_y] == ' ')
@@ -90,6 +96,8 @@ void draw_map(t_general *mother)
                     draw_square(mother, "floor");
                if (mother->args.matrix[mother->map.track_x][mother->map.track_y] == 'N' || mother->args.matrix[mother->map.track_x][mother->map.track_y] == 'S' || mother->args.matrix[mother->map.track_x][mother->map.track_y] == 'E' ||mother->args.matrix[mother->map.track_x][mother->map.track_y] == 'W')
                     draw_square(mother, "player");
+               if (mother->args.matrix[mother->map.track_x][mother->map.track_y] == '2')
+                    draw_square(mother, "sprite");    
                mother->map.track_y++;
           }
           mother->map.track_x++;
@@ -99,53 +107,53 @@ void draw_map(t_general *mother)
 void redefine_map(t_general *mother)
 {
      char temp;
-     ft_putstr_fd("Redefine1", 1);
-     if (mother->gps.move.x == 1)
+     if (mother->gps.move.x == -1 && mother->args.matrix[mother->gps.pos.x - 1][mother->gps.pos.y] == '0')
      {
           temp = mother->args.matrix[mother->gps.pos.x][mother->gps.pos.y];
-          mother->args.matrix[mother->gps.pos.x--][mother->gps.pos.y] = temp;
+          mother->args.matrix[--mother->gps.pos.x][mother->gps.pos.y] = temp;
           mother->args.matrix[mother->gps.pos.x + 1][mother->gps.pos.y] = '0';          
      }
-     if (mother->gps.move.y == 1)
+     else if (mother->gps.move.x == 1 && mother->args.matrix[mother->gps.pos.x + 1][mother->gps.pos.y] == '0')
      {
           temp = mother->args.matrix[mother->gps.pos.x][mother->gps.pos.y];
-          mother->args.matrix[mother->gps.pos.x++][mother->gps.pos.y] = temp;
+          mother->args.matrix[++mother->gps.pos.x][mother->gps.pos.y] = temp;
           mother->args.matrix[mother->gps.pos.x - 1][mother->gps.pos.y] = '0';          
      }
-     if (mother->gps.move.x == -1)
+     else if (mother->gps.move.y == -1 && mother->args.matrix[mother->gps.pos.x][mother->gps.pos.y - 1] == '0')
      {
           temp = mother->args.matrix[mother->gps.pos.x][mother->gps.pos.y];
-          mother->args.matrix[mother->gps.pos.x][mother->gps.pos.y--] = temp;
+          mother->args.matrix[mother->gps.pos.x][--mother->gps.pos.y] = temp;
           mother->args.matrix[mother->gps.pos.x][mother->gps.pos.y + 1] = '0';          
      }
-     if (mother->gps.move.y == -1)
+     else if (mother->gps.move.y == +1 && mother->args.matrix[mother->gps.pos.x][mother->gps.pos.y + 1] == '0')
      {
           temp = mother->args.matrix[mother->gps.pos.x][mother->gps.pos.y];
-          mother->args.matrix[mother->gps.pos.x][mother->gps.pos.y++] = temp;
+          mother->args.matrix[mother->gps.pos.x][++mother->gps.pos.y] = temp;
           mother->args.matrix[mother->gps.pos.x][mother->gps.pos.y - 1] = '0';          
      }
-          ft_putstr_fd("Redefine2", 1);
 }
 
 int  new_map(t_general *mother)
 {
-     
-     ft_putstr_fd("NewMap1", 1);
+     mlx_destroy_image(mother->mlx.ptr, mother->mlx.img_map.image);
+     mother->mlx.img_map.image = mlx_new_image(mother->mlx.ptr, mother->args.R[0], mother->args.R[1]);
+     mother->mlx.img_map.addr = mlx_get_data_addr(mother->mlx.img_map.image, &(mother->mlx.img_map.bpp), &(mother->mlx.img_map.size_line), &(mother->mlx.img_map.endian));
      redefine_map(mother);
-     //mlx_destroy_image(mother->mlx.ptr, mother->mlx.img_map.image);
-     ft_putstr_fd("NewMap2", 1);
+     draw_map(mother);
+     mlx_put_image_to_window(mother->mlx.ptr, mother->mlx.win, mother->mlx.img_map.image, 0, 0);
      return (0);
 }
 
 int key_press(int keycode, t_general *mother)
 {
-     if (keycode == UP && mother->gps.move.x == 0)
-          mother->gps.move.x = 1;
-     if (keycode == DOWN && mother->gps.move.x == 0)
+     mother->gps.event = 1;
+     if (keycode == UP)
           mother->gps.move.x = -1;
-     if (keycode == LEFT && mother->gps.move.y == 0)
+     else if (keycode == DOWN)
+          mother->gps.move.x = 1;
+     else if (keycode == LEFT)
           mother->gps.move.y = -1;
-     if (keycode == RIGHT && mother->gps.move.y == 0)
+     else if (keycode == RIGHT)
           mother->gps.move.y = 1;
      mother->gps.event = 1;
      printf("keycode: %d\n", keycode);
@@ -154,23 +162,21 @@ int key_press(int keycode, t_general *mother)
 
 int key_release(int keycode, t_general *mother)
 {
-    if (keycode == UP && mother->gps.move.x == 1)
-          mother->gps.move.x = 0;
-     if (keycode == DOWN && mother->gps.move.x == -1)
-          mother->gps.move.x = 0;
-     if (keycode == LEFT && mother->gps.move.y == -1)
-          mother->gps.move.y = 0;
-     if (keycode == RIGHT && mother->gps.move.y == 1)
-          mother->gps.move.y = 0;
      mother->gps.event = 0;
+     mother->gps.move.x = 0;
+     mother->gps.move.y = 0;
+     (void)keycode;
      return (0);
 }
 
 int events_list(t_general *mother)
 {
-     new_map(mother);
+     if (mother->gps.event == 1)
+          new_map(mother);
+     mother->gps.event = 0;
      return (0);
 }
+    
 
 void    game_start(t_general *mother)
 {    
@@ -183,18 +189,12 @@ void    game_start(t_general *mother)
           ft_putstr_fd("Error creating window", 2);
      //mother->args.R[0] = (((mother->args.R[0] % width) == 0) ? mother->args.R[0] : mother->args.R[0] - 1);
      //mother->args.R[1] = (((mother->args.R[1] % height) == 0) ? mother->args.R[1] : mother->args.R[1] - 1);
-     ft_putstr_fd("seg1", 1);
      mother->mlx.img_map.image = mlx_new_image(mother->mlx.ptr, mother->args.R[0], mother->args.R[1]);
      mother->mlx.img_map.addr = mlx_get_data_addr(mother->mlx.img_map.image, &(mother->mlx.img_map.bpp), &(mother->mlx.img_map.size_line), &(mother->mlx.img_map.endian));
-     mlx_hook(mother->mlx.win, KEY_PRESS, 1L<<0, &key_press, mother);
-          ft_putstr_fd("seg2", 1);
-     mlx_hook(mother->mlx.win, KEY_RELEASE, 1L<<1, &key_release, mother);
-          ft_putstr_fd("seg3", 1);
-     mlx_loop_hook(mother->mlx.ptr, &events_list, mother);
-          ft_putstr_fd("seg4", 1);
      draw_map(mother);
      mlx_put_image_to_window(mother->mlx.ptr, mother->mlx.win, mother->mlx.img_map.image, 0, 0);
-     mlx_destroy_image(mother->mlx.ptr, mother->mlx.img_map.image);
+     mlx_hook(mother->mlx.win, KEY_PRESS, 1L<<0, &key_press, mother);
+     mlx_hook(mother->mlx.win, KEY_RELEASE, 1L<<1, &key_release, mother);
+     mlx_loop_hook(mother->mlx.ptr, &events_list, mother);
      mlx_loop(mother->mlx.ptr);
-          ft_putstr_fd("seg5", 1);
 }
