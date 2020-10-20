@@ -6,7 +6,7 @@
 #    By: vincentbaron <vincentbaron@student.42.f    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/24 17:36:15 by vbaron            #+#    #+#              #
-#    Updated: 2020/10/17 22:50:09 by vincentbaro      ###   ########.fr        #
+#    Updated: 2020/10/21 00:34:01 by vincentbaro      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,31 +28,31 @@ LIBFT_DIR = Libft
 
 ######################################################
 ##DIR_MacOS
-
-##MLX_DIR = mlx-macos
+MLX_DIR = mlx-macos
 ######################################################
 ##DIR_Linux
-
-MLX_DIR = mlx-linux
+##MLX_DIR = mlx-linux
 #######################################################
 
 NAME = Cub3d
 
-
+########################################################
 ##MacOs
-##CC = gcc
-
-CC = clang
+CC = gcc
+########################################################
+##Linux
+##CC = clang
+########################################################
 
 CFLAGS = -Wall -Wextra -Werror -g
 
+########################################################
 ##MacOS
-
-##LIBS = -framework OpenGL -framework Appkit
-
+LIBS = -I /usr/X11/include -g -L /usr/X11/lib -lX11 -lmlx -lXext -framework OpenGL -framework Appkit
+########################################################
 ##Linux
-
-LIBS = -lXext -lX11 -lm
+##LIBS = -lXext -lX11 -lm
+########################################################
 
 MLX = $(addprefix $(MLX_DIR)/,libmlx.a)
 

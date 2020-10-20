@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vbaron <vbaron@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vincentbaron <vincentbaron@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/18 14:03:48 by vbaron            #+#    #+#             */
-/*   Updated: 2020/10/19 09:59:21 by vbaron           ###   ########.fr       */
+/*   Updated: 2020/10/21 00:39:23 by vincentbaro      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 # include "../Libft/libft.h"
 # include "mlx.h"
 
+//LINUX
+/*
 # define KEY_PRESS 2
 # define KEY_RELEASE 3
 # define RIGHT_ARROW 65363
@@ -30,6 +32,17 @@
 # define DOWN 115
 # define RIGHT 100
 # define ESC 65307
+*/
+
+//MACOS
+
+# define KEY_PRESS 2
+# define KEY_RELEASE 3
+# define UP 13
+# define LEFT 0
+# define DOWN 1
+# define RIGHT 2
+
 
 
 typedef struct s4_list
