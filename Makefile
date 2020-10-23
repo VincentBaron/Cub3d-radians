@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: vincentbaron <vincentbaron@student.42.f    +#+  +:+       +#+         #
+#    By: vbaron <vbaron@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/24 17:36:15 by vbaron            #+#    #+#              #
-#    Updated: 2020/10/21 00:34:01 by vincentbaro      ###   ########.fr        #
+#    Updated: 2020/10/23 14:40:49 by vbaron           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,7 +48,8 @@ CFLAGS = -Wall -Wextra -Werror -g
 
 ########################################################
 ##MacOS
-LIBS = -I /usr/X11/include -g -L /usr/X11/lib -lX11 -lmlx -lXext -framework OpenGL -framework Appkit
+#-I /usr/X11/include -g -L /usr/X11/lib -lX11 -lmlx -lXext 
+LIBS = -framework OpenGL -framework Appkit
 ########################################################
 ##Linux
 ##LIBS = -lXext -lX11 -lm
