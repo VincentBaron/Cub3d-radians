@@ -6,7 +6,11 @@
 /*   By: vbaron <vbaron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/24 14:51:16 by vbaron            #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2020/10/23 12:17:25 by vbaron           ###   ########.fr       */
+=======
+/*   Updated: 2020/10/23 14:49:25 by vbaron           ###   ########.fr       */
+>>>>>>> coordinates_changed
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +18,22 @@
 
 void    find_direction(t_general *mother)
 {
-    if (mother->args.matrix[mother->gps.pos.x][mother->gps.pos.y] == 'N')
+    if (mother->args.matrix[mother->gps.pos.y][mother->gps.pos.x] == 'N')
     {
         mother->gps.dir.x = -1;
         mother->gps.dir.y = 0;
     }
-    if (mother->args.matrix[mother->gps.pos.x][mother->gps.pos.y] == 'S')
+    if (mother->args.matrix[mother->gps.pos.y][mother->gps.pos.x] == 'S')
     {
         mother->gps.dir.x = 1;
         mother->gps.dir.y = 0;
     }
-    if (mother->args.matrix[mother->gps.pos.x][mother->gps.pos.y] == 'E')
+    if (mother->args.matrix[mother->gps.pos.y][mother->gps.pos.x] == 'E')
     {
         mother->gps.dir.x = 0;
         mother->gps.dir.y = 1;
     }
-    if (mother->args.matrix[mother->gps.pos.x][mother->gps.pos.y] == 'W')
+    if (mother->args.matrix[mother->gps.pos.y][mother->gps.pos.x] == 'W')
     {
         mother->gps.dir.x = 0;
         mother->gps.dir.y = -1;
@@ -42,10 +46,13 @@ void    position_info(t_general *mother)
     int i;
     int f;
     
-    mother->gps.pos.x = -1;
     mother->gps.pos.y = -1;
+<<<<<<< HEAD
     mother->gps.width = 0;
     mother->gps.height = 0;
+=======
+    mother->gps.pos.x = -1;
+>>>>>>> coordinates_changed
     i = 0;
     while (mother->args.matrix[i])
     {
@@ -54,8 +61,13 @@ void    position_info(t_general *mother)
         {
             if (mother->args.matrix[i][f] == 'N' || mother->args.matrix[i][f] == 'S' || mother->args.matrix[i][f] == 'E' || mother->args.matrix[i][f] == 'W')
             {
+<<<<<<< HEAD
                 mother->gps.pos.y = i;
                 mother->gps.pos.x = f;
+=======
+                mother->gps.pos.x = f;
+                mother->gps.pos.y = i;
+>>>>>>> coordinates_changed
                 break;
             }
             f++;

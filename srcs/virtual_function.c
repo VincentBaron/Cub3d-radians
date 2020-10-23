@@ -6,7 +6,7 @@
 /*   By: vbaron <vbaron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/24 16:49:29 by vbaron            #+#    #+#             */
-/*   Updated: 2020/10/19 10:26:34 by vbaron           ###   ########.fr       */
+/*   Updated: 2020/10/23 14:51:44 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,29 +133,29 @@ void draw_map(t_general *mother)
 void redefine_map(t_general *mother)
 {
      char temp;
-     if (mother->gps.move.x == -1 && mother->args.matrix[mother->gps.pos.x - 1][mother->gps.pos.y] == '0')
+     if (mother->gps.move.y == -1 && mother->args.matrix[mother->gps.pos.y - 1][mother->gps.pos.x] == '0')
      {
-          temp = mother->args.matrix[mother->gps.pos.x][mother->gps.pos.y];
-          mother->args.matrix[--mother->gps.pos.x][mother->gps.pos.y] = temp;
-          mother->args.matrix[mother->gps.pos.x + 1][mother->gps.pos.y] = '0';          
+          temp = mother->args.matrix[mother->gps.pos.y][mother->gps.pos.x];
+          mother->args.matrix[--mother->gps.pos.y][mother->gps.pos.x] = temp;
+          mother->args.matrix[mother->gps.pos.y + 1][mother->gps.pos.x] = '0';          
      }
-     else if (mother->gps.move.x == 1 && mother->args.matrix[mother->gps.pos.x + 1][mother->gps.pos.y] == '0')
+     else if (mother->gps.move.y == 1 && mother->args.matrix[mother->gps.pos.y + 1][mother->gps.pos.x] == '0')
      {
-          temp = mother->args.matrix[mother->gps.pos.x][mother->gps.pos.y];
-          mother->args.matrix[++mother->gps.pos.x][mother->gps.pos.y] = temp;
-          mother->args.matrix[mother->gps.pos.x - 1][mother->gps.pos.y] = '0';          
+          temp = mother->args.matrix[mother->gps.pos.y][mother->gps.pos.x];
+          mother->args.matrix[++mother->gps.pos.y][mother->gps.pos.x] = temp;
+          mother->args.matrix[mother->gps.pos.y - 1][mother->gps.pos.x] = '0';          
      }
-     else if (mother->gps.move.y == -1 && mother->args.matrix[mother->gps.pos.x][mother->gps.pos.y - 1] == '0')
+     else if (mother->gps.move.x == -1 && mother->args.matrix[mother->gps.pos.y][mother->gps.pos.x - 1] == '0')
      {
-          temp = mother->args.matrix[mother->gps.pos.x][mother->gps.pos.y];
-          mother->args.matrix[mother->gps.pos.x][--mother->gps.pos.y] = temp;
-          mother->args.matrix[mother->gps.pos.x][mother->gps.pos.y + 1] = '0';          
+          temp = mother->args.matrix[mother->gps.pos.y][mother->gps.pos.x];
+          mother->args.matrix[mother->gps.pos.y][--mother->gps.pos.x] = temp;
+          mother->args.matrix[mother->gps.pos.y][mother->gps.pos.x + 1] = '0';          
      }
-     else if (mother->gps.move.y == +1 && mother->args.matrix[mother->gps.pos.x][mother->gps.pos.y + 1] == '0')
+     else if (mother->gps.move.x == +1 && mother->args.matrix[mother->gps.pos.y][mother->gps.pos.x + 1] == '0')
      {
-          temp = mother->args.matrix[mother->gps.pos.x][mother->gps.pos.y];
-          mother->args.matrix[mother->gps.pos.x][++mother->gps.pos.y] = temp;
-          mother->args.matrix[mother->gps.pos.x][mother->gps.pos.y - 1] = '0';          
+          temp = mother->args.matrix[mother->gps.pos.y][mother->gps.pos.x];
+          mother->args.matrix[mother->gps.pos.y][++mother->gps.pos.x] = temp;
+          mother->args.matrix[mother->gps.pos.y][mother->gps.pos.x - 1] = '0';          
      }
 }
 
@@ -174,13 +174,13 @@ int key_press(int keycode, t_general *mother)
 {
      mother->gps.event = 1;
      if (keycode == UP)
-          mother->gps.move.x = -1;
-     else if (keycode == DOWN)
-          mother->gps.move.x = 1;
-     else if (keycode == LEFT)
           mother->gps.move.y = -1;
-     else if (keycode == RIGHT)
+     else if (keycode == DOWN)
           mother->gps.move.y = 1;
+     else if (keycode == LEFT)
+          mother->gps.move.x = -1;
+     else if (keycode == RIGHT)
+          mother->gps.move.x = 1;
      mother->gps.event = 1;
      printf("keycode: %d\n", keycode);
      return (0);

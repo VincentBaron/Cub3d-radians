@@ -6,7 +6,11 @@
 #    By: vbaron <vbaron@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/24 17:36:15 by vbaron            #+#    #+#              #
+<<<<<<< HEAD
 #    Updated: 2020/10/23 11:17:18 by vbaron           ###   ########.fr        #
+=======
+#    Updated: 2020/10/23 14:40:49 by vbaron           ###   ########.fr        #
+>>>>>>> coordinates_changed
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,7 +52,11 @@ CFLAGS = -Wall -Wextra -Werror -g
 
 ########################################################
 ##MacOS
+<<<<<<< HEAD
 #-I /usr/X11/include -g -L /usr/X11/lib -lX11 -lmlx -lXext
+=======
+#-I /usr/X11/include -g -L /usr/X11/lib -lX11 -lmlx -lXext 
+>>>>>>> coordinates_changed
 LIBS = -framework OpenGL -framework Appkit
 ########################################################
 ##Linux
