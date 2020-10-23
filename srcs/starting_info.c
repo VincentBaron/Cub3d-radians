@@ -6,7 +6,7 @@
 /*   By: vbaron <vbaron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/24 14:51:16 by vbaron            #+#    #+#             */
-/*   Updated: 2020/10/23 15:10:21 by vbaron           ###   ########.fr       */
+/*   Updated: 2020/10/23 15:37:57 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,22 @@
 
 void    find_direction(t_general *mother)
 {
-    if (mother->args.matrix[mother->gps.pos.y][mother->gps.pos.x] == 'N')
+    if (mother->args.matrix[(int)mother->gps.pos.y][(int)mother->gps.pos.x] == 'N')
     {
         mother->gps.dir.x = -1;
         mother->gps.dir.y = 0;
     }
-    if (mother->args.matrix[mother->gps.pos.y][mother->gps.pos.x] == 'S')
+    if (mother->args.matrix[(int)mother->gps.pos.y][(int)mother->gps.pos.x] == 'S')
     {
         mother->gps.dir.x = 1;
         mother->gps.dir.y = 0;
     }
-    if (mother->args.matrix[mother->gps.pos.y][mother->gps.pos.x] == 'E')
+    if (mother->args.matrix[(int)mother->gps.pos.y][(int)mother->gps.pos.x] == 'E')
     {
         mother->gps.dir.x = 0;
         mother->gps.dir.y = 1;
     }
-    if (mother->args.matrix[mother->gps.pos.y][mother->gps.pos.x] == 'W')
+    if (mother->args.matrix[(int)mother->gps.pos.y][(int)mother->gps.pos.x] == 'W')
     {
         mother->gps.dir.x = 0;
         mother->gps.dir.y = -1;
@@ -52,22 +52,15 @@ void    position_info(t_general *mother)
         {
             if (mother->args.matrix[i][f] == 'N' || mother->args.matrix[i][f] == 'S' || mother->args.matrix[i][f] == 'E' || mother->args.matrix[i][f] == 'W')
             {
-                mother->gps.pos.x = f;
-                mother->gps.pos.y = i;
+                mother->gps.pos.x = f + 0.5;
+                mother->gps.pos.y = i + 0.5;
                 break;
             }
             f++;
         }
-        if (f > mother->gps.width)
-            mother->gps.width = f;
         i++;
     }
-    mother->gps.height = i;
     find_direction(mother);
-    mother->gps.square = sqrtf((float)(mother->args.R[0] * mother->args.R[1]) / (float)(mother->gps.height * mother->gps.width));
-    ft_putnbr_fd(mother->gps.square, 1);
-    mother->gps.pix.y = ((float)mother->gps.pos.y + 0.5) * mother->gps.square; 
-    mother->gps.pix.x = ((float)mother->gps.pos.x + 0.5) * mother->gps.square;
     mother->gps.plane.x = 0;
     mother->gps.plane.y = 0.66;
     mother->gps.time.x = 0;

@@ -6,7 +6,7 @@
 /*   By: vbaron <vbaron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/18 14:03:48 by vbaron            #+#    #+#             */
-/*   Updated: 2020/10/23 12:09:23 by vbaron           ###   ########.fr       */
+/*   Updated: 2020/10/23 17:23:43 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,8 @@ typedef struct s_pix
 
 typedef struct s1_list
 {
-    t_coor pos;
-    t_coor dir;
-    t_float pix;
+    t_float pos;
+    t_float dir;
     float square;
     int height;
     int width;
@@ -154,5 +153,19 @@ void    find_direction(t_general *mother);
 //virtual_function.c
 
 void    game_start(t_general *mother);
+int events_list(t_general *mother);
+int key_release(int keycode, t_general *mother);
+int key_press(int keycode, t_general *mother);
+char *draw_pixel(t_general *mother, int x, int y);
+
+//map_functions.c
+
+void   pixel_color(t_general *mother, char *type);
+void draw_square(t_general *mother, char *type);
+//void draw_player(t_general *mother, char *type);
+void draw_map(t_general *mother);
+void redefine_map(t_general *mother);
+int  new_map(t_general *mother);
+
 
 #endif

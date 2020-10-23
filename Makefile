@@ -6,11 +6,7 @@
 #    By: vbaron <vbaron@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/24 17:36:15 by vbaron            #+#    #+#              #
-<<<<<<< HEAD
-#    Updated: 2020/10/23 11:17:18 by vbaron           ###   ########.fr        #
-=======
-#    Updated: 2020/10/23 14:40:49 by vbaron           ###   ########.fr        #
->>>>>>> coordinates_changed
+#    Updated: 2020/10/23 15:32:23 by vbaron           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +20,7 @@ SOURCES = general_functions_1.c \
 		virtual_function.c \
 		get_next_line.c \
 		get_next_line_utils.c \
+		map_functions.c \
 
 SRCS = $(addprefix $(DIR_S)/,$(SOURCES))
 OBJS = $(addprefix $(DIR_O)/,$(SOURCES:.c=.o))
@@ -52,11 +49,7 @@ CFLAGS = -Wall -Wextra -Werror -g
 
 ########################################################
 ##MacOS
-<<<<<<< HEAD
-#-I /usr/X11/include -g -L /usr/X11/lib -lX11 -lmlx -lXext
-=======
 #-I /usr/X11/include -g -L /usr/X11/lib -lX11 -lmlx -lXext 
->>>>>>> coordinates_changed
 LIBS = -framework OpenGL -framework Appkit
 ########################################################
 ##Linux
