@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   starting_info.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vincentbaron <vincentbaron@student.42.f    +#+  +:+       +#+        */
+/*   By: vbaron <vbaron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/24 14:51:16 by vbaron            #+#    #+#             */
-/*   Updated: 2020/09/28 10:25:48 by vincentbaro      ###   ########.fr       */
+/*   Updated: 2020/10/23 12:17:25 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ void    position_info(t_general *mother)
     
     mother->gps.pos.x = -1;
     mother->gps.pos.y = -1;
+    mother->gps.width = 0;
+    mother->gps.height = 0;
     i = 0;
     while (mother->args.matrix[i])
     {
@@ -52,15 +54,22 @@ void    position_info(t_general *mother)
         {
             if (mother->args.matrix[i][f] == 'N' || mother->args.matrix[i][f] == 'S' || mother->args.matrix[i][f] == 'E' || mother->args.matrix[i][f] == 'W')
             {
-                mother->gps.pos.x = i;
-                mother->gps.pos.y = f;
+                mother->gps.pos.y = i;
+                mother->gps.pos.x = f;
                 break;
             }
             f++;
         }
+        if (f > mother->gps.width)
+            mother->gps.width = f;
         i++;
     }
+    mother->gps.height = i;
     find_direction(mother);
+    mother->gps.square = sqrtf((float)(mother->args.R[0] * mother->args.R[1]) / (float)(mother->gps.height * mother->gps.width));
+    ft_putnbr_fd(mother->gps.square, 1);
+    mother->gps.pix.y = ((float)mother->gps.pos.y + 0.5) * mother->gps.square; 
+    mother->gps.pix.x = ((float)mother->gps.pos.x + 0.5) * mother->gps.square;
     mother->gps.plane.x = 0;
     mother->gps.plane.y = 0.66;
     mother->gps.time.x = 0;

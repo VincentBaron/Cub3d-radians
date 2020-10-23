@@ -5,23 +5,16 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "(gdb) Lancer",
+            "name": "(lldb) Launch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "/home/user42/Bureau/Cub3d/Cub3d",
+            "program": "/Users/vbaron/Desktop/Cub3d/Cub3d",
             "args": ["map.cub"],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [],
             "externalConsole": false,
-            "MIMode": "gdb",
-            "setupCommands": [
-                {
-                    "description": "Activer l'impression en mode Pretty pour gdb",
-                    "text": "-enable-pretty-printing",
-                    "ignoreFailures": true
-                }
-            ]
+            "MIMode": "lldb"
         }
     ]
 }

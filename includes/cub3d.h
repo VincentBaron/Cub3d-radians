@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vincentbaron <vincentbaron@student.42.f    +#+  +:+       +#+        */
+/*   By: vbaron <vbaron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/18 14:03:48 by vbaron            #+#    #+#             */
-/*   Updated: 2020/10/21 00:39:23 by vincentbaro      ###   ########.fr       */
+/*   Updated: 2020/10/23 12:09:23 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include "get_next_line.h"
 # include "../Libft/libft.h"
 # include "mlx.h"
+# include "math.h"
 
 //LINUX
 /*
@@ -51,18 +52,22 @@ typedef struct s4_list
     int y;
 } t_coor;
 
-typedef struct s7_list
+typedef struct s_pix
 {
-    double x;
-    double y;
-} t_coor_float;
+    float x;
+    float y;
+} t_float;
 
 typedef struct s1_list
 {
     t_coor pos;
     t_coor dir;
-    t_coor_float plane;
-    t_coor_float time;
+    t_float pix;
+    float square;
+    int height;
+    int width;
+    t_float plane;
+    t_float time;
     t_coor move;
     int event;
 }   t_gps;
