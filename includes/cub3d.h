@@ -6,7 +6,7 @@
 /*   By: vbaron <vbaron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/18 14:03:48 by vbaron            #+#    #+#             */
-/*   Updated: 2020/10/23 17:23:43 by vbaron           ###   ########.fr       */
+/*   Updated: 2020/10/26 15:56:31 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,9 @@
 # define DOWN 1
 # define RIGHT 2
 
+//MATHS
 
+# define PI 3.141592
 
 typedef struct s4_list
 {
@@ -122,12 +124,20 @@ typedef struct s_map
     int track_y;
 } t_map;
 
+typedef struct s_ray
+{
+    float int_hor;
+    float int_vert;
+    float angle;
+} t_ray;
+
 typedef struct s5_list
 {
     t_input args;
     t_mlx   mlx;
     t_gps   gps;
     t_map map;
+    t_ray raycast;
 }   t_general;
 
 //map_parsing.c

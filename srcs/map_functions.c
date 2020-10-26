@@ -6,7 +6,7 @@
 /*   By: vbaron <vbaron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/23 15:31:48 by vbaron            #+#    #+#             */
-/*   Updated: 2020/10/23 17:59:51 by vbaron           ###   ########.fr       */
+/*   Updated: 2020/10/26 15:00:27 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,13 +159,13 @@ void draw_map(t_general *mother)
 
 void    redefine_pos(t_general *mother)
 {
-    if (mother->gps.move.y == -1 && mother->args.matrix[(int)(mother->gps.pos.y - 0.51)][(int)mother->gps.pos.x] == '0')
+    if (mother->gps.move.y == -1 && mother->args.matrix[(int)(mother->gps.pos.y - 0.35)][(int)(mother->gps.pos.x - 0.26)] == '0' && mother->args.matrix[(int)(mother->gps.pos.y - 0.35)][(int)(mother->gps.pos.x + 0.26)] == '0')
         mother->gps.pos.y -= 0.1;        
-     else if (mother->gps.move.y == 1 && mother->args.matrix[(int)(mother->gps.pos.y + 0.51)][(int)mother->gps.pos.x] == '0')
+     else if (mother->gps.move.y == 1 && mother->args.matrix[(int)(mother->gps.pos.y + 0.35)][(int)(mother->gps.pos.x - 0.26)] == '0' && mother->args.matrix[(int)(mother->gps.pos.y + 0.35)][(int)(mother->gps.pos.x + 0.26)] == '0')
         mother->gps.pos.y += 0.1;
-     else if (mother->gps.move.x == -1 && mother->args.matrix[(int)mother->gps.pos.y][(int)(mother->gps.pos.x - 0.51)] == '0')
+     else if (mother->gps.move.x == -1 && mother->args.matrix[(int)(mother->gps.pos.y - 0.26)][(int)(mother->gps.pos.x - 0.35)] == '0' && mother->args.matrix[(int)(mother->gps.pos.y + 0.26)][(int)(mother->gps.pos.x - 0.35)] == '0')
         mother->gps.pos.x -= 0.1;
-     else if (mother->gps.move.x == +1 && mother->args.matrix[(int)mother->gps.pos.y][(int)(mother->gps.pos.x + 0.51)] == '0')
+     else if (mother->gps.move.x == +1 && mother->args.matrix[(int)(mother->gps.pos.y - 0.26)][(int)(mother->gps.pos.x + 0.35)] == '0' && mother->args.matrix[(int)(mother->gps.pos.y + 0.26)][(int)(mother->gps.pos.x + 0.35)] == '0')
         mother->gps.pos.x +=0.1;
 }
 
