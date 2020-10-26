@@ -6,7 +6,7 @@
 /*   By: vbaron <vbaron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 15:07:46 by vbaron            #+#    #+#             */
-/*   Updated: 2020/10/26 15:56:48 by vbaron           ###   ########.fr       */
+/*   Updated: 2020/10/26 17:24:42 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,28 +19,48 @@ char check_collision(t_general *mother, t_float inter)
     return (mother->args.matrix[(int)inter.y][(int)inter.x]);
 }
 
-void    horizontal_intersection_calculation(t_general *mother)
+float    horizontal_intersection_calculation(t_general *mother)
 {
     t_float inter;
     t_float offset;
 
     offset.x = 1.0 / tanf(mother->raycast.angle);
-    offset.y = 64;
+    offset.y = 1.0;
 
-    if (mother->raycast.angle < PI && mother->raycast.angle > (0))
+    inter.y = (int)(mother->gps.pos.y) + (mother->raycast.angle < PI && mother->raycast.angle > 0 ? -0.01 : +1);
+    inter.x = mother->gps.pos.x + (mother->gps.pos.y - inter.y) / tanf(mother->raycast.angle);
+    while(check_collision(mother, inter) == -1)
     {
-        inter.y = ((int)(mother->gps.pos.y) - 0.01;
-        inter.x = mother->gps.pos.x + (mother->gps.pos.y - inter.y) / tanf(mother->raycast.angle);
-        while(check_collision(mother, inter) == -1)
-        {
-            inter.y -= offset.y;
-            inter.x += offset.x;
-        }
-
-        mother->raycast.int_hor = sinf(mother->raycast.angle) / inter.y;
+        inter.y += (mother->raycast.angle < PI && mother->raycast.angle > 0 ? -offset.y : +offset.y);
+        inter.x += offset.x;
     }
+    return(sinf(mother->raycast.angle) / inter.y);
+}
 
+float    vertical_intersection_calculation(t_general *mother)
+{
+    t_float inter;
+    t_float offset;
 
+    offset.x = 1.0;
+    offset.y = 1.0 / tanf(mother->raycast.angle);
 
+    inter.x = (int)(mother->gps.pos.x) + (mother->raycast.angle < PI / 2 && mother->raycast.angle > (3 * PI / 2) ? +1 : -0.01);
+    inter.y = mother->gps.pos.y + (mother->gps.pos.x - inter.x) / tanf(mother->raycast.angle);
+    while(check_collision(mother, inter) == -1)
+    {
+        inter.x += (mother->raycast.angle < PI / 2 && mother->raycast.angle > (3 * PI / 2) ? +offset.x : -offset.x);
+        inter.y += offset.y;
+    }
+    return(sinf(mother->raycast.angle) / inter.y);
+}
 
+void    check_intersection(t_general *mother)
+{
+    if (vertical_intersection_calculation(mother) == horizontal_intersection_calculation(mother))
+        //draw_intersection();
+    if (vertical_intersection_calculation(mother) > horizontal_intersection_calculation(mother))
+        mother->raycast.dist_inter = horizontal_intersection_calculation(mother);
+    else
+        mother->raycast.dist_inter = vertical_intersection_calculation(mother);
 }

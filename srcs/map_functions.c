@@ -6,7 +6,7 @@
 /*   By: vbaron <vbaron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/23 15:31:48 by vbaron            #+#    #+#             */
-/*   Updated: 2020/10/26 15:00:27 by vbaron           ###   ########.fr       */
+/*   Updated: 2020/10/26 17:50:44 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,10 +75,6 @@ void draw_player(t_general *mother)
 {
      int x;
      int y;
-
-     if (mother->gps.move.y == -1)
-
-
      pixel_color(mother, "player");
      y = mother->map.size_y / 4;
      while( y < (3 * mother->map.size_y / 4))
@@ -86,18 +82,12 @@ void draw_player(t_general *mother)
           x = mother->map.size_x / 4;;
           while (x < (3 * mother->map.size_x / 4))
           {
-                    pixel_color(mother, "player");
                     draw_pixel(mother, x + 1 + mother->map.size_x * (mother->gps.pos.x - 0.5), y + 1 + mother->map.size_y * (mother->gps.pos.y - 0.5));
                     x++;
           }
           y++;
      }
 }
-
-/*void    draw_player(mother)
-{
-    while (y < (mother))
-}*/
 
 void draw_map(t_general *mother)
 {
@@ -118,6 +108,7 @@ void draw_map(t_general *mother)
                if (mother->args.matrix[mother->map.track_x][mother->map.track_y] == 'N' || mother->args.matrix[mother->map.track_x][mother->map.track_y] == 'S' || mother->args.matrix[mother->map.track_x][mother->map.track_y] == 'E' ||mother->args.matrix[mother->map.track_x][mother->map.track_y] == 'W')
                {
                     draw_square(mother, "floor");
+                    draw_player(mother);
                     mother->args.matrix[mother->map.track_x][mother->map.track_y] = '0';
                }
                if (mother->args.matrix[mother->map.track_x][mother->map.track_y] == '2')
@@ -127,35 +118,6 @@ void draw_map(t_general *mother)
           mother->map.track_x++;
      }
 }
-
-/*void redefine_map(t_general *mother)
-{
-     char temp;
-     if (mother->gps.move.y == -1 && mother->args.matrix[mother->gps.pos.y - 1][mother->gps.pos.x] == '0')
-     {
-          temp = mother->args.matrix[mother->gps.pos.y][mother->gps.pos.x];
-          mother->args.matrix[--mother->gps.pos.y][mother->gps.pos.x] = temp;
-          mother->args.matrix[mother->gps.pos.y + 1][mother->gps.pos.x] = '0';          
-     }
-     else if (mother->gps.move.y == 1 && mother->args.matrix[mother->gps.pos.y + 1][mother->gps.pos.x] == '0')
-     {
-          temp = mother->args.matrix[mother->gps.pos.y][mother->gps.pos.x];
-          mother->args.matrix[++mother->gps.pos.y][mother->gps.pos.x] = temp;
-          mother->args.matrix[mother->gps.pos.y - 1][mother->gps.pos.x] = '0';          
-     }
-     else if (mother->gps.move.x == -1 && mother->args.matrix[mother->gps.pos.y][mother->gps.pos.x - 1] == '0')
-     {
-          temp = mother->args.matrix[mother->gps.pos.y][mother->gps.pos.x];
-          mother->args.matrix[mother->gps.pos.y][--mother->gps.pos.x] = temp;
-          mother->args.matrix[mother->gps.pos.y][mother->gps.pos.x + 1] = '0';          
-     }
-     else if (mother->gps.move.x == +1 && mother->args.matrix[mother->gps.pos.y][mother->gps.pos.x + 1] == '0')
-     {
-          temp = mother->args.matrix[mother->gps.pos.y][mother->gps.pos.x];
-          mother->args.matrix[mother->gps.pos.y][++mother->gps.pos.x] = temp;
-          mother->args.matrix[mother->gps.pos.y][mother->gps.pos.x - 1] = '0';          
-     }
-}*/
 
 void    redefine_pos(t_general *mother)
 {
@@ -171,7 +133,8 @@ void    redefine_pos(t_general *mother)
 
 int  new_map(t_general *mother)
 {
-     mlx_destroy_image(mother->mlx.ptr, mother->mlx.img_map.image);
+     if (mother->mlx.img_map.image)
+          mlx_destroy_image(mother->mlx.ptr, mother->mlx.img_map.image);
      mother->mlx.img_map.image = mlx_new_image(mother->mlx.ptr, mother->args.R[0], mother->args.R[1]);
      mother->mlx.img_map.addr = mlx_get_data_addr(mother->mlx.img_map.image, &(mother->mlx.img_map.bpp), &(mother->mlx.img_map.size_line), &(mother->mlx.img_map.endian));
      redefine_pos(mother);

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   virtual_function.c                                 :+:      :+:    :+:   */
+/*   mlx_functions.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vbaron <vbaron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/24 16:49:29 by vbaron            #+#    #+#             */
-/*   Updated: 2020/10/23 17:23:47 by vbaron           ###   ########.fr       */
+/*   Updated: 2020/10/26 17:40:44 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,7 @@ int key_release(int keycode, t_general *mother)
 
 int events_list(t_general *mother)
 {
-     if (mother->gps.event == 1)
-          new_map(mother);
+     new_map(mother);
      mother->gps.event = 0;
      return (0);
 }
@@ -64,10 +63,6 @@ void    game_start(t_general *mother)
           ft_putstr_fd("Error initialising mlx", 2);
      if (!(mother->mlx.win = mlx_new_window(mother->mlx.ptr, mother->args.R[0], mother->args.R[1], "J' aime les Moules Brite")))
           ft_putstr_fd("Error creating window", 2);
-     mother->mlx.img_map.image = mlx_new_image(mother->mlx.ptr, mother->args.R[0], mother->args.R[1]);
-     mother->mlx.img_map.addr = mlx_get_data_addr(mother->mlx.img_map.image, &(mother->mlx.img_map.bpp), &(mother->mlx.img_map.size_line), &(mother->mlx.img_map.endian));
-     draw_map(mother);
-     mlx_put_image_to_window(mother->mlx.ptr, mother->mlx.win, mother->mlx.img_map.image, 0, 0);
      mlx_hook(mother->mlx.win, KEY_PRESS, 1L<<0, &key_press, mother);
      mlx_hook(mother->mlx.win, KEY_RELEASE, 1L<<1, &key_release, mother);
      mlx_loop_hook(mother->mlx.ptr, &events_list, mother);

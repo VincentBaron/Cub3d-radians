@@ -6,7 +6,7 @@
 /*   By: vbaron <vbaron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/18 14:03:48 by vbaron            #+#    #+#             */
-/*   Updated: 2020/10/26 15:56:31 by vbaron           ###   ########.fr       */
+/*   Updated: 2020/10/26 17:11:47 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,8 +126,7 @@ typedef struct s_map
 
 typedef struct s_ray
 {
-    float int_hor;
-    float int_vert;
+    float dist_inter;
     float angle;
 } t_ray;
 
