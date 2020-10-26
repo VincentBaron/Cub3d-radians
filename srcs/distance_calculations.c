@@ -6,7 +6,7 @@
 /*   By: vbaron <vbaron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 15:07:46 by vbaron            #+#    #+#             */
-/*   Updated: 2020/10/26 17:24:42 by vbaron           ###   ########.fr       */
+/*   Updated: 2020/10/26 17:53:53 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ float    vertical_intersection_calculation(t_general *mother)
 void    check_intersection(t_general *mother)
 {
     if (vertical_intersection_calculation(mother) == horizontal_intersection_calculation(mother))
-        //draw_intersection();
+        //draw_intersection
     if (vertical_intersection_calculation(mother) > horizontal_intersection_calculation(mother))
         mother->raycast.dist_inter = horizontal_intersection_calculation(mother);
     else

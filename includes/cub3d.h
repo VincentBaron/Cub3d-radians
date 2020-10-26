@@ -6,7 +6,7 @@
 /*   By: vbaron <vbaron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/18 14:03:48 by vbaron            #+#    #+#             */
-/*   Updated: 2020/10/26 17:11:47 by vbaron           ###   ########.fr       */
+/*   Updated: 2020/10/26 19:36:48 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,6 +128,7 @@ typedef struct s_ray
 {
     float dist_inter;
     float angle;
+    float dist_projection;
 } t_ray;
 
 typedef struct s5_list
@@ -171,10 +172,22 @@ char *draw_pixel(t_general *mother, int x, int y);
 
 void   pixel_color(t_general *mother, char *type);
 void draw_square(t_general *mother, char *type);
-//void draw_player(t_general *mother, char *type);
+void draw_player(t_general *mother, char *type);
 void draw_map(t_general *mother);
 void redefine_map(t_general *mother);
 int  new_map(t_general *mother);
 
+//distance_calculations.c
+
+char    check_collision(t_general *mother, t_float inter);
+float   horizontal_intersection_calculation(t_general *mother);
+float   vertical_intersection_calculation(t_general *mother);
+void    check_intersection(t_general *mother);
+
+//raycasting.c
+
+void    set_texture(t_general *mother);
+void    draw_slice(t_general *mother, float slice);
+void    draw_rays(t_general *mother);
 
 #endif
