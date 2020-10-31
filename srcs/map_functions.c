@@ -6,49 +6,24 @@
 /*   By: vbaron <vbaron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/23 15:31:48 by vbaron            #+#    #+#             */
-/*   Updated: 2020/10/26 17:50:44 by vbaron           ###   ########.fr       */
+/*   Updated: 2020/10/28 15:48:39 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-void   pixel_color(t_general *mother, char *type)
+void   pixel_color_map(t_general *mother, char *type)
 {
-     unsigned int R;
-     unsigned int G;
-     unsigned int B;
-
      if (ft_strncmp(type, "floor", ft_strlen(type)) == 0)
-     {
-          R = 255;
-          G = 255;
-          B = 255;
-     }
+          mother->mlx.img_map.color = (255 << 16) + (255 << 8) + 255;
      if (ft_strncmp(type, "wall", ft_strlen(type)) == 0)
-     {
-          R = 0;
-          G = 0;
-          B = 0;
-     }
+          mother->mlx.img_map.color = (0 << 16) + (0 << 8) + 0;
      if (ft_strncmp(type, "out", ft_strlen(type)) == 0)
-     {
-          R = 172;
-          G = 93;
-          B = 93;
-     }
+          mother->mlx.img_map.color = (172 << 16) + (93 << 8) + 93;
      if (ft_strncmp(type, "player", ft_strlen(type)) == 0)
-     {
-          R = 70;
-          G = 70;
-          B = 70;
-     }
+          mother->mlx.img_map.color = (70 << 16) + (70 << 8) + 70;
      if (ft_strncmp(type, "sprite", ft_strlen(type)) == 0)
-     {
-          R = 32;
-          G = 178;
-          B = 170;
-     }
-     mother->mlx.img_map.color = (R << 16) + (G << 8) + B;
+          mother->mlx.img_map.color = (32 << 16) + (178 << 8) + 170;
 }
 
 void draw_square(t_general *mother, char *type)
@@ -63,7 +38,7 @@ void draw_square(t_general *mother, char *type)
           while (x <= mother->map.size_x)
           {
                     
-               (x < 1 || x > (mother->map.size_x - 1)) || (y < 1 || y > (mother->map.size_y - 1)) ? pixel_color(mother, "out") : pixel_color(mother, type);
+               (x < 1 || x > (mother->map.size_x - 1)) || (y < 1 || y > (mother->map.size_y - 1)) ? pixel_color_map(mother, "out") : pixel_color_map(mother, type);
                draw_pixel(mother, y + mother->map.size_y * mother->map.track_y, x + mother->map.size_x * mother->map.track_x);
                x++;
           }
@@ -75,7 +50,7 @@ void draw_player(t_general *mother)
 {
      int x;
      int y;
-     pixel_color(mother, "player");
+     pixel_color_map(mother, "player");
      y = mother->map.size_y / 4;
      while( y < (3 * mother->map.size_y / 4))
      {
@@ -119,10 +94,21 @@ void draw_map(t_general *mother)
      }
 }
 
-void    redefine_pos(t_general *mother)
+int       check_angle(t_general *mother, float a_max, float a_min)
+{
+     if (mother->raycast.angle <= a_max && mother->raycast.angle >= a_min)
+          return (-1);
+     else
+          return (1);
+}
+
+void    redefine_position(t_general *mother)
 {
     if (mother->gps.move.y == -1 && mother->args.matrix[(int)(mother->gps.pos.y - 0.35)][(int)(mother->gps.pos.x - 0.26)] == '0' && mother->args.matrix[(int)(mother->gps.pos.y - 0.35)][(int)(mother->gps.pos.x + 0.26)] == '0')
-        mother->gps.pos.y -= 0.1;        
+     {
+          mother->gps.pos.y += check_angle(mother, PI, 2 * PI) * 0.1 * sinf(mother->raycast.angle);
+          mother->gps.pos.x += check_angle(mother, (3 * PI) / 2, PI / 2) * 0.1 * cosf(mother->raycast.angle);
+     }      
      else if (mother->gps.move.y == 1 && mother->args.matrix[(int)(mother->gps.pos.y + 0.35)][(int)(mother->gps.pos.x - 0.26)] == '0' && mother->args.matrix[(int)(mother->gps.pos.y + 0.35)][(int)(mother->gps.pos.x + 0.26)] == '0')
         mother->gps.pos.y += 0.1;
      else if (mother->gps.move.x == -1 && mother->args.matrix[(int)(mother->gps.pos.y - 0.26)][(int)(mother->gps.pos.x - 0.35)] == '0' && mother->args.matrix[(int)(mother->gps.pos.y + 0.26)][(int)(mother->gps.pos.x - 0.35)] == '0')

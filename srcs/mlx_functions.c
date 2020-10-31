@@ -6,7 +6,7 @@
 /*   By: vbaron <vbaron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/24 16:49:29 by vbaron            #+#    #+#             */
-/*   Updated: 2020/10/26 18:34:25 by vbaron           ###   ########.fr       */
+/*   Updated: 2020/10/27 11:25:18 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,10 @@ int key_press(int keycode, t_general *mother)
           mother->gps.move.x = -1;
      else if (keycode == RIGHT)
           mother->gps.move.x = 1;
+     else if (keycode == ROT_LEFT)
+          mother->gps.rot_left = 1;
+     else if (keycode == ROT_RIGHT)
+          mother->gps.rot_right = 1;
      mother->gps.event = 1;
      printf("keycode: %d\n", keycode);
      return (0);
@@ -42,6 +46,8 @@ int key_release(int keycode, t_general *mother)
      mother->gps.event = 0;
      mother->gps.move.x = 0;
      mother->gps.move.y = 0;
+     mother->gps.rot_left = 0;
+     mother->gps.rot_right = 0;
      (void)keycode;
      return (0);
 }

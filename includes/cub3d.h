@@ -6,7 +6,7 @@
 /*   By: vbaron <vbaron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/18 14:03:48 by vbaron            #+#    #+#             */
-/*   Updated: 2020/10/26 19:36:48 by vbaron           ###   ########.fr       */
+/*   Updated: 2020/10/28 15:49:44 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@
 # define LEFT 0
 # define DOWN 1
 # define RIGHT 2
+# define ROT_RIGHT 124
+# define ROT_LEFT 123
 
 //MATHS
 
@@ -70,6 +72,8 @@ typedef struct s1_list
     t_float plane;
     t_float time;
     t_coor move;
+    int rot_left;
+    int rot_right;
     int event;
 }   t_gps;
 
@@ -113,7 +117,7 @@ typedef struct s12_list
     void *ptr;
     void *win;
     t_img img_map;
-    t_img img_perso;
+    t_img img_ray;
 } t_mlx;
 
 typedef struct s_map
@@ -172,10 +176,12 @@ char *draw_pixel(t_general *mother, int x, int y);
 
 void   pixel_color(t_general *mother, char *type);
 void draw_square(t_general *mother, char *type);
-void draw_player(t_general *mother, char *type);
+void draw_player(t_general *mother);
 void draw_map(t_general *mother);
 void redefine_map(t_general *mother);
 int  new_map(t_general *mother);
+void redefine_position(t_general *mother);
+int       check_angle(t_general *mother, float a_max, float a_min);
 
 //distance_calculations.c
 
