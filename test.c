@@ -2,8 +2,14 @@
 
 int main()
 {
-	float r = 6.3;
+	int x;
+	int y;
 
-	printf("r in int:%d", (int)r);
-	return 0;
+	x = -1;
+	y = 0;
+
+	if ((x || y) != 0)
+		printf("yolo");
+	if (x == -1 || y == -1)
+		printf("yolo2");
 }

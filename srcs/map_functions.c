@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_functions.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vbaron <vbaron@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vincentbaron <vincentbaron@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/23 15:31:48 by vbaron            #+#    #+#             */
-/*   Updated: 2020/10/28 15:48:39 by vbaron           ###   ########.fr       */
+/*   Updated: 2020/10/31 15:53:36 by vincentbaro      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,13 @@ void draw_square(t_general *mother, char *type)
      }
 }
 
+void draw_ray(t_general *mother)
+{    
+     check_intersection(mother);
+     draw_line(mother);
+
+}
+
 void draw_player(t_general *mother)
 {
      int x;
@@ -62,6 +69,7 @@ void draw_player(t_general *mother)
           }
           y++;
      }
+     draw_ray(mother);
 }
 
 void draw_map(t_general *mother)
@@ -94,9 +102,9 @@ void draw_map(t_general *mother)
      }
 }
 
-int       check_angle(t_general *mother, float a_max, float a_min)
+int       check_angle(float angle, float a_max, float a_min)
 {
-     if (mother->raycast.angle <= a_max && mother->raycast.angle >= a_min)
+     if (angle <= a_max && angle >= a_min)
           return (-1);
      else
           return (1);
@@ -104,17 +112,24 @@ int       check_angle(t_general *mother, float a_max, float a_min)
 
 void    redefine_position(t_general *mother)
 {
-    if (mother->gps.move.y == -1 && mother->args.matrix[(int)(mother->gps.pos.y - 0.35)][(int)(mother->gps.pos.x - 0.26)] == '0' && mother->args.matrix[(int)(mother->gps.pos.y - 0.35)][(int)(mother->gps.pos.x + 0.26)] == '0')
+    float angle;
+
+     if (mother->gps.rot_left == 1)
+          mother->raycast.angle += PI / 8;
+     if (mother->gps.rot_right == 1)
+          mother->raycast.angle -= PI / 8;
+     if (mother->gps.move.x != 0)
+          angle += PI / 4;
+     if (mother->gps.move.y == -1 || mother->gps.move.x == -1 && mother->args.matrix[(int)(mother->gps.pos.y - 0.35)][(int)(mother->gps.pos.x - 0.26)] == '0' && mother->args.matrix[(int)(mother->gps.pos.y - 0.35)][(int)(mother->gps.pos.x + 0.26)] == '0')
      {
-          mother->gps.pos.y += check_angle(mother, PI, 2 * PI) * 0.1 * sinf(mother->raycast.angle);
-          mother->gps.pos.x += check_angle(mother, (3 * PI) / 2, PI / 2) * 0.1 * cosf(mother->raycast.angle);
+          mother->gps.pos.y += check_angle(angle, PI, 0) * 0.1 * sinf(angle);
+          mother->gps.pos.x += check_angle(angle, (3 * PI) / 2, PI / 2) * 0.1 * cosf(angle);
      }      
-     else if (mother->gps.move.y == 1 && mother->args.matrix[(int)(mother->gps.pos.y + 0.35)][(int)(mother->gps.pos.x - 0.26)] == '0' && mother->args.matrix[(int)(mother->gps.pos.y + 0.35)][(int)(mother->gps.pos.x + 0.26)] == '0')
-        mother->gps.pos.y += 0.1;
-     else if (mother->gps.move.x == -1 && mother->args.matrix[(int)(mother->gps.pos.y - 0.26)][(int)(mother->gps.pos.x - 0.35)] == '0' && mother->args.matrix[(int)(mother->gps.pos.y + 0.26)][(int)(mother->gps.pos.x - 0.35)] == '0')
-        mother->gps.pos.x -= 0.1;
-     else if (mother->gps.move.x == +1 && mother->args.matrix[(int)(mother->gps.pos.y - 0.26)][(int)(mother->gps.pos.x + 0.35)] == '0' && mother->args.matrix[(int)(mother->gps.pos.y + 0.26)][(int)(mother->gps.pos.x + 0.35)] == '0')
-        mother->gps.pos.x +=0.1;
+     else if (mother->gps.move.y == 1 || mother->gps.move.x == 1 && mother->args.matrix[(int)(mother->gps.pos.y + 0.35)][(int)(mother->gps.pos.x - 0.26)] == '0' && mother->args.matrix[(int)(mother->gps.pos.y + 0.35)][(int)(mother->gps.pos.x + 0.26)] == '0')
+     {
+          mother->gps.pos.y += check_angle(angle, 2 * PI, PI) * 0.1 * sinf(angle);
+          mother->gps.pos.x += check_angle(angle, PI / 2, 3 * PI / 2) * 0.1 * cosf(angle);
+     }
 }
 
 int  new_map(t_general *mother)

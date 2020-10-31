@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vbaron <vbaron@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vincentbaron <vincentbaron@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/18 14:03:48 by vbaron            #+#    #+#             */
-/*   Updated: 2020/10/28 15:49:44 by vbaron           ###   ########.fr       */
+/*   Updated: 2020/10/31 15:15:41 by vincentbaro      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,6 +131,7 @@ typedef struct s_map
 typedef struct s_ray
 {
     float dist_inter;
+    t_float pos_inter;
     float angle;
     float dist_projection;
 } t_ray;
@@ -181,7 +182,7 @@ void draw_map(t_general *mother);
 void redefine_map(t_general *mother);
 int  new_map(t_general *mother);
 void redefine_position(t_general *mother);
-int       check_angle(t_general *mother, float a_max, float a_min);
+int       check_angle(float angle, float a_max, float a_min);
 
 //distance_calculations.c
 

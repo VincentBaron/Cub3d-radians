@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   distance_calculations.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vbaron <vbaron@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vincentbaron <vincentbaron@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 15:07:46 by vbaron            #+#    #+#             */
-/*   Updated: 2020/10/26 17:53:53 by vbaron           ###   ########.fr       */
+/*   Updated: 2020/10/31 15:28:18 by vincentbaro      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,6 @@ void    check_intersection(t_general *mother)
         mother->raycast.dist_inter = horizontal_intersection_calculation(mother);
     else
         mother->raycast.dist_inter = vertical_intersection_calculation(mother);
+    mother->raycast.pos_inter.x = mother->raycast.dist_inter * cosf(mother->raycast.angle);
+    mother->raycast.pos_inter.y = mother->raycast.dist_inter * sinf(mother->raycast.angle);
 }
