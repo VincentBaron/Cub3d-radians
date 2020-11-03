@@ -6,7 +6,7 @@
 /*   By: vincentbaron <vincentbaron@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/18 14:03:48 by vbaron            #+#    #+#             */
-/*   Updated: 2020/10/31 15:15:41 by vincentbaro      ###   ########.fr       */
+/*   Updated: 2020/11/03 18:26:43 by vincentbaro      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -180,7 +180,7 @@ void draw_square(t_general *mother, char *type);
 void draw_player(t_general *mother);
 void draw_map(t_general *mother);
 void redefine_map(t_general *mother);
-int  new_map(t_general *mother);
+void  new_map(t_general *mother);
 void redefine_position(t_general *mother);
 int       check_angle(float angle, float a_max, float a_min);
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_functions.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vbaron <vbaron@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vincentbaron <vincentbaron@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/24 16:49:29 by vbaron            #+#    #+#             */
-/*   Updated: 2020/10/27 11:25:18 by vbaron           ###   ########.fr       */
+/*   Updated: 2020/11/03 18:29:35 by vincentbaro      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 char *draw_pixel(t_general *mother, int x, int y)
 {
      char *dest;
-     
+
      dest = (mother->mlx.img_map.addr +  x * (mother->mlx.img_map.bpp / 8) + y * mother->mlx.img_map.size_line);
      *(unsigned int *)dest = mother->mlx.img_map.color;
      return (dest);
@@ -52,10 +52,25 @@ int key_release(int keycode, t_general *mother)
      return (0);
 }
 
+void create_images(t_general *mother)
+{
+     if (mother->mlx.img_map.image)
+          mlx_destroy_image(mother->mlx.ptr, mother->mlx.img_map.image);
+     mother->mlx.img_map.image = mlx_new_image(mother->mlx.ptr, mother->args.R[0], mother->args.R[1]);
+     mother->mlx.img_map.addr = mlx_get_data_addr(mother->mlx.img_map.image, &(mother->mlx.img_map.bpp), &(mother->mlx.img_map.size_line), &(mother->mlx.img_map.endian));
+}
+
+void display_images(t_general *mother)
+{
+     
+}
+
 int events_list(t_general *mother)
 {
-     draw_rays(mother);
+     create_images(mother);
      new_map(mother);
+     //draw_rays(mother);
+     display_images(mother);
      mother->gps.event = 0;
      return (0);
 }
