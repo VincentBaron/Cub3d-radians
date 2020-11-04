@@ -6,7 +6,7 @@
 /*   By: vincentbaron <vincentbaron@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/24 16:49:29 by vbaron            #+#    #+#             */
-/*   Updated: 2020/11/03 18:29:35 by vincentbaro      ###   ########.fr       */
+/*   Updated: 2020/11/04 17:09:30 by vincentbaro      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,21 +54,23 @@ int key_release(int keycode, t_general *mother)
 
 void create_images(t_general *mother)
 {
-     if (mother->mlx.img_map.image)
-          mlx_destroy_image(mother->mlx.ptr, mother->mlx.img_map.image);
+     mother->map.size_x = 20;
+     mother->map.size_y = 20;
      mother->mlx.img_map.image = mlx_new_image(mother->mlx.ptr, mother->args.R[0], mother->args.R[1]);
      mother->mlx.img_map.addr = mlx_get_data_addr(mother->mlx.img_map.image, &(mother->mlx.img_map.bpp), &(mother->mlx.img_map.size_line), &(mother->mlx.img_map.endian));
 }
 
 void display_images(t_general *mother)
 {
-     
+     mlx_put_image_to_window(mother->mlx.ptr, mother->mlx.win, mother->mlx.img_map.image, 0, 0);    
 }
 
 int events_list(t_general *mother)
 {
      create_images(mother);
-     new_map(mother);
+     redefine_position(mother);
+     draw_map(mother);
+     draw_player(mother);
      //draw_rays(mother);
      display_images(mother);
      mother->gps.event = 0;

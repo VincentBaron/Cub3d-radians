@@ -6,7 +6,7 @@
 /*   By: vincentbaron <vincentbaron@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/23 15:31:48 by vbaron            #+#    #+#             */
-/*   Updated: 2020/11/03 18:29:32 by vincentbaro      ###   ########.fr       */
+/*   Updated: 2020/11/04 17:13:46 by vincentbaro      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,11 +95,9 @@ void draw_player(t_general *mother)
 void draw_map(t_general *mother)
 {
      mother->map.track_x = 0;
-     mother->map.size_x = 20;
      while(mother->args.matrix[mother->map.track_x])
      {
           mother->map.track_y = 0;
-          mother->map.size_y = 20;
           while (mother->args.matrix[mother->map.track_x][mother->map.track_y])
           {
                if (mother->args.matrix[mother->map.track_x][mother->map.track_y] == ' ')
@@ -111,7 +109,6 @@ void draw_map(t_general *mother)
                if (mother->args.matrix[mother->map.track_x][mother->map.track_y] == 'N' || mother->args.matrix[mother->map.track_x][mother->map.track_y] == 'S' || mother->args.matrix[mother->map.track_x][mother->map.track_y] == 'E' ||mother->args.matrix[mother->map.track_x][mother->map.track_y] == 'W')
                {
                     draw_square(mother, "floor");
-                    draw_player(mother);
                     mother->args.matrix[mother->map.track_x][mother->map.track_y] = '0';
                }
                if (mother->args.matrix[mother->map.track_x][mother->map.track_y] == '2')
@@ -151,12 +148,13 @@ void    redefine_position(t_general *mother)
           mother->gps.pos.y += check_angle(angle, 2 * PI, PI) * 0.1 * sinf(angle);
           mother->gps.pos.x += check_angle(angle, PI / 2, 3 * PI / 2) * 0.1 * cosf(angle);
      }
-}
 
-void  new_map(t_general *mother)
-{
-     redefine_position(mother);
-     draw_map(mother);
-     draw_player(mother);
-     mlx_put_image_to_window(mother->mlx.ptr, mother->mlx.win, mother->mlx.img_map.image, 0, 0);
+     /*if (mother->gps.move.y == -1 && mother->args.matrix[(int)(mother->gps.pos.y - 0.35)][(int)(mother->gps.pos.x - 0.26)] == '0' && mother->args.matrix[(int)(mother->gps.pos.y - 0.35)][(int)(mother->gps.pos.x + 0.26)] == '0')
+        mother->gps.pos.y -= 0.1;        
+     else if (mother->gps.move.y == 1 && mother->args.matrix[(int)(mother->gps.pos.y + 0.35)][(int)(mother->gps.pos.x - 0.26)] == '0' && mother->args.matrix[(int)(mother->gps.pos.y + 0.35)][(int)(mother->gps.pos.x + 0.26)] == '0')
+        mother->gps.pos.y += 0.1;
+     else if (mother->gps.move.x == -1 && mother->args.matrix[(int)(mother->gps.pos.y - 0.26)][(int)(mother->gps.pos.x - 0.35)] == '0' && mother->args.matrix[(int)(mother->gps.pos.y + 0.26)][(int)(mother->gps.pos.x - 0.35)] == '0')
+        mother->gps.pos.x -= 0.1;
+     else if (mother->gps.move.x == +1 && mother->args.matrix[(int)(mother->gps.pos.y - 0.26)][(int)(mother->gps.pos.x + 0.35)] == '0' && mother->args.matrix[(int)(mother->gps.pos.y + 0.26)][(int)(mother->gps.pos.x + 0.35)] == '0')
+        mother->gps.pos.x +=0.1;*/
 }

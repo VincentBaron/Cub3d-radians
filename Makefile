@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: vbaron <vbaron@student.42.fr>              +#+  +:+       +#+         #
+#    By: vincentbaron <vincentbaron@student.42.f    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/24 17:36:15 by vbaron            #+#    #+#              #
-#    Updated: 2020/10/23 15:32:23 by vbaron           ###   ########.fr        #
+#    Updated: 2020/11/04 10:45:22 by vincentbaro      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ SOURCES = general_functions_1.c \
 		map_parsing.c \
 		program_main.c \
 		starting_info.c \
-		virtual_function.c \
+		mlx_functions.c \
 		get_next_line.c \
 		get_next_line_utils.c \
 		map_functions.c \
