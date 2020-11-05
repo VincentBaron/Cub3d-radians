@@ -6,18 +6,18 @@
 /*   By: vincentbaron <vincentbaron@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/24 16:49:29 by vbaron            #+#    #+#             */
-/*   Updated: 2020/11/04 17:09:30 by vincentbaro      ###   ########.fr       */
+/*   Updated: 2020/11/05 17:14:55 by vincentbaro      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-char *draw_pixel(t_general *mother, int x, int y)
+char *draw_pixel(t_img *img, int x, int y)
 {
      char *dest;
 
-     dest = (mother->mlx.img_map.addr +  x * (mother->mlx.img_map.bpp / 8) + y * mother->mlx.img_map.size_line);
-     *(unsigned int *)dest = mother->mlx.img_map.color;
+     dest = (img->addr +  x * (img->bpp / 8) + y * img->size_line);
+     *(unsigned int *)dest = img->color;
      return (dest);
 }
 
@@ -58,11 +58,22 @@ void create_images(t_general *mother)
      mother->map.size_y = 20;
      mother->mlx.img_map.image = mlx_new_image(mother->mlx.ptr, mother->args.R[0], mother->args.R[1]);
      mother->mlx.img_map.addr = mlx_get_data_addr(mother->mlx.img_map.image, &(mother->mlx.img_map.bpp), &(mother->mlx.img_map.size_line), &(mother->mlx.img_map.endian));
+     mother->mlx.img_ray.image = mlx_new_image(mother->mlx.ptr, mother->args.R[0], mother->args.R[1]);
+     mother->mlx.img_ray.addr = mlx_get_data_addr(mother->mlx.img_ray.image, &(mother->mlx.img_ray.bpp), &(mother->mlx.img_ray.size_line), &(mother->mlx.img_ray.endian));
 }
 
 void display_images(t_general *mother)
 {
      mlx_put_image_to_window(mother->mlx.ptr, mother->mlx.win, mother->mlx.img_map.image, 0, 0);    
+}
+
+void movement_to_zero(t_general *mother)
+{
+     mother->gps.event = 0;
+     mother->gps.move.x = 0;
+     mother->gps.move.y = 0;
+     mother->gps.rot_left = 0;
+     mother->gps.rot_right = 0;
 }
 
 int events_list(t_general *mother)
@@ -71,9 +82,9 @@ int events_list(t_general *mother)
      redefine_position(mother);
      draw_map(mother);
      draw_player(mother);
-     //draw_rays(mother);
+     draw_rays(mother);
      display_images(mother);
-     mother->gps.event = 0;
+     movement_to_zero(mother);
      return (0);
 }
     

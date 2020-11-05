@@ -6,7 +6,7 @@
 /*   By: vincentbaron <vincentbaron@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/24 14:51:16 by vbaron            #+#    #+#             */
-/*   Updated: 2020/11/03 17:57:56 by vincentbaro      ###   ########.fr       */
+/*   Updated: 2020/11/05 12:05:58 by vincentbaro      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ void    position_info(t_general *mother)
         i++;
     }
     find_direction(mother);
+    mother->raycast.dist_projection = ((float)mother->args.R[0] / 2) / tanf(0.523599);
     //mother->gps.plane.x = 0;
     //mother->gps.plane.y = 0.66;
     mother->gps.time.x = 0;

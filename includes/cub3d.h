@@ -6,7 +6,7 @@
 /*   By: vincentbaron <vincentbaron@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/18 14:03:48 by vbaron            #+#    #+#             */
-/*   Updated: 2020/11/04 17:09:56 by vincentbaro      ###   ########.fr       */
+/*   Updated: 2020/11/05 17:15:55 by vincentbaro      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,9 +171,7 @@ void    game_start(t_general *mother);
 int events_list(t_general *mother);
 int key_release(int keycode, t_general *mother);
 int key_press(int keycode, t_general *mother);
-char *draw_pixel(t_general *mother, int x, int y);
-void display_images(t_general *mother);
-void create_images(t_general *mother);
+char *draw_pixel(t_img *img, int x, int y);
 
 //map_functions.c
 
@@ -182,6 +180,7 @@ void draw_square(t_general *mother, char *type);
 void draw_player(t_general *mother);
 void draw_map(t_general *mother);
 void redefine_map(t_general *mother);
+void  new_map(t_general *mother);
 void redefine_position(t_general *mother);
 int       check_angle(float angle, float a_max, float a_min);
 
@@ -197,5 +196,6 @@ void    check_intersection(t_general *mother);
 void    set_texture(t_general *mother);
 void    draw_slice(t_general *mother, float slice);
 void    draw_rays(t_general *mother);
+void draw_map_ray(t_general *mother);
 
 #endif

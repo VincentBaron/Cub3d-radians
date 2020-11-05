@@ -6,7 +6,7 @@
 /*   By: vincentbaron <vincentbaron@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 17:27:55 by vbaron            #+#    #+#             */
-/*   Updated: 2020/11/03 16:54:44 by vincentbaro      ###   ########.fr       */
+/*   Updated: 2020/11/05 18:44:26 by vincentbaro      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,33 +32,25 @@ void    draw_slice(t_general *mother, float slice)
     set_texture(mother);
     while (y < slice_height)
     {
-        draw_pixel(mother, slice, y);
+        draw_pixel(&(mother->mlx.img_ray), slice, y);
         y++;
     }
 }
 
-/*void    redefine_raycaster(t_general *mother)
-{
-    if (mother->gps.move.x == )
-}*/
-
 void    draw_rays(t_general *mother)
 {
-    int slice;
     float angle_offset;
 
-    if(mother->mlx.img_ray.image)
-        mlx_destroy_image(mother->mlx.ptr, mother->mlx.img_ray.image);
-    mlx_new_image(mother->mlx.ptr, mother->args.R[0], mother->args.R[1]);
-    redefine_raycaster(mother);
-    mother->raycast.dist_projection = ((float)mother->args.R[0] / 2) / tanf(0.523599);
     angle_offset = 1.0472 / mother->args.R[0];
-    slice = mother->args.R[0];
     mother->raycast.angle += 0.523599;
-    while (slice > 0)
+      ft_putstr_fd("yolo", 1);
+    while (slice > 1)
     {
-        draw_slice(mother, slice);
+        check_intersection(mother);
+        //draw_slice(mother, slice);
+        //draw_map_ray(mother);
         slice--;
         mother->raycast.angle -= angle_offset;
     }
+            ft_putstr_fd("yolo2", 1);
 }
