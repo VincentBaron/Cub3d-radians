@@ -6,7 +6,7 @@
 /*   By: vincentbaron <vincentbaron@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 15:07:46 by vbaron            #+#    #+#             */
-/*   Updated: 2020/11/05 18:34:32 by vincentbaro      ###   ########.fr       */
+/*   Updated: 2020/11/06 10:22:57 by vincentbaro      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,12 @@ float    vertical_intersection_calculation(t_general *mother)
 
 void    check_intersection(t_general *mother)
 {
-    ft_putstr_fd("Vert_inter:", 1);
-    ft_putnbr_fd(vertical_intersection_calculation(mother), 1);
-    ft_putchar_fd('\n', 1);
-    ft_putstr_fd("Horiz_inter:", 1);
-    ft_putnbr_fd(horizontal_intersection_calculation(mother), 1);
+    float Horizontal_inter = horizontal_intersection_calculation(mother);
+    float vertical_inter = vertical_intersection_calculation(mother);
+
+    (void)Horizontal_inter;
+    (void)vertical_inter;
+
     ft_putchar_fd('\n', 1);
     if (vertical_intersection_calculation(mother) == horizontal_intersection_calculation(mother))
         //draw_intersection

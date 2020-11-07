@@ -6,7 +6,7 @@
 /*   By: vincentbaron <vincentbaron@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/18 14:03:48 by vbaron            #+#    #+#             */
-/*   Updated: 2020/11/05 17:15:55 by vincentbaro      ###   ########.fr       */
+/*   Updated: 2020/11/06 09:48:54 by vincentbaro      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ typedef struct s1_list
     int rot_left;
     int rot_right;
     int event;
+    float angle;
 }   t_gps;
 
 typedef struct s2_list

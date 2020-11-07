@@ -6,7 +6,7 @@
 /*   By: vincentbaron <vincentbaron@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 17:27:55 by vbaron            #+#    #+#             */
-/*   Updated: 2020/11/05 18:44:26 by vincentbaro      ###   ########.fr       */
+/*   Updated: 2020/11/06 10:28:07 by vincentbaro      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,18 +39,16 @@ void    draw_slice(t_general *mother, float slice)
 
 void    draw_rays(t_general *mother)
 {
-    float angle_offset;
+    //float angle_offset;
 
-    angle_offset = 1.0472 / mother->args.R[0];
-    mother->raycast.angle += 0.523599;
-      ft_putstr_fd("yolo", 1);
-    while (slice > 1)
+   // angle_offset = 1.0472 / mother->args.R[0];
+    //mother->raycast.angle = mother->gps.angle + 0.523599;
+    //while (mother->raycast.angle > 0)
     {
         check_intersection(mother);
         //draw_slice(mother, slice);
-        //draw_map_ray(mother);
-        slice--;
-        mother->raycast.angle -= angle_offset;
+        draw_map_ray(mother);
+       // mother->raycast.angle -= angle_offset;
     }
-            ft_putstr_fd("yolo2", 1);
+
 }

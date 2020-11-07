@@ -6,7 +6,7 @@
 /*   By: vincentbaron <vincentbaron@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/24 14:51:16 by vbaron            #+#    #+#             */
-/*   Updated: 2020/11/05 12:05:58 by vincentbaro      ###   ########.fr       */
+/*   Updated: 2020/11/06 10:23:38 by vincentbaro      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,25 +16,25 @@ void    find_direction(t_general *mother)
 {
     if (mother->args.matrix[(int)mother->gps.pos.y][(int)mother->gps.pos.x] == 'N')
     {
-        mother->raycast.angle = PI / 2;
+        mother->gps.angle = PI / 2;
         //mother->gps.dir.x = -1;
         //mother->gps.dir.y = 0;
     }
     if (mother->args.matrix[(int)mother->gps.pos.y][(int)mother->gps.pos.x] == 'S')
     {
-        mother->raycast.angle = (3 * PI) / 2;
+        mother->gps.angle = (3 * PI) / 2;
         //mother->gps.dir.x = 1;
         //mother->gps.dir.y = 0;
     }
     if (mother->args.matrix[(int)mother->gps.pos.y][(int)mother->gps.pos.x] == 'E')
     {
-        mother->raycast.angle = PI;
+        mother->gps.angle = PI;
         //mother->gps.dir.x = 0;
         //mother->gps.dir.y = 1;
     }
     if (mother->args.matrix[(int)mother->gps.pos.y][(int)mother->gps.pos.x] == 'W')
     {
-        mother->raycast.angle = 0;
+        mother->gps.angle = 0;
         //mother->gps.dir.x = 0;
         //mother->gps.dir.y = -1;
     }

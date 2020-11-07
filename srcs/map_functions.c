@@ -6,7 +6,7 @@
 /*   By: vincentbaron <vincentbaron@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/23 15:31:48 by vbaron            #+#    #+#             */
-/*   Updated: 2020/11/05 17:18:34 by vincentbaro      ###   ########.fr       */
+/*   Updated: 2020/11/06 09:52:36 by vincentbaro      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,11 +117,11 @@ void    redefine_position(t_general *mother)
 {
     float angle;
 
-     angle = mother->raycast.angle;
+     angle = mother->gps.angle;
      if (mother->gps.rot_left == 1)
-          mother->raycast.angle += PI / 8;
+          mother->gps.angle += PI / 8;
      if (mother->gps.rot_right == 1)
-          mother->raycast.angle -= PI / 8;
+          mother->gps.angle -= PI / 8;
      if (mother->gps.move.y == -1 && mother->args.matrix[(int)(mother->gps.pos.y - 0.35)][(int)(mother->gps.pos.x - 0.26)] == '0' && mother->args.matrix[(int)(mother->gps.pos.y - 0.35)][(int)(mother->gps.pos.x + 0.26)] == '0')
      {
           mother->gps.pos.y += check_angle(angle, PI, 0) * 0.1 * sinf(angle);
