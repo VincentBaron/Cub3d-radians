@@ -6,7 +6,7 @@
 /*   By: vincentbaron <vincentbaron@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 17:27:55 by vbaron            #+#    #+#             */
-/*   Updated: 2020/11/06 10:28:07 by vincentbaro      ###   ########.fr       */
+/*   Updated: 2020/11/10 11:13:09 by vincentbaro      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void    draw_rays(t_general *mother)
     {
         check_intersection(mother);
         //draw_slice(mother, slice);
-        draw_map_ray(mother);
+        //draw_map_ray(mother);
        // mother->raycast.angle -= angle_offset;
     }
 
